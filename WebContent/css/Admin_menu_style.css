@@ -1,0 +1,21 @@
+.content{
+  margin-left: 250px;
+  background: url(./img/swim.jpg) no-repeat;
+  background-position: center;
+  background-size: cover;
+  height: 100vh;
+  transition: 0.5s;
+}
+
+.contentSession{
+	padding-left: 30px;
+  padding-top: 70px;
+  background: white;
+  background-position: center;
+  background-size: cover;
+  height: 100vh;
+  left: 0;
+  height: 100%;
+  transition-property: left;
+  transition: 0.5s;
+}
