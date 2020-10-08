@@ -7,32 +7,28 @@ import java.io.FileNotFoundException;
 
 public class LoginDao  {
 	
-	ArrayList<UserDTO> UserList = new ArrayList<>();
-	ArrayList<AdminDTO> AdminList = new ArrayList<>();
+	static ArrayList<UserDTO> UserList = new ArrayList<>();
+	static ArrayList<AdminDTO> AdminList = new ArrayList<>();
 
 	   public LoginDao() {
 		   
 	   }
 	   
-	public ArrayList<UserDTO> getAllUsers() {
+	public static ArrayList<UserDTO> getAllUsers() {
+		System.out.println("Getting all users");
 		      
 		      try {
 			     //File myObj = new File("personnes.txt");
-				 Scanner myReader = new Scanner(new File("C:/web/inf5190/personnes.txt"));
+				 Scanner myReader = new Scanner(new File("/Users/vorolf/Documents/Course/SessionLive/Web app/INF5190_ProjetSession/WebContent/Data/Users.txt"));
 				 
-				 String prenom;
-				 String nom;
-				 String adresse;
-				 String courriel;
+				 String username;
+				 String password;
 				 
 				 while (myReader.hasNextLine()) {
-				    		    
-				    prenom   = myReader.nextLine();
-				    nom      = myReader.nextLine();
-				    adresse  = myReader.nextLine();
-				    courriel = myReader.nextLine();
+					 username   = myReader.nextLine();
+					 password      = myReader.nextLine();
 				    	
-				    UserList.add(new UserDTO(prenom,nom));
+				    UserList.add(new UserDTO(username,password));
 				    
 				 }
 				 myReader.close();
@@ -43,25 +39,21 @@ public class LoginDao  {
 		   		
 			  return UserList;
 		   }
-	public ArrayList<AdminDTO> getAllAdmins() {
+	public static ArrayList<AdminDTO> getAllAdmins() {
+		System.out.println("Getting all users");
 	      
 	      try {
 		     //File myObj = new File("personnes.txt");
-			 Scanner myReader = new Scanner(new File("C:/web/inf5190/personnes.txt"));
+			 Scanner myReader = new Scanner(new File("/Users/vorolf/Documents/Course/SessionLive/Web app/INF5190_ProjetSession/WebContent/Data/Admins.txt"));
 			 
-			 String prenom;
-			 String nom;
-			 String adresse;
-			 String courriel;
+			 String username;
+			 String password;
 			 
 			 while (myReader.hasNextLine()) {
-			    		    
-			    prenom   = myReader.nextLine();
-			    nom      = myReader.nextLine();
-			    adresse  = myReader.nextLine();
-			    courriel = myReader.nextLine();
+				 username   = myReader.nextLine();
+				 password      = myReader.nextLine();
 			    	
-			    AdminList.add(new AdminDTO(prenom,nom));
+				 AdminList.add(new AdminDTO(username,password));
 			    
 			 }
 			 myReader.close();
@@ -83,28 +75,42 @@ public class LoginDao  {
 
 	
 	public static boolean validateUser(String userName,String password){
+		ArrayList<UserDTO> users = getAllUsers();
 		boolean status=false;
-        if (userName.length() == 0) {
-        	
-        } else if (userName.equals("User")) {
-        	status=true;
+		
+    	System.out.println("ENTERED username: "+userName);
+    	System.out.println("ENTERED pass: "+password);
+		
+        for (int i = 0; i < users.size(); i++) {
+
+            if (users.get(i).getUsername().equals(userName)) {  
+            	if(users.get(i).getPassword().equals(password)) {
+                	status=true;
+                	System.out.println("LOGIN SUCCES");
+            	}
+            }
         }
-        if (password.length() == 0) {
-        	
-        }
+		
 		return status;
 	}
 	
 	public static boolean validateAdmin(String userName,String password){
+		ArrayList<AdminDTO> admins = getAllAdmins();
 		boolean status=false;
-        if (userName.length() == 0) {
-        	
-        } else if (userName.equals("Admin")) {
-        	status=true;
+		
+    	System.out.println("ENTERED username: "+userName);
+    	System.out.println("ENTERED pass: "+password);
+		
+        for (int i = 0; i < admins.size(); i++) {
+
+            if (admins.get(i).getUsername().equals(userName)) {  
+            	if(admins.get(i).getPassword().equals(password)) {
+                	status=true;
+                	System.out.println("LOGIN SUCCES");
+            	}
+            }
         }
-        if (password.length() == 0) {
-        	
-        }
+		
 		return status;
 	}
 

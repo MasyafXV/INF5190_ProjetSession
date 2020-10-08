@@ -3,26 +3,26 @@ package com.myapp.login;
 
 public class UserDTO {
 
-	private String nom;
-    private String prenom;
+	private String username;
+    private String password;
     
-    public UserDTO(String prenom, String nom) {
-        this.nom = nom;
-        this.prenom = prenom;
+    public UserDTO(String username, String password) {
+        this.username = username;
+        this.password = password;
      }
     
     
-    public String getNom() {
-        return nom;
+    public String getUsername() {
+        return username;
     }
-    public void setNom(String nom) {
-        this.nom = nom;
+    public void setUsername(String username) {
+        this.username = username;
     }
-    public String getPrenom() {
-        return prenom;
+    public String getPassword() {
+        return password;
     }
-    public void setPrenom(String prenom) {
-        this.prenom = prenom;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
 }
