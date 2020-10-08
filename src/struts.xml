@@ -5,24 +5,20 @@
 <struts>
 <constant name="struts.custom.i18n.resources" value="LoginAction" />
 
-    <package name="default" extends="struts-default" namespace="/">
+    <package name="Login Package" extends="struts-default" namespace="/">
     
-        <action name="Login" class="org.arpit.javaPostsForLearning.LoginAction" >
+        <action name="Login" class="com.myapp.login.LoginAction" >
             <result name="success">../Dashboards/Welcome.jsp</result>
             <result name="input">Login.jsp</result>
         </action>
         
-        <action name="adminLogin" class="org.arpit.javaPostsForLearning.AdminLoginAction" >
+        <action name="adminLogin" class="com.myapp.login.AdminLoginAction" >
             <result name="success">../Dashboards/Welcome.jsp</result>
             <result name="input">Login.jsp</result>
         </action>
         
-
-        <action name="getTutorial" class="org.arpit.javaPostsForLearning.TutorialAction">
-            <result name="success">TutorialView.jsp</result>
-            <result name="error">Error.jsp</result>
-        </action> 
         
     </package>
+     
    
 </struts>

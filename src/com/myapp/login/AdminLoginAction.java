@@ -1,4 +1,4 @@
-package org.arpit.javaPostsForLearning;
+package com.myapp.login;
 import com.opensymphony.xwork2.ActionSupport;
  
 public class AdminLoginAction extends ActionSupport {
@@ -32,13 +32,13 @@ public class AdminLoginAction extends ActionSupport {
     }
  
     public void validate() {
-        if (getUserName().length() == 0) {
-            addFieldError("userName", "UserName.required");
-        } else if (!getUserName().equals("Admin")) {
-            addFieldError("userName", "Invalid User");
-        }
-        if (getPassword().length() == 0) {
-            addFieldError("password", getText("password.required"));
-        }
+    	
+    	if(LoginDao.validateAdmin(userName, password)==false){
+            addFieldError("userName", "Invalid User !!!");
+    	}
+    	else{
+    		
+    	}
+    	
     }
 }
