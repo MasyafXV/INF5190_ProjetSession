@@ -6,7 +6,8 @@
   <head>
     <meta charset="utf-8">
     <title>User menu</title>
-    <link rel="stylesheet" href="../css/User_menu_style.css">
+    <link href="${pageContext.request.contextPath}/css/User_menu_style.css" rel="stylesheet" type="text/css"/>
+    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
   </head>
   <body>
@@ -28,8 +29,8 @@
     <!--sidebar start-->
     <div class="sidebar">
       <center>
-        <img src="../img/avatar.png" class="profile_image" alt="">
-        <h4>Username</h4>
+        <img src="${pageContext.request.contextPath}/img/avatar.png" class="profile_image" alt="">
+        <h4><s:property value="userName"/></h4>
       </center>
       <a href="#"><i class="fas fa-desktop"></i><span>S'inscrire a un cours </span></a>
       <a href="#"><i class="fas fa-cogs"></i><span>Inscrire mon enfant </span></a>

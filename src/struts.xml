@@ -3,17 +3,28 @@
     "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
     "http://struts.apache.org/dtds/struts-2.0.dtd">
 <struts>
-<constant name="struts.custom.i18n.resources" value="LoginAction" />
+
+<constant name="struts.enable.DynamicMethodInvocation" value="false" />
+<constant name="struts.devMode" value="true" />
 
     <package name="Login Package" extends="struts-default" namespace="/">
     
         <action name="Login" class="com.myapp.login.LoginAction" >
-            <result name="success">../Dashboards/Welcome.jsp</result>
+            <result name="success">Dashboards/Welcome.jsp</result>
             <result name="input">Login.jsp</result>
         </action>
         
         <action name="adminLogin" class="com.myapp.login.AdminLoginAction" >
+<<<<<<< HEAD
             <result name="success">../Dashboards/WelcomeAdmin.jsp</result>
+=======
+            <result name="success">Dashboards/Welcome.jsp</result>
+            <result name="input">AdminLogin.jsp</result>
+        </action>
+        
+         <action name="Registration" class="com.myapp.login.AdminLoginAction" >
+            <result name="success">Dashboards/Welcome.jsp</result>
+>>>>>>> branch 'main' of https://github.com/trafalgarxlaw/INF5190_ProjetSession.git
             <result name="input">Login.jsp</result>
         </action>
 
@@ -21,8 +32,6 @@
 						<result name="success">../CreationSession/viewSession.jsp</result>
 				</action>
         
-        
     </package>
-     
-   
+    
 </struts>
