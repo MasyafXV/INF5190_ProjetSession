@@ -7,7 +7,8 @@
 <html>
 <head>
 	<link href="https://fonts.googleapis.com/css?family=Roboto:400,500,700" rel="stylesheet">
-	<link rel="stylesheet" type="text/css" href="../css/LoginStyle.css">
+	<link href="${pageContext.request.contextPath}/css/LoginStyle.css" rel="stylesheet" type="text/css"/>
+	
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Login Page</title>
  </head>
@@ -29,11 +30,11 @@
 					<div class="inputs">
 						<div class="input">
 							<input placeholder="Username" name="userName">
-							<img src="../img/user.svg">
+							<img src="img/user.svg">
 						</div>
 						<div class="input">
 							<input type="password" placeholder="Password"  name="password">
-							<img src="../img/pass.svg">
+							<img src="img/pass.svg">
 						</div>
 						<label class="checkbox">
 							<input type="checkbox">

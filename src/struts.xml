@@ -6,6 +6,7 @@
 
 <constant name="struts.enable.DynamicMethodInvocation" value="false" />
 <constant name="struts.devMode" value="true" />
+
     <package name="Login Package" extends="struts-default" namespace="/">
     
         <action name="Login" class="com.myapp.login.LoginAction" >
@@ -18,5 +19,11 @@
             <result name="input">AdminLogin.jsp</result>
         </action>
         
+         <action name="Registration" class="com.myapp.login.AdminLoginAction" >
+            <result name="success">Dashboards/Welcome.jsp</result>
+            <result name="input">Login.jsp</result>
+        </action>
+        
     </package>
+    
 </struts>

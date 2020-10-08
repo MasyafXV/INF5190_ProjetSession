@@ -7,14 +7,14 @@
 <html>
 <head>
 	<link href="https://fonts.googleapis.com/css?family=Roboto:400,500,700" rel="stylesheet">
-	<link rel="stylesheet" type="text/css" href="./css/LoginStyle.css">
+	<link href="${pageContext.request.contextPath}/css/LoginStyle.css" rel="stylesheet" type="text/css"/>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Login Page</title>
  </head>
  
   <body>
 	<div class="align">
-		<img class="logo" src="./img/logo.svg">
+		<img style="margin-top:15px" class="logo" src="./img/logo.svg">
 		<div class="card">
 			<div class="head">		
 				<div
@@ -42,7 +42,7 @@
 					</div>
 					<button type="submit" class="btn" value="Login">Login</button>
  				 </s:form>
-				<s:form action="">
+				<s:form action="Registration">
 					<div class="inputs">
 					 	<div class="input">
 							<input placeholder="First name" name="Fname" type="Name">
