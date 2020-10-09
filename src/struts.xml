@@ -15,21 +15,17 @@
         </action>
         
         <action name="adminLogin" class="com.myapp.login.AdminLoginAction" >
-<<<<<<< HEAD
-            <result name="success">../Dashboards/WelcomeAdmin.jsp</result>
-=======
-            <result name="success">Dashboards/Welcome.jsp</result>
+            <result name="success">Dashboards/WelcomeAdmin.jsp</result>
             <result name="input">AdminLogin.jsp</result>
         </action>
         
          <action name="Registration" class="com.myapp.login.AdminLoginAction" >
             <result name="success">Dashboards/Welcome.jsp</result>
->>>>>>> branch 'main' of https://github.com/trafalgarxlaw/INF5190_ProjetSession.git
             <result name="input">Login.jsp</result>
         </action>
 
 				<action name="viewSession" class="com.pronatation.Session.ViewSessionAction">
-						<result name="success">../CreationSession/viewSession.jsp</result>
+						<result name="success">CreationSession/viewSession.jsp</result>
 				</action>
         
     </package>
