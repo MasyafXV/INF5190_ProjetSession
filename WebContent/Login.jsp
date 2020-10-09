@@ -45,11 +45,11 @@
 				<s:form action="Registration">
 					<div class="inputs">
 					 	<div class="input">
-							<input placeholder="First name" name="Fname" type="Name">
+							<input placeholder="First name" name="firstname" type="Name">
 							<img src="./img/pass.svg">
 						</div>
 						<div class="input">
-							<input placeholder="Last name" name="Lname" type="Prenom">
+							<input placeholder="Last name" name="lastname" type="Prenom">
 							<img src="./img/pass.svg">
 						</div> 
 						<div class="input">
@@ -69,7 +69,7 @@
 							<img src="./img/pass.svg">
 						</div>
 						<div class="input">
-							<input placeholder="Birth date" name="Bdate" type="Birth date">
+							<input placeholder="Birth date" name="bdate" type="Birth date">
 							<img src="./img/pass.svg">
 						</div>		
 					</div>
