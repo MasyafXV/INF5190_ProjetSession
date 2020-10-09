@@ -19,7 +19,7 @@
             <result name="input">AdminLogin.jsp</result>
         </action>
         
-         <action name="Registration" class="com.myapp.login.AdminLoginAction" >
+         <action name="Registration" class="com.myapp.accountsManagement.RegistrationAction" >
             <result name="success">Dashboards/Welcome.jsp</result>
             <result name="input">Login.jsp</result>
         </action>
