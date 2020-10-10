@@ -8,7 +8,7 @@ public class ViewSessionAction extends ActionSupport {
 	
 	private static final long serialVersionUID = 1L;
 	private ArrayList<SessionBeans> listSessions;
-	
+
 	public ViewSessionAction() {}
 	
 	public String execute() {
@@ -28,7 +28,11 @@ public class ViewSessionAction extends ActionSupport {
 		return SUCCESS;
 	}
 	
-	public ArrayList<SessionBeans> getAllSessions() {
+	public ArrayList<SessionBeans> getListSessions() {
 		return listSessions;
+	}
+	
+	public void setListSessions(ArrayList<SessionBeans> listSessions) {
+		this.listSessions = listSessions;
 	}
 }

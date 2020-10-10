@@ -44,15 +44,6 @@ public class SessionDAO {
 		return sessions;
 	}
 	
-	public ArrayList<SessionDTO> getAllSessions() {
-		SessionDTO sessionAutumn = new SessionDTO("Autumn", 2020, "08/09/2020", "22/12/2020");
-		SessionDTO sessionWinter = new SessionDTO("Winter", 2021, "05/01/2021", "29/04/2021");
-		
-		sessions.add(sessionAutumn);
-		sessions.add(sessionWinter);
-	   		
-		return sessions;
-	   }
 	     
 	public void AddSession(SessionDTO session) {
 		   sessions.add(session);

@@ -15,13 +15,17 @@ public class DateDTO {
 	}
 	
 	public DateDTO(String date) {
-		
+		this.date = date;
 	}
 	
 	public Date getDate() throws ParseException {
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 		Date thisDate = sdf.parse(this.date);
 		return thisDate;
+	}
+	
+	public void setDate(String date) {
+		this.date = date;
 	}
 	
 	public boolean isDateValid(String inputDate) {
