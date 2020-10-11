@@ -9,6 +9,8 @@ public class LoginDao  {
 	
 	static ArrayList<UserDTO> UserList = new ArrayList<>();
 	static ArrayList<AdminDTO> AdminList = new ArrayList<>();
+	static String myPath = "/Users/vorolf/Documents/Course/SessionLive/Web app/INF5190_ProjetSession/WebContent/Data/Users.txt";
+	static String ElsaPath = "/Users/elsatran/Desktop/PROJECT_INF5190/INF5190_ProjetSession/WebContent/Data/Users.txt";
 
 	   public LoginDao() {
 		   
@@ -19,7 +21,7 @@ public class LoginDao  {
 		      
 		      try {
 			     //File myObj = new File("personnes.txt");
-				 Scanner myReader = new Scanner(new File("/Users/elsatran/Desktop/PROJECT_INF5190/INF5190_ProjetSession/WebContent/Data/Users.txt"));
+				 Scanner myReader = new Scanner(new File(myPath));
 				 
 				 String username;
 				 String password;

@@ -5,10 +5,12 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title>User menu</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Menu</title>
+    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
     <link href="${pageContext.request.contextPath}/css/User_menu_style.css" rel="stylesheet" type="text/css"/>
-    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" charset="utf-8"></script>
   </head>
   <body>
 
@@ -26,23 +28,60 @@
       </div>
     </header>
     <!--header area end-->
+    <!--mobile navigation bar start-->
+    <div class="mobile_nav">
+      <div class="nav_bar">
+		<img src="${pageContext.request.contextPath}/img/avatar.png" class="mobile_profile_image" alt="">
+		
+        <i class="fa fa-bars nav_btn"></i>
+      </div>
+      <div class="mobile_nav_items">
+        <a href="#"><i class="fas fa-desktop"></i><span>Dashboard</span></a>
+        <a href="#"><i class="fas fa-cogs"></i><span>Components</span></a>
+        <a ><i class="fas fa-table"></i><span>Tables</span></a>
+        <a href="#"><i class="fas fa-th"></i><span>Forms</span></a>
+        <a href="#"><i class="fas fa-info-circle"></i><span>About</span></a>
+        <a href="#"><i class="fas fa-sliders-h"></i><span>Settings</span></a>
+      </div>
+    </div>
+    <!--mobile navigation bar end-->
     <!--sidebar start-->
     <div class="sidebar">
-      <center>
-        <img src="${pageContext.request.contextPath}/img/avatar.png" class="profile_image" alt="">
-        <h4><s:property value="userName"/></h4>
-      </center>
-      <a href="#"><i class="fas fa-desktop"></i><span>S'inscrire a un cours </span></a>
-      <a href="#"><i class="fas fa-cogs"></i><span>Inscrire mon enfant </span></a>
-      <a href="#"><i class="fas fa-table"></i><span>Fonction 3 </span></a>
-      <a href="#"><i class="fas fa-th"></i><span>Fonction 4 </span></a>
+      <div class="profile_info">
+     <img src="${pageContext.request.contextPath}/img/avatar.png" class="profile_image" alt="">
+        
+        <h4 style="color:white"><s:property value="userName"/></h4>
+		<s:set var="sessionUsername" value="userName" />
+      </div>
+      <a href="#"><i class="fas fa-desktop"></i><span>S'inscrire a un cours</span></a>
+      <a href="#"><i class="fas fa-cogs"></i><span>Inscrire mon enfant</span></a>
+      <a id="RegisterChildPage" href="#"><i class="fas fa-table"></i><span>Ajouter un enfant</span></a>
+      <a href="#"><i class="fas fa-th"></i><span>Forms</span></a>
       <a href="#"><i class="fas fa-info-circle"></i><span>About</span></a>
       <a href="#"><i class="fas fa-sliders-h"></i><span>Settings</span></a>
     </div>
     <!--sidebar end-->
-    
 
-    <div class="content"></div>
+    <div class="content">
+
+       <div id="AddMyChild" class="card" style="display: none;">
+     		<%@ include file="FamilyManagerView.jsp"%> 
+     </div> 
+    </div>
+
+    <script type="text/javascript">
+    $(document).ready(function(){
+      $('.nav_btn').click(function(){
+        $('.mobile_nav_items').toggleClass('active');
+      });
+    });
+    
+    jQuery(document).ready(function($) {
+        $('#RegisterChildPage').on('click', function() {
+            $('#AddMyChild').show();
+        });
+    });
+    </script>
 
   </body>
 </html>

@@ -23,10 +23,15 @@
             <result name="success">Dashboards/Welcome.jsp</result>
             <result name="input">Login.jsp</result>
         </action>
+        
+        
+        <action name="ChildRegistration" class="com.pronatation.Child.ChildRegistrationAction" >
+            <result name="success">Dashboards/Welcome.jsp</result>
+        </action>
 
-				<action name="viewSession" class="com.pronatation.Session.ViewSessionAction">
-						<result name="success">CreationSession/viewSession.jsp</result>
-				</action>
+		<action name="viewSession" class="com.pronatation.Session.ViewSessionAction">
+				<result name="success">CreationSession/viewSession.jsp</result>
+		</action>
         
     </package>
     
