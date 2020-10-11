@@ -3,8 +3,8 @@ package com.myapp.login;
 
 public class UserDTO {
 
-	private String username;
-    private String password;
+	private String username="";
+    private String password="";
     
     public UserDTO(String username, String password) {
         this.username = username;

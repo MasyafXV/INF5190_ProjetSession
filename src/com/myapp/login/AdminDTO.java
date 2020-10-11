@@ -1,8 +1,8 @@
 package com.myapp.login;
 
 public class AdminDTO {
-	private String username;
-    private String password;
+	private String username="";
+    private String password="";
     
     public AdminDTO(String username, String password) {
         this.username = username;

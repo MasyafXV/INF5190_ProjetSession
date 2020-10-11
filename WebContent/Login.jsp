@@ -26,6 +26,7 @@
 			</div>
 			<div class="tabs">
  			 <s:form action="Login">
+ 			 <s:fielderror fieldName="userName"/>
 					<div class="inputs">
 						<div class="input">
 							<input placeholder="Username" name="userName">

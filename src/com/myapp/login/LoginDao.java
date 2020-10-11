@@ -46,7 +46,7 @@ public class LoginDao  {
 	      
 	      try {
 		     //File myObj = new File("personnes.txt");
-			 Scanner myReader = new Scanner(new File("/Users/elsatran/Desktop/PROJECT_INF5190/INF5190_ProjetSession/WebContent/Data/Admins.txt"));
+	    	 Scanner myReader = new Scanner(new File("/Users/vorolf/Documents/Course/SessionLive/Web app/INF5190_ProjetSession/WebContent/Data/Admins.txt"));
 			 
 			 String username;
 			 String password;

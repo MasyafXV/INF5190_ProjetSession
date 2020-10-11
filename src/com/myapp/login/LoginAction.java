@@ -35,7 +35,7 @@ public class LoginAction extends ActionSupport {
     public void validate() {
     	
     	if(LoginDao.validateUser(userName, password)==false){
-            addFieldError("userName", "Invalid User !!!");
+            addFieldError("userName", "Invalid User, Try again");
     	}
     	else{
     		
