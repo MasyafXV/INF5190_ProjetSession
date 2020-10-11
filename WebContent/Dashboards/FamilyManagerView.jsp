@@ -1,5 +1,5 @@
 
-<h1>Child Registration</h1>
+<h1>Ajouter mon enfant</h1>
 
 <!--         <h4 style="color:white"><s:property value="userName" /></h4>
  -->
@@ -21,7 +21,7 @@
 				<img src="./img/user.svg">
 			</div>
 		</div>
-		<button type="submit" class="btn" value="ChildRegistration">Register my child</button>
+		<button type="submit" class="btn" value="ChildRegistration">Ajouter !</button>
 	 </s:form>
 	 
 	 <style>

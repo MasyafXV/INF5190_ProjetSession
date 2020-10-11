@@ -54,7 +54,7 @@
 		<s:set var="sessionUsername" value="userName" />
       </div>
       <a href="#"><i class="fas fa-desktop"></i><span>S'inscrire a un cours</span></a>
-      <a href="#"><i class="fas fa-cogs"></i><span>Inscrire mon enfant</span></a>
+      <a id="RegisterChildCoursePage" href="#"><i class="fas fa-cogs"></i><span>Inscrire mon enfant</span></a>
       <a id="RegisterChildPage" href="#"><i class="fas fa-table"></i><span>Ajouter un enfant</span></a>
       <a href="#"><i class="fas fa-th"></i><span>Forms</span></a>
       <a href="#"><i class="fas fa-info-circle"></i><span>About</span></a>
@@ -66,6 +66,9 @@
 
        <div id="AddMyChild" class="card" style="display: none;">
      		<%@ include file="FamilyManagerView.jsp"%> 
+     </div> 
+      <div id="RegisterChildToCourse" class="card" style="display: none;">
+     		<%@ include file="ChildCourseRegistration.jsp"%> 
      </div> 
     </div>
 
@@ -79,6 +82,16 @@
     jQuery(document).ready(function($) {
         $('#RegisterChildPage').on('click', function() {
             $('#AddMyChild').show();
+            $('#RegisterChildToCourse').hide();
+
+        });
+    });
+    
+    jQuery(document).ready(function($) {
+        $('#RegisterChildCoursePage').on('click', function() {
+            $('#AddMyChild').hide();
+            $('#RegisterChildToCourse').show();
+
         });
     });
     </script>
