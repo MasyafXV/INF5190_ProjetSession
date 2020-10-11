@@ -48,6 +48,22 @@ public class SessionBeans {
 	this.year = year;
   }
   
+  public String getSessionFrom() {
+	return sessionFrom.toString();
+  }
+
+  public void setSessionFrom(String dateFrom) {
+	this.sessionFrom = new DateBeans(dateFrom);
+  }
+
+  public String getSessionTo() {
+	return sessionTo.toString();
+  }
+
+  public void setSessionTo(String dateTo) {
+	  this.sessionTo = new DateBeans(dateTo);
+  }
+  
   public boolean validateSeason(String season) {
 	  
 	  if (season.equals("Winter") 
@@ -78,22 +94,6 @@ public class SessionBeans {
 	  }
 	  return false;
   }
-
-public String getSessionFrom() {
-	return sessionFrom.toString();
-}
-
-public void setSessionFrom(int day, int month, int year) {
-	this.sessionFrom = new DateBeans(day, month, year);
-}
-
-public String getSessionTo() {
-	return sessionTo.toString();
-}
-
-public void setSessionTo(int day, int month, int year) {
-	this.sessionTo = new DateBeans(day, month, year);
-}
  
 }
 

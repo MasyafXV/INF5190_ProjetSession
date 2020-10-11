@@ -29,9 +29,9 @@
             <result name="success">Dashboards/Welcome.jsp</result>
         </action>
 
-		<action name="viewSession" class="com.pronatation.Session.ViewSessionAction">
-				<result name="success">CreationSession/viewSession.jsp</result>
-		</action>
+				<action name="viewSession" class="com.pronatation.Session.ViewSessionAction">
+						<result name="success">../CreationSession/CreateSession.jsp</result>
+				</action>
         
     </package>
     

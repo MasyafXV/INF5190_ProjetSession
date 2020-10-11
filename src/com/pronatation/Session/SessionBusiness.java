@@ -8,6 +8,6 @@ public class SessionBusiness {
     public SessionBusiness() {}
     
     public ArrayList<SessionDTO> getListSessions() {
-        return sessionDAO.getAllSessions();
+        return sessionDAO.getSessions();
     }
 }

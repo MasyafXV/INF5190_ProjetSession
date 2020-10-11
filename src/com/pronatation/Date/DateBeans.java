@@ -15,7 +15,7 @@ public class DateBeans {
 	}
 	
 	public DateBeans(String date) {
-		
+		this.date = date;
 	}
 	
 	public Date getDate() throws ParseException {
