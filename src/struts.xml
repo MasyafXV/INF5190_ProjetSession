@@ -24,6 +24,11 @@
             <result name="input">Login.jsp</result>
         </action>
         
+        
+        <action name="ChildRegistration" class="com.pronatation.Child.ChildRegistrationAction" >
+            <result name="success">Dashboards/Welcome.jsp</result>
+        </action>
+        
     </package>
     
     <package name="Session Package" extends="struts-default" namespace="/">

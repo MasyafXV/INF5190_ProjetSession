@@ -1,25 +1,30 @@
-* {
-	box-sizing: border-box;
-	margin: 0;
-	padding: 0;
-	text-decoration: none;
-	font-family: "Roboto";
-	outline: none;
-	border: none;
-}
 
-.errorMessage {
-  color: red;
-}
+<h1>Ajouter mon enfant</h1>
 
-html, body {
-	height: 100%;
-/* 	background: #0A0A0A;
- */	 background: url(../img/bg.jpg) no-repeat;
-  background-position: center;
-  background-size: cover;
-  height: 100vh;
-}
+<!--         <h4 style="color:white"><s:property value="userName" /></h4>
+ -->
+	 <s:form action="ChildRegistration">
+	 
+	    <s:hidden name="userName" value="%{#sessionUsername}"/>
+	 
+		<div class="inputs">
+			<div class="input">
+				<input placeholder="child firstname" name="child_firstname">
+				<img src="./img/user.svg">
+			</div>
+			<div class="input">
+				<input  placeholder="child lastname"  name="child_lastname">
+				<img src="./img/user.svg">
+			</div>
+			<div class="input">
+				<input  placeholder="child birth date"  name="child_bdate">
+				<img src="./img/user.svg">
+			</div>
+		</div>
+		<button type="submit" class="btn" value="ChildRegistration">Ajouter !</button>
+	 </s:form>
+	 
+	 <style>
 
 .align {
 	height: 100%;
@@ -30,21 +35,6 @@ html, body {
 	padding-bottom: 8px;
 }
 
-.logo {
-	width: 120px;
-}
-
-.card {
-	margin-top: 28px;
-	height: 100%;
-	max-height: 946px;
-	width: 396px;
-	background: #121212;
-	border: 1px solid #373737;
-	border-radius: 10px;
-	overflow: hidden;
-	transition: max-height 0.2s;
-}
 
 .extend {
 	max-height: 946px;
@@ -54,7 +44,6 @@ html, body {
 	width: 100%;
 	display: flex;
 	height: 72px;
-	border-bottom: 1px solid #373737;
 	justify-content: space-between;
 }
 
@@ -92,7 +81,7 @@ html, body {
 }
 
 form {
-	width: 100%;
+	width: 60%;
 	height: 100%;
 	flex-shrink: 0;
 	padding: 44px 38px;
@@ -137,67 +126,16 @@ form {
 	left: 19px;
 }
 
-.checkbox {
-	height: 40px;
-	display: flex;
-	align-items: center;
-	position: relative;
-	cursor: pointer;
-}
 
-.checkbox input {
-	position: absolute;
-	opacity: 0;
-	height: 0;
-	width: 0;
-}
 
-.checkbox span {
-	display: flex;
-	align-items: center;
-	color: rgb(110,110,110);
-	font-size: 16px;
-	user-select: none;
-}
-
-.checkbox span:before {
-	content: "";
-	width: 22px;
-	height: 22px;
-	border-radius: 6px;
-	margin-right: 16px;
-	background-color: #1C1C1C;
-}
-
-.checkbox:hover input ~ span:before {
-	background-color: rgb(50,50,50);
-}
-
-.checkbox input:checked ~ span:before {
-	background-image: url(../img/checked.png);
-	background-size: cover;
-}
-
-.card button {
+ button {
 	display: block;
-	background: #00FF5C;
+	background: #45f564;
 	padding: 14px 52px;
 	border-radius: 12px;
-	color: #003B15;
+	color: white;
 	font-weight: 700;
 	font-size: 21px;
 	cursor: pointer;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
+</style>
