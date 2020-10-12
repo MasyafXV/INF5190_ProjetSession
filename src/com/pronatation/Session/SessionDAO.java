@@ -1,14 +1,19 @@
 package com.pronatation.Session;
 
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+
+
 public class SessionDAO {
 	
+	public final String filePath = "/Users/elsatran/Desktop/PROJECT_INF5190/INF5190_ProjetSession/WebContent/Data/session.txt";
 	private ArrayList<SessionDTO> sessions = new ArrayList<>();
-	//private List<ClassDTO> listClass;
+	
 	
 	public SessionDAO() {
 		
@@ -19,7 +24,7 @@ public class SessionDAO {
 	      
 	    try {
 		//File myObj = new File("personnes.txt");
-	    	Scanner myReader = new Scanner(new File("/Users/elsatran/Desktop/PROJECT_INF5190/INF5190_ProjetSession/WebContent/Data/session.txt"));
+	    	Scanner myReader = new Scanner(new File(filePath));
 			 
 			String season;
 			int year;
@@ -45,8 +50,23 @@ public class SessionDAO {
 	}
 	
 	     
-	public void AddSession(SessionDTO session) {
-		   sessions.add(session);
+	public void addSession(SessionDTO session) {
+		System.out.println("Saving new sessions");
+		
+		try {
+			File file = new File(filePath);
+			FileWriter fw = new FileWriter(file, true);
+			BufferedWriter bw = new BufferedWriter(fw);
+			
+			bw.write(session.getSeason() + "\n");
+			bw.write(session.getYear() + "\n");
+			bw.write(session.getSessionFrom() + "\n");
+			bw.write(session.getSessionTo() + "\n");
+			
+			bw.close();
+			
+		} catch (Exception e) { System.out.print("Error adding Session");}
+
 	}
 	      
 	public void DeleteSession(SessionDTO session) {

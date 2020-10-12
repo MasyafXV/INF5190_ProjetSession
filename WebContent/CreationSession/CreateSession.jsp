@@ -54,7 +54,7 @@
     		
     		
     		<s:iterator value="listSessions" var="session">
-					<i class="fa fa-chevron-right fa-rotate-90"></i>
+					<i class="fa fa-chevron-right fa-rotate-90"> </i>
 					<s:property value="#session.season"/>
 					<s:property value="#session.year"/>
 					<s:property value="#session.sessionFrom"/>
@@ -62,14 +62,17 @@
 				</s:iterator>
 				
     	<s:form action="CreateNewSession">
-    		<s:select label="Season "
+    		<!--<s:select label="Season "
        		name="season"
        		headerKey="null" headerValue="-- Season --"
        		list="#{'Winter':'Winter', 'Summer':'Summer', 'Autumn':'Autumn'}"
 					value="selectedMonth"
        		required="true"
-				/>
-				<s:textfield id="year" label="Year " placeholder="-- Year --" required="true"/>
+				/>-->
+				<s:textfield id="season" label="Season " placeholder="-- Season --" />
+				<s:textfield id="year" label="Year " placeholder="-- Year --" />
+				<s:textfield id="sessionFrom" label="From " placeholder="-- DD/MM/YYYY --" />
+				<s:textfield id="sessionTo" label="To " placeholder="-- DD/MM/YYYY --" />
     		<!--<select id="season" required>
     			<option value="hide">-- Season --</option>
     			<option value="2010">Winter</option>
@@ -77,7 +80,7 @@
     			<option value="2012">Autumn</option>
 				</select>
 				<input type="text" id="year" placeholder="-- Year --" required="required">-->
-				<s:submit type="submit" value="Create"/>
+				<s:submit value="Create"></s:submit>
     	</s:form>
     	</div>
     </div>
