@@ -5,26 +5,26 @@ import com.opensymphony.xwork2.ActionSupport;
 public class CreateSessionAction extends ActionSupport {
 
 	private static final long serialVersionUID = 1L;
-	private SessionBeans newSession;
+	private SessionBeans session;
 
-	public String createSession() {
+	public String execute() {
 		System.out.print("createSEssionAction check");
 		
 		SessionBusiness sessionBusiness = new SessionBusiness();
 		
-		SessionDTO sessionDTO = new SessionDTO(newSession.getSeason(), newSession.getYear(), 
-				newSession.getSessionFrom(), newSession.getSessionTo());
+		SessionDTO sessionDTO = new SessionDTO(session.getSeason(), session.getYear(), 
+				session.getSessionFrom(), session.getSessionTo());
 		
 		sessionBusiness.addSession(sessionDTO);
 		
 		return SUCCESS;
 	}
 	
-	public SessionBeans getNewSession() {
-		return newSession;
+	public SessionBeans getsession() {
+		return session;
 	}
 
-	public void setNewSession(SessionBeans newSession) {
-		this.newSession = newSession;
+	public void setsession(SessionBeans session) {
+		this.session = session;
 	}
 }

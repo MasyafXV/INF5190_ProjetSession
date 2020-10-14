@@ -3,7 +3,9 @@ package com.pronatation.Session;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.FileWriter;
+import java.io.OutputStreamWriter;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -27,13 +29,13 @@ public class SessionDAO {
 	    	Scanner myReader = new Scanner(new File(filePath));
 			 
 			String season;
-			int year;
+			String year;
 			String dateFrom;
 			String dateTo;
 			 
 			while (myReader.hasNextLine()) {
 				season = myReader.nextLine();
-	    		year = Integer.parseInt(myReader.nextLine());
+	    		year = myReader.nextLine();
 	    		dateFrom = myReader.nextLine();
 	    		dateTo = myReader.nextLine();
 			    	
@@ -55,13 +57,18 @@ public class SessionDAO {
 		
 		try {
 			File file = new File(filePath);
-			FileWriter fw = new FileWriter(file, true);
-			BufferedWriter bw = new BufferedWriter(fw);
+			FileOutputStream fos = new FileOutputStream(file,true);
+			 
+			BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(fos));
 			
-			bw.write(session.getSeason() + "\n");
-			bw.write(session.getYear() + "\n");
-			bw.write(session.getSessionFrom() + "\n");
-			bw.write(session.getSessionTo() + "\n");
+			bw.write(session.getSeason());
+			bw.newLine();
+			bw.write(session.getYear());
+			bw.newLine();
+			bw.write(session.getSessionFrom());
+			bw.newLine();
+			bw.write(session.getSessionTo());
+			bw.newLine();
 			
 			bw.close();
 			

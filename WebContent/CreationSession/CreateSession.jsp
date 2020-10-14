@@ -69,10 +69,10 @@
 					value="selectedMonth"
        		required="true"
 				/>-->
-				<s:textfield id="season" label="Season " placeholder="-- Season --" />
-				<s:textfield id="year" label="Year " placeholder="-- Year --" />
-				<s:textfield id="sessionFrom" label="From " placeholder="-- DD/MM/YYYY --" />
-				<s:textfield id="sessionTo" label="To " placeholder="-- DD/MM/YYYY --" />
+				<s:textfield id="session.season" label="Season " placeholder="-- Season --" />
+				<s:textfield id="session.year" label="Year " placeholder="-- Year --" />
+				<s:textfield id="session.sessionFrom" label="From " placeholder="-- DD/MM/YYYY --" />
+				<s:textfield id="session.sessionTo" label="To " placeholder="-- DD/MM/YYYY --" />
     		<!--<select id="season" required>
     			<option value="hide">-- Season --</option>
     			<option value="2010">Winter</option>
@@ -80,7 +80,7 @@
     			<option value="2012">Autumn</option>
 				</select>
 				<input type="text" id="year" placeholder="-- Year --" required="required">-->
-				<s:submit value="Create"></s:submit>
+				<s:submit value="Create"/>
     	</s:form>
     	</div>
     </div>

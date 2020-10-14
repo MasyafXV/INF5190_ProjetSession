@@ -8,13 +8,13 @@ import com.pronatation.Date.DateDTO;
 public class SessionDTO {
 	
   private String season;
-  private int year;
+  private String year;
   private DateDTO sessionFrom;
   private DateDTO sessionTo; 
   
   public SessionDTO() {}
   
-  public SessionDTO(String season, int year, String dateFrom, String dateTo) {
+  public SessionDTO(String season, String year, String dateFrom, String dateTo) {
 	  
 	  this.season = season;
 	  this.year = year;
@@ -22,7 +22,7 @@ public class SessionDTO {
 	  this.sessionTo = new DateDTO(dateTo);
   }
   
-  public SessionDTO(String season, int year,
+  public SessionDTO(String season, String year,
 		  int dayFrom, int monthFrom, int yearFrom, 
 		  int dayTo, int monthTo, int yearTo) {
 	  
@@ -40,11 +40,11 @@ public class SessionDTO {
 	this.season = season;
   }
 
-  public int getYear() {
+  public String getYear() {
 	return year;
   }
 
-  public void setYear(int year) {
+  public void setYear(String year) {
 	this.year = year;
   }
   
