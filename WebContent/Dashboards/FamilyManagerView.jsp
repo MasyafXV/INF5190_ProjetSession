@@ -128,7 +128,7 @@ form {
 
 
 
- button {
+ btn {
 	display: block;
 	background: #45f564;
 	padding: 14px 52px;

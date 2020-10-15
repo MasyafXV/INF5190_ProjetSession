@@ -53,7 +53,7 @@
         <h4 style="color:white"><s:property value="userName"/></h4>
 		<s:set var="sessionUsername" value="userName" />
       </div>
-      <a href="#"><i class="fas fa-desktop"></i><span>S'inscrire a un cours</span></a>
+      <a id="RegisterUserCoursePage" href="#"><i class="fas fa-desktop"></i><span>S'inscrire a un cours</span></a>
       <a id="RegisterChildCoursePage" href="#"><i class="fas fa-cogs"></i><span>Inscrire mon enfant</span></a>
       <a id="RegisterChildPage" href="#"><i class="fas fa-table"></i><span>Ajouter un enfant</span></a>
       <a href="#"><i class="fas fa-th"></i><span>Forms</span></a>
@@ -67,8 +67,11 @@
        <div id="AddMyChild" class="card" style="display: none;">
      		<%@ include file="FamilyManagerView.jsp"%> 
      </div> 
-      <div id="RegisterChildToCourse" class="card" style="display: none;">
+<%--       <div id="RegisterChildToCourse" class="card" style="display: none;">
      		<%@ include file="ChildCourseRegistration.jsp"%> 
+     </div>  --%>
+     <div id="RegisterUserToCourse" class="card" style="display: none;">
+     		<%@ include file="UserCourseRegistration.jsp"%> 
      </div> 
     </div>
 
@@ -81,8 +84,10 @@
     
     jQuery(document).ready(function($) {
         $('#RegisterChildPage').on('click', function() {
-            $('#AddMyChild').show();
+            $('#RegisterUserToCourse').hide();
             $('#RegisterChildToCourse').hide();
+            $('#AddMyChild').show();
+
 
         });
     });
@@ -90,7 +95,18 @@
     jQuery(document).ready(function($) {
         $('#RegisterChildCoursePage').on('click', function() {
             $('#AddMyChild').hide();
+            $('#RegisterUserToCourse').hide();
             $('#RegisterChildToCourse').show();
+
+        });
+    });
+    
+    jQuery(document).ready(function($) {
+        $('#RegisterUserCoursePage').on('click', function() {
+            $('#AddMyChild').hide();
+            $('#RegisterChildToCourse').hide();
+            $('#RegisterUserToCourse').show();
+
 
         });
     });

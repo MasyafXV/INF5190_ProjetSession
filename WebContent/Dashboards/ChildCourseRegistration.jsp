@@ -10,50 +10,50 @@
             <input
               type="radio"
               class="radio"
-              id="automobiles"
+              id="Étoile_de_mer"
               name="category"
             />
-            <label for="automobiles">Automobiles</label>
+            <label for="Étoile_de_mer">Étoile de mer</label>
           </div>
 
           <div class="option">
-            <input type="radio" class="radio" id="film" name="category" />
-            <label for="film">Film & Animation</label>
+            <input type="radio" class="radio" id="Bambins" name="category" />
+            <label for="Bambins">Bambins</label>
           </div>
 
           <div class="option">
-            <input type="radio" class="radio" id="science" name="category" />
-            <label for="science">Science & Technology</label>
+            <input type="radio" class="radio" id="Tortues" name="category" />
+            <label for="Tortues">Tortues</label>
           </div>
 
           <div class="option">
-            <input type="radio" class="radio" id="art" name="category" />
-            <label for="art">Art</label>
+            <input type="radio" class="radio" id="Pingouins" name="category" />
+            <label for="Pingouins">Pingouins</label>
           </div>
 
           <div class="option">
-            <input type="radio" class="radio" id="music" name="category" />
-            <label for="music">Music</label>
+            <input type="radio" class="radio" id="Salamandre" name="category" />
+            <label for="Salamandre">Salamandre</label>
           </div>
 
           <div class="option">
-            <input type="radio" class="radio" id="travel" name="category" />
-            <label for="travel">Travel & Events</label>
+            <input type="radio" class="radio" id="Baleines" name="category" />
+            <label for="Baleines">Baleines</label>
           </div>
 
           <div class="option">
-            <input type="radio" class="radio" id="sports" name="category" />
-            <label for="sports">Sports</label>
+            <input type="radio" class="radio" id="Grenouilles" name="category" />
+            <label for="Grenouilles">Grenouilles</label>
           </div>
 
           <div class="option">
-            <input type="radio" class="radio" id="news" name="category" />
-            <label for="news">News & Politics</label>
+            <input type="radio" class="radio" id="Dauphins" name="category" />
+            <label for="Dauphins">Dauphins</label>
           </div>
 
           <div class="option">
-            <input type="radio" class="radio" id="tutorials" name="category" />
-            <label for="tutorials">Tutorials</label>
+            <input type="radio" class="radio" id="Maître_Nageur" name="category" />
+            <label for="Maître_Nageur">Maître-Nageur</label>
           </div>
         </div>
 
@@ -130,7 +130,7 @@ h2 {
 
 .selected::after {
   content: "";
-  background: url("../img/arrow-down.svg");
+  background: url("./img/arrow-down.svg");
   background-size: contain;
   background-repeat: no-repeat;
 

@@ -1,15 +1,16 @@
 package com.pronatation.Courses;
 
-public class CourseDTO {
+public class CourseBean {
 	
-
-	String courseLevel;
+	private String courseLevel;
 	
-	
-	public CourseDTO (String courseLevel) {
-		this.courseLevel=courseLevel;
+	public CourseBean() {
+		
 	}
 	
+	public CourseBean(String courseLevel) {
+		this.courseLevel=courseLevel;
+	}
 
 	public String getCourseLevel() {
 		return courseLevel;
@@ -18,7 +19,6 @@ public class CourseDTO {
 	public void setCourseLevel(String courseLevel) {
 		this.courseLevel = courseLevel;
 	}
-
 
 
 }
