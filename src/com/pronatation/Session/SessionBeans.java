@@ -8,13 +8,13 @@ import com.pronatation.Date.DateBeans;
 public class SessionBeans {
 	
   private String season;
-  private int year;
+  private String year;
   private DateBeans sessionFrom;
   private DateBeans sessionTo; 
   
   public SessionBeans() {}
   
-  public SessionBeans(String season, int year, String dateFrom, String dateTo) {
+  public SessionBeans(String season, String year, String dateFrom, String dateTo) {
 	  
 	  this.season = season;
 	  this.year = year;
@@ -22,7 +22,7 @@ public class SessionBeans {
 	  this.sessionTo = new DateBeans(dateTo);
   }
   
-  public SessionBeans(String season, int year,
+  public SessionBeans(String season, String year,
 		  int dayFrom, int monthFrom, int yearFrom, 
 		  int dayTo, int monthTo, int yearTo) {
 	  
@@ -40,13 +40,14 @@ public class SessionBeans {
 	this.season = season;
   }
 
-  public int getYear() {
+  public String getYear() {
 	return year;
   }
 
-  public void setYear(int year) {
+  public void setYear(String year) {
 	this.year = year;
   }
+
   
   public String getSessionFrom() {
 	return sessionFrom.toString();

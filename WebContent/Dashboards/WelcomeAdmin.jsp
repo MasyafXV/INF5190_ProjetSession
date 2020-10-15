@@ -45,7 +45,7 @@
     <div class="content">
     	<div class="contentSession">
     		<h2>View session</h2>
-    	<p><a href="<s:url action='viewSession'/>">Liste des sessions</a></p>
+    	<p><a href="<s:url action='ViewSession'/>">Liste des sessions</a></p>
     	</div>
     	
     	

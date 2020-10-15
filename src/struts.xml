@@ -33,10 +33,20 @@
             <result name="success">Dashboards/Welcome.jsp</result>
         </action>
 
-				<action name="viewSession" class="com.pronatation.Session.ViewSessionAction">
+    </package>
+    
+    <package name="Session Package" extends="struts-default" namespace="/">
+    
+    		<action name="ViewSession" class="com.pronatation.Session.ViewSessionAction">
 						<result name="success">../CreationSession/CreateSession.jsp</result>
 				</action>
-        
+				
+				<action name="CreateNewSession" class="com.pronatation.Session.CreateSessionAction">
+						<result name="success">Dashboards/WelcomeAdmin.jsp</result>
+						<result name="input">CreationSession/CreateSession.jsp</result>
+				</action>
+				
+				
     </package>
     
 </struts>
