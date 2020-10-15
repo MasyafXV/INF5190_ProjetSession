@@ -3,6 +3,9 @@ package com.myapp.login;
 import java.util.ArrayList;
 import java.io.File;
 import java.util.Scanner;
+
+import com.pronatation.pathManager.PathManager;
+
 import java.io.FileNotFoundException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
@@ -21,13 +24,17 @@ public class LoginDao  {
 	   
 	public  ArrayList<UserDTO> getAllUsers() {
 		
-		ProjectPath= getProjectPath() + "Data/Users.txt";
+		
+		   PathManager pathManager= new PathManager();
+		   ProjectPath= pathManager.getProjectPath();
+		   
+		   String allUsersPath = ProjectPath+"Users.txt";
 
 		System.out.println("Getting all users");
 		      
 		      try {
 			     //File myObj = new File("personnes.txt");
-				 Scanner myReader = new Scanner(new File(ProjectPath));
+				 Scanner myReader = new Scanner(new File(allUsersPath));
 				 
 				 String username;
 				 String password;
@@ -49,13 +56,16 @@ public class LoginDao  {
 		   }
 	public  ArrayList<AdminDTO> getAllAdmins() {
 		
-		ProjectPath= getProjectPath() +"Data/Admins.txt";
+		   PathManager pathManager= new PathManager();
+		   ProjectPath= pathManager.getProjectPath();
+		   
+		   String allAdminsPath = ProjectPath+"Admins.txt";
 
 		System.out.println("Getting all users");
 	      
 	      try {
 		     //File myObj = new File("personnes.txt");
-	    	 Scanner myReader = new Scanner(new File(ProjectPath));
+	    	 Scanner myReader = new Scanner(new File(allAdminsPath));
 			 
 			 String username;
 			 String password;
@@ -125,23 +135,5 @@ public class LoginDao  {
 		return status;
 	}
 	
-	   private String getProjectPath() {
-		    String myPorjectpath = this.getClass().getClassLoader().getResource("").getPath();
-		    String fullPath = null;
-		    
-			try {
-				fullPath = URLDecoder.decode(myPorjectpath, "UTF-8");
-			} catch (UnsupportedEncodingException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
-		    String pathArr[] = fullPath.split("ProjectWorkplace");
-		    System.out.println(fullPath);
-		    System.out.println(pathArr[0]);
-		    ProjectPath=pathArr[0] + "INF5190_ProjetSession/WebContent/";
-
-		    System.out.println(" fullPath: " + ProjectPath);
-		    return ProjectPath;
-	   }
 
 }

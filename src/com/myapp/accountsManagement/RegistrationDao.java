@@ -8,6 +8,8 @@ import java.io.OutputStreamWriter;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 
+import com.pronatation.pathManager.PathManager;
+
 public class RegistrationDao {
 	
 	private String ProjectPath;
@@ -24,8 +26,13 @@ public class RegistrationDao {
 		
 		System.out.println("User Registration ");
 		
-		ProjectPath= getProjectPath();
-		File fout = new File(ProjectPath+"Data/UserAccounts.txt");
+		
+		   PathManager pathManager= new PathManager();
+		   ProjectPath= pathManager.getProjectPath();
+		   
+		   String userAccountsPath = ProjectPath+"UserAccounts.txt";
+		   
+		File fout = new File(userAccountsPath);
 		
 		FileOutputStream fos = new FileOutputStream(fout,true);
 	 
@@ -55,8 +62,13 @@ public class RegistrationDao {
 			String userName,
 			String password) throws IOException {
 		
-		ProjectPath= getProjectPath();				
-		File fout = new File(ProjectPath+"Data/Users.txt");
+		   PathManager pathManager= new PathManager();
+		   ProjectPath= pathManager.getProjectPath();
+		   
+		   String usersPath = ProjectPath+"Users.txt";
+		   
+		File fout = new File(usersPath);
+		
 		FileOutputStream fos = new FileOutputStream(fout,true);
 	 
 		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(fos));
@@ -72,22 +84,5 @@ public class RegistrationDao {
 			
 	}
 	
-	   private String getProjectPath() {
-		    String myPorjectpath = this.getClass().getClassLoader().getResource("").getPath();
-		    String fullPath = null;
-		    
-			try {
-				fullPath = URLDecoder.decode(myPorjectpath, "UTF-8");
-			} catch (UnsupportedEncodingException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
-		    String pathArr[] = fullPath.split("ProjectWorkplace");
-		    System.out.println(fullPath);
-		    System.out.println(pathArr[0]);
-		    ProjectPath=pathArr[0] + "INF5190_ProjetSession/WebContent/";
 
-		    System.out.println(" fullPath: " + ProjectPath);
-		    return ProjectPath;
-	   }
 }

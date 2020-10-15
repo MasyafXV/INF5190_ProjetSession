@@ -11,6 +11,8 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
+import com.pronatation.pathManager.PathManager;
+
 public class CourseDao {
 	
 	private String ProjectPath;
@@ -20,7 +22,10 @@ public class CourseDao {
 	   
 	   public boolean UserInscription(String Username, String CourseLevel) {
 		   
-		   ProjectPath= getProjectPath();
+		   PathManager pathManager= new PathManager();
+		   ProjectPath= pathManager.getProjectPath();
+		   
+		   String usercoursePath= ProjectPath + "UsersCourses.txt";
 
 		
 		    String line = "";
@@ -29,7 +34,7 @@ public class CourseDao {
 		    int lineNumber;
 		    int targetLine=-1; 
 		    try {
-		      FileReader readfile = new FileReader(ProjectPath);
+		      FileReader readfile = new FileReader(usercoursePath);
 		      BufferedReader readbuffer = new BufferedReader(readfile);
 		      for (lineNumber = 1; lineNumber < 10; lineNumber++) {
 		    	  
@@ -50,7 +55,7 @@ public class CourseDao {
 		    
 		    if(targetLine!=-1) { //if the user has a course
 		    	
-		    	Path path = Paths.get(ProjectPath);
+		    	Path path = Paths.get(usercoursePath);
 		    	java.util.List<String> lines = null;
 				try {
 					lines = Files.readAllLines(path, StandardCharsets.UTF_8);
@@ -74,7 +79,7 @@ public class CourseDao {
 		    	
 		    }else if (targetLine==-1) { //if the user has no courses
 		    	
-		    	Path path = Paths.get(ProjectPath);
+		    	Path path = Paths.get(usercoursePath);
 		    	java.util.List<String> lines = null;
 				try {
 					lines = Files.readAllLines(path, StandardCharsets.UTF_8);
@@ -128,28 +133,6 @@ public class CourseDao {
 		return true;
 		   
 	   }
-	   
-	   
-	   private String getProjectPath() {
-		    String myPorjectpath = this.getClass().getClassLoader().getResource("").getPath();
-		    String fullPath = null;
-		    
-			try {
-				fullPath = URLDecoder.decode(myPorjectpath, "UTF-8");
-			} catch (UnsupportedEncodingException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
-		    String pathArr[] = fullPath.split("ProjectWorkplace");
-		    System.out.println(fullPath);
-		    System.out.println(pathArr[0]);
-		    ProjectPath=pathArr[0] + "INF5190_ProjetSession/WebContent/Data/UsersCourses.txt";
-
-		    System.out.println(" fullPath: " + ProjectPath);
-		    return ProjectPath;
-	   }
-	   
-	   
-	  
+	  	  
 
 }
