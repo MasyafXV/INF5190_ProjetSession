@@ -1,8 +1,11 @@
 package com.pronatation.Courses;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -10,23 +13,23 @@ import java.nio.file.Paths;
 
 public class CourseDao {
 	
-	static String myPath = "/Users/vorolf/Documents/Course/SessionLive/Web app/INF5190_ProjetSession/WebContent/Data/UsersCourses.txt";
-	static String ElsaPath = "/Users/elsatran/Desktop/PROJECT_INF5190/INF5190_ProjetSession/WebContent/Data/UsersCourses.txt";
-
+	private String ProjectPath;
 	   public CourseDao() {
 		   
 	   }
 	   
 	   public boolean UserInscription(String Username, String CourseLevel) {
 		   
-		   
+		   ProjectPath= getProjectPath();
+
+		
 		    String line = "";
 		    String newline = "";
 		    
 		    int lineNumber;
 		    int targetLine=-1; 
 		    try {
-		      FileReader readfile = new FileReader(myPath);
+		      FileReader readfile = new FileReader(ProjectPath);
 		      BufferedReader readbuffer = new BufferedReader(readfile);
 		      for (lineNumber = 1; lineNumber < 10; lineNumber++) {
 		    	  
@@ -45,9 +48,9 @@ public class CourseDao {
 		    }
 		    System.out.println(" The specific Line to add the course is: " + targetLine);
 		    
-		    if(targetLine!=-1) { //if the user has a child
+		    if(targetLine!=-1) { //if the user has a course
 		    	
-		    	Path path = Paths.get(myPath);
+		    	Path path = Paths.get(ProjectPath);
 		    	java.util.List<String> lines = null;
 				try {
 					lines = Files.readAllLines(path, StandardCharsets.UTF_8);
@@ -69,9 +72,9 @@ public class CourseDao {
 					e.printStackTrace();
 				}
 		    	
-		    }else if (targetLine==-1) { //if the user has no childs
+		    }else if (targetLine==-1) { //if the user has no courses
 		    	
-		    	Path path = Paths.get(myPath);
+		    	Path path = Paths.get(ProjectPath);
 		    	java.util.List<String> lines = null;
 				try {
 					lines = Files.readAllLines(path, StandardCharsets.UTF_8);
@@ -124,6 +127,26 @@ public class CourseDao {
 		   
 		return true;
 		   
+	   }
+	   
+	   
+	   private String getProjectPath() {
+		    String myPorjectpath = this.getClass().getClassLoader().getResource("").getPath();
+		    String fullPath = null;
+		    
+			try {
+				fullPath = URLDecoder.decode(myPorjectpath, "UTF-8");
+			} catch (UnsupportedEncodingException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		    String pathArr[] = fullPath.split("ProjectWorkplace");
+		    System.out.println(fullPath);
+		    System.out.println(pathArr[0]);
+		    ProjectPath=pathArr[0] + "INF5190_ProjetSession/WebContent/Data/UsersCourses.txt";
+
+		    System.out.println(" fullPath: " + ProjectPath);
+		    return ProjectPath;
 	   }
 	   
 	   

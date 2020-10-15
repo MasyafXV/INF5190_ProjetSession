@@ -27,6 +27,7 @@ public class UserBean {
 		System.out.println("Registering "+userName+ " to "+courseDTO.getCourseLevel()+"...");
 		
 		CourseDao course = new CourseDao();
+		
 		course.UserInscription(userName, courseDTO.getCourseLevel());
 		
 		

@@ -4,24 +4,30 @@ import java.util.ArrayList;
 import java.io.File;
 import java.util.Scanner;
 import java.io.FileNotFoundException;
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 
 public class LoginDao  {
 	
 	static ArrayList<UserDTO> UserList = new ArrayList<>();
 	static ArrayList<AdminDTO> AdminList = new ArrayList<>();
-	static String myPath = "/Users/vorolf/Documents/Course/SessionLive/Web app/INF5190_ProjetSession/WebContent/Data/Users.txt";
-	static String ElsaPath = "/Users/elsatran/Desktop/PROJECT_INF5190/INF5190_ProjetSession/WebContent/Data/Users.txt";
+//	static String myPath = "/Users/vorolf/Documents/Course/SessionLive/Web app/INF5190_ProjetSession/WebContent/Data/Users.txt";
+//	static String ElsaPath = "/Users/elsatran/Desktop/PROJECT_INF5190/INF5190_ProjetSession/WebContent/Data/Users.txt";
+	private String ProjectPath;
 
 	   public LoginDao() {
 		   
 	   }
 	   
-	public static ArrayList<UserDTO> getAllUsers() {
+	public  ArrayList<UserDTO> getAllUsers() {
+		
+		ProjectPath= getProjectPath() + "Data/Users.txt";
+
 		System.out.println("Getting all users");
 		      
 		      try {
 			     //File myObj = new File("personnes.txt");
-				 Scanner myReader = new Scanner(new File(myPath));
+				 Scanner myReader = new Scanner(new File(ProjectPath));
 				 
 				 String username;
 				 String password;
@@ -41,12 +47,15 @@ public class LoginDao  {
 		   		
 			  return UserList;
 		   }
-	public static ArrayList<AdminDTO> getAllAdmins() {
+	public  ArrayList<AdminDTO> getAllAdmins() {
+		
+		ProjectPath= getProjectPath() +"Data/Admins.txt";
+
 		System.out.println("Getting all users");
 	      
 	      try {
 		     //File myObj = new File("personnes.txt");
-	    	 Scanner myReader = new Scanner(new File("/Users/vorolf/Documents/Course/SessionLive/Web app/INF5190_ProjetSession/WebContent/Data/Admins.txt"));
+	    	 Scanner myReader = new Scanner(new File(ProjectPath));
 			 
 			 String username;
 			 String password;
@@ -76,7 +85,7 @@ public class LoginDao  {
 		   }
 
 	
-	public static boolean validateUser(String userName,String password){
+	public  boolean validateUser(String userName,String password){
 		ArrayList<UserDTO> users = getAllUsers();
 		boolean status=false;
 		
@@ -96,7 +105,7 @@ public class LoginDao  {
 		return status;
 	}
 	
-	public static boolean validateAdmin(String userName,String password){
+	public  boolean validateAdmin(String userName,String password){
 		ArrayList<AdminDTO> admins = getAllAdmins();
 		boolean status=false;
 		
@@ -115,5 +124,24 @@ public class LoginDao  {
 		
 		return status;
 	}
+	
+	   private String getProjectPath() {
+		    String myPorjectpath = this.getClass().getClassLoader().getResource("").getPath();
+		    String fullPath = null;
+		    
+			try {
+				fullPath = URLDecoder.decode(myPorjectpath, "UTF-8");
+			} catch (UnsupportedEncodingException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		    String pathArr[] = fullPath.split("ProjectWorkplace");
+		    System.out.println(fullPath);
+		    System.out.println(pathArr[0]);
+		    ProjectPath=pathArr[0] + "INF5190_ProjetSession/WebContent/";
+
+		    System.out.println(" fullPath: " + ProjectPath);
+		    return ProjectPath;
+	   }
 
 }

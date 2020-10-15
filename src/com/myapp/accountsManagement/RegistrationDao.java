@@ -5,11 +5,15 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 
 public class RegistrationDao {
 	
+	private String ProjectPath;
+
 	
-	public static boolean RegisterUser(
+	public  boolean RegisterUser(
 			String userName,
 			String password,
 			String firstname,
@@ -20,7 +24,9 @@ public class RegistrationDao {
 		
 		System.out.println("User Registration ");
 		
-		File fout = new File("/Users/vorolf/Documents/Course/SessionLive/Web app/INF5190_ProjetSession/WebContent/Data/UserAccounts.txt");
+		ProjectPath= getProjectPath();
+		File fout = new File(ProjectPath+"Data/UserAccounts.txt");
+		
 		FileOutputStream fos = new FileOutputStream(fout,true);
 	 
 		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(fos));
@@ -45,11 +51,12 @@ public class RegistrationDao {
 			
 	}
 	
-	public static boolean addUserToDatabase(
+	public  boolean addUserToDatabase(
 			String userName,
 			String password) throws IOException {
-				
-		File fout = new File("/Users/vorolf/Documents/Course/SessionLive/Web app/INF5190_ProjetSession/WebContent/Data/Users.txt");
+		
+		ProjectPath= getProjectPath();				
+		File fout = new File(ProjectPath+"Data/Users.txt");
 		FileOutputStream fos = new FileOutputStream(fout,true);
 	 
 		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(fos));
@@ -64,4 +71,23 @@ public class RegistrationDao {
 			return true;
 			
 	}
+	
+	   private String getProjectPath() {
+		    String myPorjectpath = this.getClass().getClassLoader().getResource("").getPath();
+		    String fullPath = null;
+		    
+			try {
+				fullPath = URLDecoder.decode(myPorjectpath, "UTF-8");
+			} catch (UnsupportedEncodingException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		    String pathArr[] = fullPath.split("ProjectWorkplace");
+		    System.out.println(fullPath);
+		    System.out.println(pathArr[0]);
+		    ProjectPath=pathArr[0] + "INF5190_ProjetSession/WebContent/";
+
+		    System.out.println(" fullPath: " + ProjectPath);
+		    return ProjectPath;
+	   }
 }

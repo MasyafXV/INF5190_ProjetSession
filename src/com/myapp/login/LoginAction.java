@@ -33,8 +33,9 @@ public class LoginAction extends ActionSupport {
     }
  
     public void validate() {
+    	LoginDao loginDao= new LoginDao();
     	
-    	if(LoginDao.validateUser(userName, password)==false){
+    	if(loginDao.validateUser(userName, password)==false){
             addFieldError("userName", "Invalid User, Try again");
     	}
     	else{

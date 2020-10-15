@@ -3,6 +3,8 @@ package com.pronatation.Child;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -12,23 +14,27 @@ import com.sun.tools.javac.util.List;
 
 public class ChildDao {
 	
-	static String myPath = "/Users/vorolf/Documents/Course/SessionLive/Web app/INF5190_ProjetSession/WebContent/Data/UserChilds.txt";
-	static String ElsaPath = "/Users/elsatran/Desktop/PROJECT_INF5190/INF5190_ProjetSession/WebContent/Data/UserChilds.txt";
+//	 String myPath = "/Users/vorolf/Documents/Course/SessionLive/Web app/INF5190_ProjetSession/WebContent/Data/UserChilds.txt";
+//	 String ElsaPath = "/Users/elsatran/Desktop/PROJECT_INF5190/INF5190_ProjetSession/WebContent/Data/UserChilds.txt";
+
+	private String ProjectPath;
 
 	   public ChildDao() {
 		   
 	   }
 	   
 	   
-	   public static boolean addChild(String Parent_username,String childName) {
+	   public boolean addChild(String Parent_username,String childName) {
 		   
+		   ProjectPath= getProjectPath();
+		    
 		    String line = "";
 		    String newline = "";
 		    
 		    int lineNumber;
 		    int targetLine=-1; 
 		    try {
-		      FileReader readfile = new FileReader(myPath);
+		      FileReader readfile = new FileReader(ProjectPath);
 		      BufferedReader readbuffer = new BufferedReader(readfile);
 		      for (lineNumber = 1; lineNumber < 10; lineNumber++) {
 		    	  
@@ -49,7 +55,7 @@ public class ChildDao {
 		    
 		    if(targetLine!=-1) { //if the user has a child
 		    	
-		    	Path path = Paths.get(myPath);
+		    	Path path = Paths.get(ProjectPath);
 		    	java.util.List<String> lines = null;
 				try {
 					lines = Files.readAllLines(path, StandardCharsets.UTF_8);
@@ -73,7 +79,7 @@ public class ChildDao {
 		    	
 		    }else if (targetLine==-1) { //if the user has no childs
 		    	
-		    	Path path = Paths.get(myPath);
+		    	Path path = Paths.get(ProjectPath);
 		    	java.util.List<String> lines = null;
 				try {
 					lines = Files.readAllLines(path, StandardCharsets.UTF_8);
@@ -102,7 +108,7 @@ public class ChildDao {
 	   }
 	  
 	   
-	   private static String readFirstWord(String line) {
+	   private  String readFirstWord(String line) {
 		   String firstWord="";
 		   
 		   if(line !=null) {
@@ -116,6 +122,25 @@ public class ChildDao {
 
 		   
 		return firstWord;
+	   }
+	   
+	   private String getProjectPath() {
+		    String myPorjectpath = this.getClass().getClassLoader().getResource("").getPath();
+		    String fullPath = null;
+		    
+			try {
+				fullPath = URLDecoder.decode(myPorjectpath, "UTF-8");
+			} catch (UnsupportedEncodingException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		    String pathArr[] = fullPath.split("ProjectWorkplace");
+		    System.out.println(fullPath);
+		    System.out.println(pathArr[0]);
+		    ProjectPath=pathArr[0] + "INF5190_ProjetSession/WebContent/Data/UserChilds.txt";
+
+		    System.out.println(" fullPath: " + ProjectPath);
+		    return ProjectPath;
 	   }
 	
 	   

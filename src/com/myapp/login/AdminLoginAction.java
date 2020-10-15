@@ -32,8 +32,9 @@ public class AdminLoginAction extends ActionSupport {
     }
  
     public void validate() {
-    	
-    	if(LoginDao.validateAdmin(userName, password)==false){
+    	LoginDao loginDao= new LoginDao();
+
+    	if(loginDao.validateAdmin(userName, password)==false){
             addFieldError("userName", "Invalid User, Try again");
     	}
     	else{

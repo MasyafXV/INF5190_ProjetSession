@@ -89,11 +89,12 @@ public class RegistrationAction  extends ActionSupport{
 	}
 	
     public void validate() {
+    	RegistrationDao registrationDao = new RegistrationDao();
     	
     	try {
-			if(RegistrationDao.RegisterUser(userName, password,firstname,lastname,email,adress,bdate)){
+			if(registrationDao.RegisterUser(userName, password,firstname,lastname,email,adress,bdate)){
 //            addFieldError("userName", "Invalid User !!!");
-				RegistrationDao.addUserToDatabase(userName, password);
+				registrationDao.addUserToDatabase(userName, password);
 			}
 			else{
 				

@@ -27,9 +27,11 @@ public class ChildRegistrationAction extends ActionSupport {
     	System.out.println(child_firstname);
     	System.out.println(child_lastname);
     	System.out.println(child_bdate);
-
     	
-    	if(ChildDao.addChild(userName, child_firstname)==false){
+    	
+    	ChildDao childDao= new ChildDao();
+    	
+    	if(childDao.addChild(userName, child_firstname)==false){
             addFieldError("userName", "Invalid User !!!");
     	}
     	else{
