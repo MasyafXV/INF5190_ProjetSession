@@ -1,6 +1,7 @@
 package com.pronatation.Courses;
 
 import com.opensymphony.xwork2.ActionSupport;
+import com.pronatation.Child.ChildBean;
 
 public class CourseInscriptionAction extends ActionSupport{
 
@@ -20,18 +21,32 @@ public class CourseInscriptionAction extends ActionSupport{
 	
 	private CourseBean course;
 	private UserBean user;
+	private ChildBean child;
+
 
 
 	public String execute() {
 		
+		userName = user.getUserName();
+		
 //		System.out.print(course.getCourseLevel());
 //		System.out.print(user.getUserName());
+    	CourseDTO courseDTO = new CourseDTO(course.getCourseLevel());
+
+    	if(UserInscription) {
+    		
+        	
+        	// register the user to the selected course
+        	user.registerCourse(courseDTO);
+    		
+    		
+    	}else if(childInscription) {
+        	
+        	// register the child to the selected course
+    		child.registerCourse(courseDTO);
+    	}
 
     	    	
-    	CourseDTO courseDTO = new CourseDTO(course.getCourseLevel());
-    	
-    	// register the user to the selected course
-    	user.registerCourse(courseDTO);
         return SUCCESS;
     }
  
@@ -128,6 +143,18 @@ public class CourseInscriptionAction extends ActionSupport{
 
 	public void setCourseLevel(String courseLevel) {
 		CourseLevel = courseLevel;
+	}
+
+
+
+	public ChildBean getChild() {
+		return child;
+	}
+
+
+
+	public void setChild(ChildBean child) {
+		this.child = child;
 	}
 
 	

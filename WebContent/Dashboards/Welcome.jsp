@@ -67,9 +67,9 @@
        <div id="AddMyChild" class="card" style="display: none;">
      		<%@ include file="FamilyManagerView.jsp"%> 
      </div> 
-<%--       <div id="RegisterChildToCourse" class="card" style="display: none;">
+      <div id="RegisterChildToCourse" class="card" style="display: none;">
      		<%@ include file="ChildCourseRegistration.jsp"%> 
-     </div>  --%>
+     </div>  
      <div id="RegisterUserToCourse" class="card" style="display: none;">
      		<%@ include file="UserCourseRegistration.jsp"%> 
      </div> 

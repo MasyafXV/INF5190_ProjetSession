@@ -7,6 +7,7 @@
 <s:form action="UserCourseRegistration" >
 
 <s:hidden name="user.userName" value="%{#sessionUsername}"/>
+<s:hidden name="UserInscription" value="true"/>
 
 <div class="select">
    <select name="course.courseLevel" id="format">
