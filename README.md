@@ -10,8 +10,7 @@ Url du login pout les Administrateurs : http://localhost:8080/INF5190_ProjetSess
 
 ## Important
 
-Pour que le projet fonctionne correctement avec les fichier simulant la base de donnee, nous avons implementer un Path manager qui rend notre Application portable sous certaine conditions
+Pour que le projet fonctionne correctement avec les fichier simulant la base de donnee, nous avons implementer un Path manager qui rend notre Application portable sous certaine conditions:
 
-- Le repertoire du project workspace dans eclipse doit s'appeler exactement **ProjectWorkplace**
-- Le nom du repertoire contenant le projet doit s'appeler exactement  **INF5190_ProjetSession**
--  **ProjectWorkplace** et  **INF5190_ProjetSession** doivent etre dans le meme repertoire
+- Le repertoire workspace d'eclipse doit contenire le projet **INF5190_ProjetSession**
+
