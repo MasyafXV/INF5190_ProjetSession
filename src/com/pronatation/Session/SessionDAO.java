@@ -9,11 +9,13 @@ import java.io.OutputStreamWriter;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import com.pronatation.pathManager.PathManager;
+
 
 
 public class SessionDAO {
 	
-	public final String filePath = "/Users/elsatran/Desktop/PROJECT_INF5190/INF5190_ProjetSession/WebContent/Data/session.txt";
+	private String ProjectPath;
 	private ArrayList<SessionDTO> sessions = new ArrayList<>();
 	
 	
@@ -23,10 +25,15 @@ public class SessionDAO {
 	
 	public ArrayList<SessionDTO> getSessions() {
 		System.out.println("Getting all sessions");
+		
+		PathManager pathManager= new PathManager();
+		ProjectPath= pathManager.getProjectPath();
+		   
+		String sessionPath= ProjectPath + "session.txt";
 	      
 	    try {
 		//File myObj = new File("personnes.txt");
-	    	Scanner myReader = new Scanner(new File(filePath));
+	    	Scanner myReader = new Scanner(new File(sessionPath));
 			 
 			String season;
 			String year;
@@ -55,8 +62,13 @@ public class SessionDAO {
 	public void addSession(SessionDTO session) {
 		System.out.println("Saving new sessions");
 		
+		PathManager pathManager= new PathManager();
+		ProjectPath= pathManager.getProjectPath();
+		   
+		String sessionPath= ProjectPath + "session.txt";
+		
 		try {
-			File file = new File(filePath);
+			File file = new File(sessionPath);
 			FileOutputStream fos = new FileOutputStream(file,true);
 			 
 			BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(fos));
