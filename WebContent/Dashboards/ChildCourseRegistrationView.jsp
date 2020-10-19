@@ -82,7 +82,6 @@
 			<s:form action="ChildCourseRegistration">
 
 				<s:hidden name="user.userName" value="%{#sessionUsername}" />
-				<s:hidden name="child.childName" value="xxxx" />
 				<s:hidden name="childInscription" value="true" />
 
 				<div class="select">
@@ -99,6 +98,27 @@
 						<option value="Maitre_Nageur">Maître-Nageur</option>
 
 					</select>
+				
+					
+					<s:hidden name="childInscription" value="true" />
+
+					<h1>Liste de mes enfants</h1>
+
+
+					<div class="select">
+						<select name="child.childName" id="format">
+							<option selected disabled>Choisissez un enfants</option>
+
+							<c:forEach items="${childsList}" var="child">
+								<option value="${child.childName}"><c:out
+										value="${child.childName}" /></option>
+							</c:forEach>
+
+						</select>
+
+					</div>
+					
+					
 				</div>
 				<button type="submit" class="" value="UserCourseRegistration">>Register</button>
 
@@ -108,12 +128,6 @@
 		</div>
 		<br>
 		<div>
-			<h1>Liste de mes enfants</h1>
-
-			<c:forEach items="${childsList}" var="child">
-				<c:out value="${child.childName}" />
-			</c:forEach>
-
 
 		</div>
 

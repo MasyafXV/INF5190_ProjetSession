@@ -1,1 +1,2 @@
-xxxx Bambins
+child1 Dauphins
+child3 Baleines

@@ -41,6 +41,10 @@ public class CourseInscriptionAction extends ActionSupport{
     		
     		
     	}else if(childInscription) {
+    		System.out.println("Child Inscription...");
+    		System.out.println("username : "+ user.getUserName());
+    		System.out.println("child : "+child.getChildName());
+    		System.out.println("course : "+course.getCourseLevel());
         	
         	// register the child to the selected course
     		child.registerCourse(courseDTO);
