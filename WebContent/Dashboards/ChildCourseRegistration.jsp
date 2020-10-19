@@ -32,6 +32,15 @@
 
 </div>
 
+<div>
+<%--         <% for(int i = 0; i < childsList.size(); i+=1) { %>
+            <div><%=childsList.get(i).getChildName()%> <%=childsList.get(i).getChildName()%></div>
+            </br>
+        <% } %> --%>
+        
+
+</div>
+
 
 	 <style>
 CourseSelection {

@@ -1,7 +1,5 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE struts PUBLIC
-    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
-    "http://struts.apache.org/dtds/struts-2.0.dtd">
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN" "http://struts.apache.org/dtds/struts-2.5.dtd">
 <struts>
 
 <constant name="struts.enable.DynamicMethodInvocation" value="false" />
@@ -44,6 +42,10 @@
             <result name="success">Dashboards/Welcome.jsp</result>
             <result name="input">Dashboards/Welcome.jsp</result>
             
+        </action>
+        
+        <action name="childsList" class="com.pronatation.Child.ListChildsAction" method="execute">
+            <result name="success">Dashboards/Welcome.jsp</result>            
         </action>
         
         
