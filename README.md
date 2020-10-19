@@ -14,3 +14,8 @@ Pour que le projet fonctionne correctement avec les fichier simulant la base de 
 
 - Le repertoire workspace d'eclipse doit contenire le projet **INF5190_ProjetSession**
 
+## Repartition du travail
+
+L'ensemble des taches du projet ont ete repartie initialement en 3 taches par personnes. Le role de chacun se trouvre dans le backlog du projet.
+
+
