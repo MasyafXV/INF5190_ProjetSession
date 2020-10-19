@@ -2,8 +2,8 @@ package com.pronatation.Child;
 
 import java.util.ArrayList;
 
-import com.myapp.login.UserDTO;
 import com.opensymphony.xwork2.ActionSupport;
+import com.pronatation.users.UserDTO;
 
 public class ListChildsAction extends ActionSupport{
 	

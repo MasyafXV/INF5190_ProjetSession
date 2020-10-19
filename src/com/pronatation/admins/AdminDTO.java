@@ -1,4 +1,4 @@
-package com.myapp.login;
+package com.pronatation.admins;
 
 public class AdminDTO {
 	private String username="";

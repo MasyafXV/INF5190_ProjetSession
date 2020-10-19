@@ -4,7 +4,9 @@ import java.util.ArrayList;
 import java.io.File;
 import java.util.Scanner;
 
+import com.pronatation.admins.AdminDTO;
 import com.pronatation.pathManager.PathManager;
+import com.pronatation.users.UserDTO;
 
 import java.io.FileNotFoundException;
 import java.io.UnsupportedEncodingException;
