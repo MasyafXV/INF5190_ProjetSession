@@ -2,68 +2,96 @@
 <!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN" "http://struts.apache.org/dtds/struts-2.5.dtd">
 <struts>
 
-<constant name="struts.enable.DynamicMethodInvocation" value="false" />
-<constant name="struts.devMode" value="true" />
+	<constant name="struts.enable.DynamicMethodInvocation"
+		value="false" />
+	<constant name="struts.devMode" value="true" />
+	
+		<package name="Redirections Package" extends="struts-default" namespace="/">
 
-    <package name="Login Package" extends="struts-default" namespace="/">
-    
-        <action name="Login" class="com.myapp.login.LoginAction" >
-<!--             <result name="success">Dashboards/Welcome.jsp</result>
- -->            <result type="redirectAction">/childsList.action</result>
-            <result name="input">Login.jsp</result>
-        </action>
-        
-        <action name="adminLogin" class="com.myapp.login.AdminLoginAction" >
-            <result name="success">Dashboards/WelcomeAdmin.jsp</result>
-            <result name="input">AdminLogin.jsp</result>
-        </action>
-        
-         <action name="Registration" class="com.myapp.accountsManagement.RegistrationAction" >
-            <result name="success">Dashboards/Welcome.jsp</result>
-            <result name="input">Login.jsp</result>
-        </action>
-       
-    </package>
-    
-    
-        <package name="Course Registration Package" extends="struts-default" namespace="/">
-        
-        
-        <action name="ChildRegistration" class="com.pronatation.Child.ChildRegistrationAction" >
-            <result name="success">Dashboards/Welcome.jsp</result>
-        </action>
-        
-         <action name="UserCourseRegistration" class="com.pronatation.Courses.CourseInscriptionAction" method="execute">
-            <result name="success">Dashboards/Welcome.jsp</result>
-            <result name="input">Dashboards/Welcome.jsp</result>
-            
-        </action>
-        
-        <action name="ChildCourseRegistration" class="com.pronatation.Courses.CourseInscriptionAction" method="execute">
-            <result name="success">Dashboards/Welcome.jsp</result>
-            <result name="input">Dashboards/Welcome.jsp</result>
-            
-        </action>
-        
-      <action name="childsList" class="com.pronatation.Child.ListChildsAction" method="execute">
-            <result name="success">Dashboards/Welcome.jsp</result>    
-        </action>
-        
-        </package>
-    
-    
-    <package name="Session Package" extends="struts-default" namespace="/">
-    
-    		<action name="ViewSession" class="com.pronatation.Session.ViewSessionAction">
-						<result name="success">../CreationSession/CreateSession.jsp</result>
-				</action>
-				
-				<action name="CreateNewSession" class="com.pronatation.Session.CreateSessionAction">
-						<result name="success">Dashboards/WelcomeAdmin.jsp</result>
-						<result name="input">CreationSession/CreateSession.jsp</result>
-				</action>
-				
-				
-    </package>
-    
+		<action name="redirectUserCourseRegistration" class="com.pronatation.userSessionManagement.LoginSessionManager" method="execute">
+    		<result name="success">Dashboards/UserCourseRegistrationView.jsp</result>
+		</action>
+		
+		<action name="redirectAddChild" class="com.pronatation.userSessionManagement.LoginSessionManager" method="execute">
+    		<result name="success">Dashboards/AddChild.jsp</result>
+		</action>
+		
+	</package>
+
+	<package name="Login Package" extends="struts-default"
+		namespace="/">
+
+		<action name="Login" class="com.myapp.login.LoginAction">
+			<result name="success">Dashboards/Welcome.jsp</result>
+			<result name="input">Login.jsp</result>
+		</action>
+
+		<action name="adminLogin"
+			class="com.myapp.login.AdminLoginAction">
+			<result name="success">Dashboards/WelcomeAdmin.jsp</result>
+			<result name="input">AdminLogin.jsp</result>
+		</action>
+
+		<action name="Registration"
+			class="com.myapp.accountsManagement.RegistrationAction">
+			<result name="success">Dashboards/Welcome.jsp</result>
+			<result name="input">Login.jsp</result>
+		</action>
+
+	</package>
+
+
+	<package name="Course Registration Package"
+		extends="struts-default" namespace="/">
+
+
+		<action name="ChildRegistration"
+			class="com.pronatation.Child.ChildRegistrationAction">
+			<result name="success">Dashboards/Welcome.jsp</result>
+		</action>
+
+		<action name="UserCourseRegistration"
+			class="com.pronatation.Courses.CourseInscriptionAction"
+			method="execute">
+			<result name="success">Dashboards/UserCourseRegistrationView.jsp
+			</result>
+			<result name="input">Dashboards/Welcome.jsp</result>
+
+		</action>
+
+
+		<action name="ChildCourseRegistration"
+			class="com.pronatation.Courses.CourseInscriptionAction"
+			method="execute">
+			<result name="success">Dashboards/Welcome.jsp</result>
+			<result name="input">Dashboards/Welcome.jsp</result>
+
+		</action>
+
+		<action name="childsList"
+			class="com.pronatation.Child.ListChildsAction" method="execute">
+			<result name="success">Dashboards/ChildCourseRegistrationView.jsp
+			</result>
+		</action>
+
+	</package>
+
+
+	<package name="Session Package" extends="struts-default"
+		namespace="/">
+
+		<action name="ViewSession"
+			class="com.pronatation.Session.ViewSessionAction">
+			<result name="success">../CreationSession/CreateSession.jsp</result>
+		</action>
+
+		<action name="CreateNewSession"
+			class="com.pronatation.Session.CreateSessionAction">
+			<result name="success">Dashboards/WelcomeAdmin.jsp</result>
+			<result name="input">CreationSession/CreateSession.jsp</result>
+		</action>
+
+
+	</package>
+
 </struts>

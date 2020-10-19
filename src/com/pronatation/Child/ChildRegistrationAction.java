@@ -16,6 +16,8 @@ public class ChildRegistrationAction extends ActionSupport {
  
     
     public String execute() {
+    	System.out.println(userName);
+
         return SUCCESS;
     }
  

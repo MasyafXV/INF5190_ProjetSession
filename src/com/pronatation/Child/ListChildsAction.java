@@ -18,14 +18,14 @@ public class ListChildsAction extends ActionSupport{
 	
 	public String execute() {
         
-		System.out.println("execution..");
+		System.out.println("Listing childs of "+userName);
 		
 		ArrayList<ChildDto> listChildsDTO = new ArrayList<ChildDto> ();
 		listChildsDTO = getAllChilds();
 		
 		childsList = new ArrayList<>();
 		
-		for(int i = 0; i < listChildsDTO.size(); i++) {
+		for(int i = 1; i < listChildsDTO.size(); i++) {
 			childsList.add(new ChildBean(listChildsDTO.get(i).getChild_firstname()));
 		}
     	
@@ -35,7 +35,7 @@ public class ListChildsAction extends ActionSupport{
     
     private ArrayList<ChildDto> getAllChilds(){
     	
-    	UserDTO userDTO=new UserDTO("User2", "");
+    	UserDTO userDTO=new UserDTO(userName, "");
     	
 		return userDTO.getAllChilds();
     }
