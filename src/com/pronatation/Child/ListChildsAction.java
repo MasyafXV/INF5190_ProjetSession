@@ -23,14 +23,15 @@ public class ListChildsAction extends ActionSupport{
 		ArrayList<ChildDto> listChildsDTO = new ArrayList<ChildDto> ();
 		listChildsDTO = getAllChilds();
 		
-//		childsList = new ArrayList<>();
-//		
-//		for(int i = 0; i < listChildsDTO.size(); i++) {
-//			childsList.add(new ChildBean(listChildsDTO.get(i).getChild_firstname()));
-//		}
+		childsList = new ArrayList<>();
+		
+		for(int i = 0; i < listChildsDTO.size(); i++) {
+			childsList.add(new ChildBean(listChildsDTO.get(i).getChild_firstname()));
+		}
     	
         return SUCCESS;
     }
+	
     
     private ArrayList<ChildDto> getAllChilds(){
     	

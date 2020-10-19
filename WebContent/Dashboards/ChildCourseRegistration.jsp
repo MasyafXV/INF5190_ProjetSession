@@ -31,15 +31,17 @@
 
 
 </div>
-
+<br>
 <div>
-<%--         <% for(int i = 0; i < childsList.size(); i+=1) { %>
-            <div><%=childsList.get(i).getChildName()%> <%=childsList.get(i).getChildName()%></div>
-            </br>
-        <% } %> --%>
-        
+ <h1>Liste de mes enfants</h1>
+ 
+		<c:forEach items="${childsList}" var="child"> 
+           <c:out value="${child.childName}"/>
+        </c:forEach> 
+                
 
 </div>
+
 
 
 	 <style>

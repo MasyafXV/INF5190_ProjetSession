@@ -9,7 +9,7 @@ public class ChildBean {
 
 
 	public ChildBean() {
-		
+
 	}
 	
 	public ChildBean(String childName) {

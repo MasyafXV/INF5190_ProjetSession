@@ -2,13 +2,7 @@
     pageEncoding="ISO-8859-1"%>
 <%@taglib uri="/struts-tags" prefix="s"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<%@ page import="com.pronatation.Child.ChildBean"%>
-<%@page import="java.util.*"%>
-
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<!-- Pour l'itération, il faut spécifier le type de données -->
-<jsp:useBean id="childsList" type="java.util.ArrayList<com.pronatation.Child.ChildBean>" scope="request" />
-
 
 <html lang="en" dir="ltr">
   <head>
@@ -21,7 +15,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" charset="utf-8"></script>
   </head>
   <body>
-
+<s:url action='childsList'/>
     <input type="checkbox" id="check">
     <!--header area start-->
     <header>
@@ -81,11 +75,7 @@
      <div id="RegisterUserToCourse" class="card" style="display: none;">
      		<%@ include file="UserCourseRegistration.jsp"%> 
      </div> 
-     
-<!--      test
- -->        <c:forEach items="${childsList}" var="child">
-           <c:out value="${child.childName}"/>
-        </c:forEach>
+
     </div>
 
     <script type="text/javascript">
