@@ -13,6 +13,68 @@
     <link href="${pageContext.request.contextPath}/css/User_menu_style.css" rel="stylesheet" type="text/css"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" charset="utf-8"></script>
+    	 <style>
+.form__group {
+  position: relative;
+  padding: 15px 0 0;
+  margin-top: 10px;
+  width: 50%;
+}
+
+.form__field {
+  font-family: inherit;
+  width: 100%;
+  border: 0;
+  border-bottom: 2px solid #9b9b9b;
+  outline: 0;
+  font-size: 1.3rem;
+  color: #9b9b9b;
+  padding: 7px 0;
+  background: transparent;
+  transition: border-color 0.2s;
+}
+.form__field::placeholder {
+  color: transparent;
+}
+.form__field:placeholder-shown ~ .form__label {
+  font-size: 1.3rem;
+  cursor: text;
+  top: 20px;
+}
+
+.form__label {
+  position: absolute;
+  top: 0;
+  display: block;
+  transition: 0.2s;
+  font-size: 1rem;
+  color: #9b9b9b;
+}
+
+.form__field:focus {
+  padding-bottom: 6px;
+  font-weight: 700;
+  border-width: 3px;
+  border-image: linear-gradient(to right, #11998e, #38ef7d);
+  border-image-slice: 1;
+}
+.form__field:focus ~ .form__label {
+  position: absolute;
+  top: 0;
+  display: block;
+  transition: 0.2s;
+  font-size: 1rem;
+  color: #11998e;
+  font-weight: 700;
+}
+
+/* reset input */
+.form__field:required, .form__field:invalid {
+  box-shadow: none;
+}
+
+
+		</style>
   </head>
   <body>
 <s:url action='childsList'/>
@@ -66,149 +128,31 @@
 
     <div class="content">
 
+			  <br>
 
 <h1>Ajouter mon enfant</h1>
+			  <br>
 
-<!--         <h4 style="color:white"><s:property value="userName" /></h4>
- -->
-	 <s:form action="ChildRegistration">
+ <s:form action="ChildRegistration">
 	 
 	    <s:hidden name="userName" value="%{#sessionUsername}"/>
-	 
-		<div class="inputs">
-			<div class="input">
-				<input placeholder="child firstname" name="child_firstname">
-				<img src="./img/user.svg">
+	    
+			<div class="form__group field">
+			  <input type="input" class="form__field" placeholder="Name" name="child_firstname" id='name' required />
+			  <label for="name" class="form__label">child first name</label>
 			</div>
-			<div class="input">
-				<input  placeholder="child lastname"  name="child_lastname">
-				<img src="./img/user.svg">
+			<div class="form__group field">
+			  <input type="input" class="form__field" placeholder="Name" name="child_lastname" id='name' required />
+			  <label for="name" class="form__label">child last name</label>
 			</div>
-			<div class="input">
-				<input  placeholder="child birth date"  name="child_bdate">
-				<img src="./img/user.svg">
+			<div class="form__group field">
+			  <input type="input" class="form__field" placeholder="Name" name="child_bdate" id='name' required />
+			  <label for="name" class="form__label">child bdate</label>
 			</div>
-		</div>
+			<br/>
+			
 		<button type="submit" class="btn" value="ChildRegistration">Ajouter !</button>
-	 </s:form>
-	 
-	 <style>
-
-.align {
-	height: 100%;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	flex-direction: column;
-	padding-bottom: 8px;
-}
-
-
-.extend {
-	max-height: 946px;
-}
-
-.head {
-	width: 100%;
-	display: flex;
-	height: 72px;
-	justify-content: space-between;
-}
-
-.head a {
-	height: 100%;
-	padding: 0 28px;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	color: rgb(140,140,140);
-	font-size: 20px;
-	font-weight: 500;
-}
-
-.head .selected {
-	position: relative;
-	color: #00FF5C;
-	font-weight: 700;
-}
-
-.head .selected:after {
-	position: absolute;
-	content: "";
-	bottom: 0;
-	left: 0;
-	height: 5px;
-	width: 100%;
-	background: #00FF5C;
-	border-radius: 99px 99px 0 0;
-}
-
-.tabs {
-	height: calc(100% - 72px);
-	display: flex;
-}
-
-form {
-	width: 60%;
-	height: 100%;
-	flex-shrink: 0;
-	padding: 44px 38px;
-	display: flex;
-	flex-direction: column;
-	justify-content: space-between;
-	align-items: center;
-	position: relative;
-	right: 0;
-	transition: right 0.2s;
-}
-
-.extend form {
-	right: 100%;
-}
-
-.inputs {
-	width: 100%;
-	padding-top: 6px;
-}
-
-.input {
-	position: relative;
-	margin-bottom: 20px;
-	width: 100%;
-	display: flex;
-	align-items: center;
-}
-
-.input input {
-	width: 100%;
-	font-size: 17px;
-	background: #1C1C1C;
-	border-radius: 8px;
-	padding: 16px 18px 16px 51px;
-	color: rgb(220,220,220);
-}
-
-.input img {
-	width: 16px;
-	position: absolute;
-	left: 19px;
-}
-
-
-
- btn {
-	display: block;
-	background: #45f564;
-	padding: 14px 52px;
-	border-radius: 12px;
-	color: white;
-	font-weight: 700;
-	font-size: 21px;
-	cursor: pointer;
-}
-</style>
-    </div>
-
+	 </s:form> 
 
   </body>
 </html>
