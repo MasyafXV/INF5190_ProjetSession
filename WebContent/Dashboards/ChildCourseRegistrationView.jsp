@@ -73,6 +73,7 @@
 	<!--sidebar end-->
 
 	<div class="content">
+	<br/>
 
 		<h1>Inscrire mon enfant a un cours</h1>
 
@@ -120,7 +121,13 @@
 					
 					
 				</div>
-				<button type="submit" class="" value="UserCourseRegistration">>Register</button>
+					<br/>
+				
+				<div class="buttons">
+				  <div class="button-container">
+				          <button class="btn effect01" type="submit" class="btn" value="UserCourseRegistration">Register</button>
+				  </div>
+				</div>
 
 			</s:form>
 

@@ -72,8 +72,6 @@
 .form__field:required, .form__field:invalid {
   box-shadow: none;
 }
-
-
 		</style>
   </head>
   <body>
@@ -151,8 +149,12 @@
 			</div>
 			<br/>
 			
-		<button type="submit" class="btn" value="ChildRegistration">Ajouter !</button>
-	 </s:form> 
+			<div class="buttons">
+				  <div class="button-container">
+				          <button class="btn effect01" type="submit" class="btn" value="ChildRegistration">Ajouter !</button>
+				  </div>
+				</div>
+			 </s:form> 
 
   </body>
 </html>
