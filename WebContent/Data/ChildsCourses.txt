@@ -1,4 +1,4 @@
 child2 Pingouins
-mychild Dauphins Tortues
+mychild Dauphins Tortues Baleines
 child1 Dauphins
 child3 Baleines

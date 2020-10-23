@@ -1,4 +1,7 @@
 package com.myapp.login;
+import java.util.Map;
+
+import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
  
 public class AdminLoginAction extends ActionSupport {
@@ -38,7 +41,8 @@ public class AdminLoginAction extends ActionSupport {
             addFieldError("userName", "Invalid User, Try again");
     	}
     	else{
-    		
+    		 Map<String,Object> session = ActionContext.getContext().getSession();
+    		 session.put("userName", userName);
     	}
     	
     }
