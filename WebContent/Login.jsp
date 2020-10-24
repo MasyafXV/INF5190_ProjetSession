@@ -19,6 +19,7 @@
 		<img style="margin-top: 15px" class="logo" src="./img/logo.svg">
 		<div class="card">
 			<div class="head">
+			
 				<div></div>
 				<a id="login" class="selected" href="#login">Login</a> <a
 					id="register" href="#register">Register</a>

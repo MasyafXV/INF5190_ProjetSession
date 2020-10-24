@@ -2,10 +2,12 @@ package com.pronatation.Child;
 
 import com.pronatation.Courses.CourseDTO;
 import com.pronatation.Courses.CourseDao;
+import com.pronatation.processingBehavior.PersonProcessing;
 
 public class ChildBean {
 
 	private String childName;
+	private PersonProcessing processAs=PersonProcessing.Child;
 
 
 	public ChildBean() {
@@ -24,7 +26,15 @@ public class ChildBean {
 		
 		CourseDao course = new CourseDao();
 		
-		course.ChildInscription(childName, courseDTO.getCourseLevel());
+		
+		if(course.VerifyPrerequisite(childName,courseDTO.getCourseLevel(),processAs)) {
+			
+			course.ChildInscription(childName, courseDTO.getCourseLevel());
+
+		}else {
+			System.out.println(childName+" n'a pas les prealables pour ce cours");
+
+		}
 		
 		
 		return false;

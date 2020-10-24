@@ -1,8 +1,12 @@
 package com.pronatation.Courses;
 
+import com.pronatation.processingBehavior.PersonProcessing;
+
 public class UserBean {
 	
 	private String userName;
+	private PersonProcessing processAs=PersonProcessing.Parent;
+
 
 
 	public UserBean() {
@@ -28,10 +32,17 @@ public class UserBean {
 		
 		CourseDao course = new CourseDao();
 		
-		course.UserInscription(userName, courseDTO.getCourseLevel());
-		
-		
+		if(course.VerifyPrerequisite(userName,courseDTO.getCourseLevel(),processAs)) {
+			
+			course.UserInscription(userName, courseDTO.getCourseLevel());
+
+		}else {
+			System.out.println(userName+" n'a pas les prealables pour ce cours");
+
+		}
+				
 		return false;
 	}
+	
 
 }

@@ -12,6 +12,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 import com.pronatation.pathManager.PathManager;
+import com.pronatation.processingBehavior.PersonProcessing;
 
 public class CourseDao {
 	
@@ -212,6 +213,110 @@ public class CourseDao {
 		   
 		return firstWord;
 	   }
+	   
+	   
+	   
+	    public boolean VerifyPrerequisite(String Username,String course,PersonProcessing processAs) {
+	    	
+		    System.out.println("Verification of the Prerequisite for " + course );
+		    boolean Prerequisite_Satisfied=false;
+
+	    	
+			   PathManager pathManager= new PathManager();
+			   ProjectPath= pathManager.getProjectPath();
+			   
+			   String usercoursePath="";
+
+			   if(processAs==PersonProcessing.Parent) {
+				    usercoursePath= ProjectPath + "UsersCourses.txt";
+
+			   }else if(processAs==PersonProcessing.Child) {
+				    usercoursePath= ProjectPath + "ChildsCourses.txt";
+			   }
+
+			
+			    String line = "";
+			    String userCourses = "";
+			    
+			    int lineNumber;
+			    int targetLine=-1; 
+			    try {
+			      FileReader readfile = new FileReader(usercoursePath);
+			      BufferedReader readbuffer = new BufferedReader(readfile);
+			      for (lineNumber = 1; lineNumber < 10; lineNumber++) {
+			    	  
+			    	  line=readbuffer.readLine();
+			    	  
+			    	  if(readFirstWord(line).equals(Username)) {
+			    		  targetLine=lineNumber;
+			    		  userCourses=line;
+			    		  
+			    	  }
+			    	   
+			    	 
+			      }
+			    } catch (IOException e) {
+			      e.printStackTrace();
+			    }
+			    
+			    if(targetLine!=-1) { //if the user has courses
+			    	
+			    	// Verify Prerequisite
+					
+				    System.out.println(userCourses);
+				    
+				    switch(course) {
+				    case "Etoile_de_mer":
+				      // code block
+				    	Prerequisite_Satisfied=true;
+				      break;
+				    case "Bambins":
+				      // code block
+				    	Prerequisite_Satisfied = userCourses.contains("Etoile_de_mer");
+				      break;
+				    case "Tortues":
+					      // code block
+				    	Prerequisite_Satisfied =  userCourses.contains("Bambins") && userCourses.contains("Etoile_de_mer");
+					      break;
+				    case "Pingouins":
+					      // code block
+				    	Prerequisite_Satisfied = userCourses.contains("Tortues") && userCourses.contains("Bambins") && userCourses.contains("Etoile_de_mer");
+					      break;
+				    case "Salamandre":
+					      // code block
+				    	Prerequisite_Satisfied =userCourses.contains("Pingouins") && userCourses.contains("Tortues") && userCourses.contains("Bambins") && userCourses.contains("Etoile_de_mer");
+
+					      break;
+				    case "Baleines":
+					      // code block
+				    	Prerequisite_Satisfied =userCourses.contains("Salamandre") && userCourses.contains("Pingouins") && userCourses.contains("Tortues") && userCourses.contains("Bambins") && userCourses.contains("Etoile_de_mer");
+
+					      break;
+				    case "Grenouilles":
+					      // code block
+				    	Prerequisite_Satisfied =userCourses.contains("Baleines") && userCourses.contains("Salamandre") && userCourses.contains("Pingouins") && userCourses.contains("Tortues") && userCourses.contains("Bambins") && userCourses.contains("Etoile_de_mer");
+
+					      break;
+				    case "Dauphins":
+					      // code block
+				    	Prerequisite_Satisfied =userCourses.contains("Grenouilles") && userCourses.contains("Baleines") && userCourses.contains("Salamandre") && userCourses.contains("Pingouins") && userCourses.contains("Tortues") && userCourses.contains("Bambins") && userCourses.contains("Etoile_de_mer");
+
+					      break;
+				    case "Maitre_Nageur":
+					      // code block
+				    	Prerequisite_Satisfied =userCourses.contains("Dauphins") && userCourses.contains("Grenouilles") && userCourses.contains("Baleines") && userCourses.contains("Salamandre") && userCourses.contains("Pingouins") && userCourses.contains("Tortues") && userCourses.contains("Bambins") && userCourses.contains("Etoile_de_mer");
+
+					      break;
+				    default:
+				      // code block
+				  }
+
+			    }else if(targetLine==-1 && course.equals("Etoile_de_mer")) { //if the user has no courses
+			    	Prerequisite_Satisfied=true;
+			    }
+	    	
+			return Prerequisite_Satisfied;
+	    }
 	
 	  	  
 
