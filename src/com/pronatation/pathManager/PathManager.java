@@ -24,8 +24,6 @@ public class PathManager {
 				e1.printStackTrace();
 			}
 		    String pathArr[] = fullPath.split(".metadata");
-		    System.out.println(fullPath);
-		    System.out.println(pathArr[0]);
 		    ProjectPath=pathArr[0] + "INF5190_ProjetSession/WebContent/Data/";
 
 		    System.out.println(" fullPath: " + ProjectPath);

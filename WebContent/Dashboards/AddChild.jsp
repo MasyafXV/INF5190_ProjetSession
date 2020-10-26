@@ -3,7 +3,12 @@
 <%@taglib uri="/struts-tags" prefix="s"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-
+ <% HttpSession sess = request.getSession(true);
+    if (sess.getAttribute("userName")==null)
+    {
+        response.sendRedirect("http://localhost:8080/INF5190_ProjetSession/Login");
+    }
+%>
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
@@ -112,7 +117,8 @@
       <div class="profile_info">
      <img src="${pageContext.request.contextPath}/img/avatar.png" class="profile_image" alt="">
         
-        <h4 style="color:white"><s:property value="userName"/></h4>
+        			        <h4 style="color:white">${sessionScope.userName}</h4>
+
 		<s:set var="sessionUsername" value="userName" />
       </div>
       <a id="RegisterUserCoursePage" href="<s:url action="redirectUserCourseRegistration.action" ><s:param name="userName" value="sessionUsername"/></s:url>"><i class="fas fa-desktop"></i><span>S'inscrire a un cours</span></a>
