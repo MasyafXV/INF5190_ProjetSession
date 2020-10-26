@@ -9,13 +9,13 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	
-    <title>Admin menu</title>
+    <title>Admin - Create Course</title>
     
     <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 	<link href="${pageContext.request.contextPath}/css/User_menu_style.css"
 		rel="stylesheet" type="text/css" />
-	<!-- <link href="${pageContext.request.contextPath}/css/Admin_menu_style.css"
-		rel="stylesheet" type="text/css" /> -->
+	<link href="${pageContext.request.contextPath}/css/Admin_menu_style.css"
+		rel="stylesheet" type="text/css" />
 	<link rel="stylesheet"
 		href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
 	<script
@@ -24,6 +24,8 @@
 	</script>
   </head>
   <body>
+
+	<s:url action="listSessions"/>
 
     <input type="checkbox" id="check">
     <!--header area start-->
@@ -56,12 +58,50 @@
     <!--sidebar end-->
     
 
-    <div class="content"><!-- 
-    	<div class="contentSession">
-    		<h2>View session</h2>
-    	<p><a href="<s:url action='ViewSession'/>">Liste des sessions</a></p>
+    <div class="content">
+    	<h1>Ajouter un cours une session</h1>
+
+		<div class="CourseSelection">
+
+			<s:form action="CreateCourse">
+				<div class="select">
+						<select name="newCourse.SessionCode" id="format">
+							<option selected disabled>Choisissez une session</option>
+							
+							<c:forEach items="${listSessions}" var="session">
+								<option value="${session.code}">
+									<c:out value="${session.code}"/> <c:out value="${session.season}"/> <c:out value="${session.year}"/>
+								</option>
+							</c:forEach>
+						</select>
+				</div>
+				<br/>
+				<br/>
+				<div class="select">
+					<select name="newCourse.CourseLevel" id="format">
+						<option selected disabled>Choisissez un cours</option>
+						<option value="Etoile_de_mer">Étoile de mer</option>
+						<option value="Bambins">Bambins</option>
+						<option value="Tortues">Tortues</option>
+						<option value="Pingouins">Pingouins</option>
+						<option value="Salamandre">Salamandre</option>
+						<option value="Baleines">Baleines</option>
+						<option value="Grenouilles">Grenouilles</option>
+						<option value="Dauphins">Dauphins</option>
+						<option value="Maitre_Nageur">Maître-Nageur</option>
+					</select>
+				</div>
+				<br/>
+				<br/>
+				<div class="textfield">
+					<textarea name="newCourse.Description" id="format" placeholder="Inscrivez la description du cours"></textarea>
+				</div>
+				<br/>
+				<br/>
+				<button type="submit" class="button" value="UserCourseRegistration"><i class="fa fa-check-square"></i>Register</button>
+
+			</s:form>
     	</div>
-    	-->
     	
     </div>
 

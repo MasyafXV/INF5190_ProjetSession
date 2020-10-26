@@ -77,20 +77,30 @@
 	</package>
 
 
-	<package name="Session Package" extends="struts-default"
+	<package name="Admin Package" extends="struts-default"
 		namespace="/">
 
 		<action name="ViewSession"
 			class="com.pronatation.Session.ViewSessionAction">
-			<result name="success">../CreationSession/CreateSession.jsp</result>
+			<result name="success">CreateSession.jsp</result>
 		</action>
 
 		<action name="CreateNewSession"
 			class="com.pronatation.Session.CreateSessionAction">
-			<result name="success">Dashboards/WelcomeAdmin.jsp</result>
-			<result name="input">CreationSession/CreateSession.jsp</result>
+			<result name="success">WelcomeAdmin.jsp</result>
+			<result name="input">CreateSession.jsp</result>
 		</action>
-
+		
+		<action name="CreateCourse"
+			class="com.pronatation.Courses.CreateCourseAction">
+			<result name="success">Dashboards/WelcomeAdmin.jsp</result>
+			<result name="input">CreateCourseView.jsp</result>
+		</action>
+		
+		<action name="listSessions"
+			class="com.pronatation.Session.ViewSessionAction">
+			<result name="success">CreateCourseView.jsp</result>
+		</action>
 
 	</package>
 
