@@ -25,7 +25,7 @@ public class SessionDAO {
 	}
 
 	public ArrayList<SessionDTO> getSessions() {
-		System.out.println("Getting all sessions");
+		System.out.println("\nGetting all sessions");
 
 		PathManager pathManager = new PathManager();
 		ProjectPath = pathManager.getProjectPath();
@@ -40,7 +40,6 @@ public class SessionDAO {
 
 			while (myReader.hasNextLine()) {
 				session = myReader.nextLine();
-				System.out.print(session);
 
 				String[] sessionParameters = session.split("\\s+");
 
@@ -62,7 +61,7 @@ public class SessionDAO {
 	}
 
 	public void addSession(SessionDTO session) {
-		System.out.println("Saving new sessions");
+		System.out.println("\nSaving new sessions");
 
 		PathManager pathManager = new PathManager();
 		ProjectPath = pathManager.getProjectPath();
@@ -75,6 +74,7 @@ public class SessionDAO {
 
 			BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(fos));
 
+			bw.newLine();
 			bw.write(session.getCode());
 			bw.write(" ");
 			bw.write(session.getSeason());

@@ -6,12 +6,12 @@ import java.util.Date;
 
 public class SessionDTO {
 
-	private String code;
-	private String season;
-	private String year;
+	private String code = "";
+	private String season = "";
+	private String year = "";
 	public SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-	private Date sessionFrom;
-	private Date sessionTo;
+	private Date sessionFrom = new Date();
+	private Date sessionTo = new Date();
 
 	public SessionDTO() {
 	}

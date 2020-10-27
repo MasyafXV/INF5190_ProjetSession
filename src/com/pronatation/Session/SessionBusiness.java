@@ -13,7 +13,7 @@ public class SessionBusiness {
 	}
 
 	public void addSession(SessionDTO newSession) {
-		System.out.print("sessionBusiness addSession");
+		System.out.print("\nsessionBusiness addSession");
 		sessionDAO.addSession(newSession);
 	}
 }

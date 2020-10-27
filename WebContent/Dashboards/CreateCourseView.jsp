@@ -98,7 +98,7 @@
 				</div>
 				<br/>
 				<br/>
-				<button type="submit" class="button" value="UserCourseRegistration"><i class="fa fa-check-square"></i>Register</button>
+				<button type="submit" class="button"><i class="fa fa-check-square"></i>Ajouter</button>
 
 			</s:form>
     	</div>

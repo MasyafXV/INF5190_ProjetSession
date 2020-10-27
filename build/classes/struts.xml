@@ -82,13 +82,13 @@
 
 		<action name="ViewSession"
 			class="com.pronatation.Session.ViewSessionAction">
-			<result name="success">CreateSession.jsp</result>
+			<result name="success">CreateSessionView.jsp</result>
 		</action>
 
 		<action name="CreateNewSession"
 			class="com.pronatation.Session.CreateSessionAction">
-			<result name="success">WelcomeAdmin.jsp</result>
-			<result name="input">CreateSession.jsp</result>
+			<result name="success">Dashboards/WelcomeAdmin.jsp</result>
+			<result name="input">CreateSessionView.jsp</result>
 		</action>
 		
 		<action name="CreateCourse"

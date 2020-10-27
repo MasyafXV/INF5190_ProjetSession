@@ -8,23 +8,23 @@ public class CreateSessionAction extends ActionSupport {
 
 	private static final long serialVersionUID = 1L;
 
-	private String code;
-	private String season;
-	private String year;
-	private String sessionFrom;
-	private String sessionTo;
-
-	private SessionBeans session;
+	private SessionBeans newSession;
 
 	public String execute() {
-		System.out.print("createSEssionAction check");
+		System.out.print("\ncreateSessionAction check");
+		System.out.print("\n");
+		System.out.print("\nsession.season = " + newSession.getSeason());
+		System.out.print("\nsession.year = " + newSession.getYear());
+		System.out.print("\nsession.sessionFrom = " + newSession.getSessionFrom());
+		System.out.print("\nsession.sessionTo = " + newSession.getSessionTo());
+		System.out.print("\nsession.code = " + newSession.getCode());
 
 		SessionBusiness sessionBusiness = new SessionBusiness();
 
 		SessionDTO sessionDTO = null;
 		try {
-			sessionDTO = new SessionDTO(session.getCode(), session.getSeason(), session.getYear(),
-					session.getSessionFrom(), session.getSessionTo());
+			sessionDTO = new SessionDTO(newSession.getCode(), newSession.getSeason(), newSession.getYear(),
+					newSession.getSessionFrom(), newSession.getSessionTo());
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -35,59 +35,12 @@ public class CreateSessionAction extends ActionSupport {
 		return SUCCESS;
 	}
 
-	public SessionBeans getsession() {
-		return session;
+	public SessionBeans getNewSession() {
+		return newSession;
 	}
 
-	public void setsession(SessionBeans session) {
-		this.session = session;
+	public void setNewSession(SessionBeans newSession) {
+		this.newSession = newSession;
 	}
 
-	public String getSeason() {
-		return season;
-	}
-
-	public void setSeason(String season) {
-		this.season = season;
-	}
-
-	public String getYear() {
-		return year;
-	}
-
-	public void setYear(String year) {
-		this.year = year;
-	}
-
-	public String getSessionFrom() {
-		return sessionFrom;
-	}
-
-	public void setSessionFrom(String sessionFrom) {
-		this.sessionFrom = sessionFrom;
-	}
-
-	public String getSessionTo() {
-		return sessionTo;
-	}
-
-	public void setSessionTo(String sessionTo) {
-		this.sessionTo = sessionTo;
-	}
-
-	public SessionBeans getSession() {
-		return session;
-	}
-
-	public void setSession(SessionBeans session) {
-		this.session = session;
-	}
-
-	public String getCode() {
-		return code;
-	}
-
-	public void setCode(String code) {
-		this.code = code;
-	}
 }
