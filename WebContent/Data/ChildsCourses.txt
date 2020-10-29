@@ -1,4 +1,4 @@
-child2 H19-Pingouins H19-Etoile_de_mer E19-Bambins A20-Tortues A20-Salamandre
-mychild H19-Dauphins E19-Tortues A20-Baleines
-child1 H19-Dauphins
-child3 A20-Baleines
+U2_child3 Etoile_de_mer Bambins
+U1_child1 Etoile_de_mer
+U1_child1 Etoile_de_mer
+U1_child1 Etoile_de_mer
