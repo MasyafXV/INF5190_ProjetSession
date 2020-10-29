@@ -1,4 +1,4 @@
-H19 Etoile_de_mer Dauphins Pingouins
-E19 Bambins Tortues
-A20 Etoile_de_mer Tortues Salamandre Baleines
-H21 Bambin Tortue Pingouin
+H19 Etoile_de_mer
+E19 Bambins
+A20 Tortues
+H21

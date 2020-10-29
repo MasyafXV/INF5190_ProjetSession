@@ -14,7 +14,7 @@ public class CreateCourseAction extends ActionSupport {
 		CourseBusiness courseBusiness = new CourseBusiness();
 
 		CourseDTO courseDTO = new CourseDTO(newCourse.getSessionCode(), newCourse.getCourseLevel(),
-				newCourse.getDescription());
+				newCourse.getDescription(), newCourse.getNbPlace(), newCourse.getPrice());
 
 		courseBusiness.addCourse(courseDTO);
 

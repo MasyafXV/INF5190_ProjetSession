@@ -7,7 +7,7 @@ public class CourseBean {
 	private String courseLevel;
 	private String description = "";
 	private String NbPlace = "";
-	private String Price = "";
+	private String price = "";
 
 	public CourseBean() {
 
@@ -21,6 +21,14 @@ public class CourseBean {
 		this.sessionCode = sessionCode;
 		this.courseLevel = courseLevel;
 		this.description = description;
+	}
+
+	public CourseBean(String sessionCode, String courseLevel, String description, String NbPlace, String price) {
+		this.sessionCode = sessionCode;
+		this.courseLevel = courseLevel;
+		this.description = description;
+		this.NbPlace = NbPlace;
+		this.price = price;
 	}
 
 	public String getCourseCode() {
@@ -64,11 +72,11 @@ public class CourseBean {
 	}
 
 	public String getPrice() {
-		return Price;
+		return price;
 	}
 
 	public void setPrice(String price) {
-		Price = price;
+		this.price = price;
 	}
 
 }

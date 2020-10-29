@@ -164,11 +164,10 @@ public class CourseDao {
 
 			String coursesDetailsPath = ProjectPath + "CoursesDetails/" + newCourse.getSessionCode() + "-"
 					+ newCourse.getCourseLevel() + ".txt";
-
+			System.out.print(coursesDetailsPath);
+			File newCoursesDetails = new File(coursesDetailsPath);
 			try {
-				File newCoursesDetails = new File(coursesDetailsPath);
 				if (newCoursesDetails.createNewFile()) {
-					System.out.println("File created: " + newCoursesDetails.getName());
 					FileWriter myWriter = new FileWriter(coursesDetailsPath);
 					myWriter.write(newCourse.getDescription());
 					myWriter.write("\n");
@@ -185,6 +184,7 @@ public class CourseDao {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+			System.out.println("File created: " + newCoursesDetails.getName());
 		}
 
 	}
@@ -269,6 +269,8 @@ public class CourseDao {
 
 		}
 
+		RegisterToCourse(Username, CourseCode);
+
 		return true;
 
 	}
@@ -352,6 +354,8 @@ public class CourseDao {
 			}
 
 		}
+
+		RegisterToCourse(ChildName, CourseCode);
 
 		return true;
 
@@ -480,6 +484,64 @@ public class CourseDao {
 		}
 
 		return Prerequisite_Satisfied;
+	}
+
+	public boolean RegisterToCourse(String PersonName, String courseCode) {
+		PathManager pathManager = new PathManager();
+		ProjectPath = pathManager.getProjectPath();
+
+		String coursesDetailsPath = ProjectPath + "CoursesDetails/" + courseCode + ".txt";
+		System.out.print(coursesDetailsPath);
+
+		String line = "";
+		String newline = "";
+
+		int lineNumber;
+		int targetLine = -1;
+
+		try {
+			FileReader readfile = new FileReader(coursesDetailsPath);
+			BufferedReader readbuffer = new BufferedReader(readfile);
+			for (lineNumber = 1; lineNumber < 10; lineNumber++) {
+
+				line = readbuffer.readLine();
+
+				if (readFirstWord(line).equals(PersonName)) {
+					targetLine = lineNumber;
+					newline = line;
+
+				}
+
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		System.out.println(" The specific Line to add the course is: " + targetLine);
+
+		if (targetLine == -1) { // if the person isn't already register for this course
+
+			Path path = Paths.get(coursesDetailsPath);
+			java.util.List<String> lines = null;
+			try {
+				lines = Files.readAllLines(path, StandardCharsets.UTF_8);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+			int position = lines.size();
+			String extraLine = PersonName;
+
+			lines.add(position, extraLine);
+
+			try {
+				Files.write(path, lines, StandardCharsets.UTF_8);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		return true;
 	}
 
 	public ArrayList<CourseDTO> getListCourses() {
