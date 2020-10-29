@@ -68,6 +68,8 @@ public class SessionDAO {
 
 		String sessionPath = ProjectPath + "session.txt";
 
+		String sessionCoursesPath = ProjectPath + "sessionCourses.txt";
+
 		try {
 			File file = new File(sessionPath);
 			FileOutputStream fos = new FileOutputStream(file, true);
@@ -84,6 +86,16 @@ public class SessionDAO {
 			bw.write(session.getSessionFrom());
 			bw.write(" ");
 			bw.write(session.getSessionTo());
+			bw.write(" ");
+
+			bw.close();
+
+			file = new File(sessionCoursesPath);
+			fos = new FileOutputStream(file, true);
+			bw = new BufferedWriter(new OutputStreamWriter(fos));
+
+			bw.newLine();
+			bw.write(session.getCode());
 			bw.write(" ");
 
 			bw.close();

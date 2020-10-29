@@ -2,22 +2,33 @@ package com.pronatation.Courses;
 
 public class CourseBean {
 
+	private String courseCode = "";
 	private String sessionCode;
 	private String courseLevel;
 	private String description = "";
+	private String NbPlace = "";
+	private String Price = "";
 
 	public CourseBean() {
 
 	}
 
-	public CourseBean(String courseLevel) {
-		this.courseLevel = courseLevel;
+	public CourseBean(String courseCode) {
+		this.courseCode = courseCode;
 	}
 
 	public CourseBean(String sessionCode, String courseLevel, String description) {
 		this.sessionCode = sessionCode;
 		this.courseLevel = courseLevel;
 		this.description = description;
+	}
+
+	public String getCourseCode() {
+		return courseCode;
+	}
+
+	public void setCourseCode(String courseCode) {
+		this.courseCode = courseCode;
 	}
 
 	public String getCourseLevel() {
@@ -42,6 +53,22 @@ public class CourseBean {
 
 	public void setDescription(String description) {
 		this.description = description;
+	}
+
+	public String getNbPlace() {
+		return NbPlace;
+	}
+
+	public void setNbPlace(String nbPlace) {
+		NbPlace = nbPlace;
+	}
+
+	public String getPrice() {
+		return Price;
+	}
+
+	public void setPrice(String price) {
+		Price = price;
 	}
 
 }

@@ -4,11 +4,13 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 import com.pronatation.pathManager.PathManager;
@@ -17,9 +19,52 @@ import com.pronatation.processingBehavior.PersonProcessing;
 public class CourseDao {
 
 	private String ProjectPath;
+	private ArrayList<CourseDTO> listCourses;
 
 	public CourseDao() {
 
+	}
+
+	public ArrayList<CourseDTO> getAllCourses() {
+		System.out.println("\nGetting all courses");
+
+		PathManager pathManager = new PathManager();
+		ProjectPath = pathManager.getProjectPath();
+
+		String sessionCoursesPath = ProjectPath + "sessionCourses.txt";
+
+		try {
+			// File myObj = new File("personnes.txt");
+			Scanner myReader = new Scanner(new File(sessionCoursesPath));
+
+			String coursesLine;
+			String session;
+			String[] coursesSession = null;
+			listCourses = new ArrayList<>();
+
+			while (myReader.hasNextLine()) {
+				coursesLine = myReader.nextLine();
+				System.out.print("\ncourseLine : " + coursesLine);
+				session = readFirstWord(coursesLine);
+				System.out.print("\nsessionCode : " + session);
+				coursesSession = coursesLine.replaceFirst(session + " ", "").split("\\s+");
+				System.out.print("\nlength courses : " + coursesSession.length);
+
+				for (int i = 0; i < coursesSession.length; i++) {
+					System.out
+							.print("\n" + i + ". session : " + session + ", courseLevel : " + coursesSession[i] + "\n");
+					listCourses.add(new CourseDTO(session, coursesSession[i]));
+				}
+
+			}
+			myReader.close();
+
+		} catch (FileNotFoundException e) {
+			System.out.println("Le fichier est inexistant.");
+			e.printStackTrace();
+		}
+
+		return listCourses;
 	}
 
 	public String[] getCoursesForSession(String sessionCode) { // To verify if the course already exist
@@ -30,11 +75,11 @@ public class CourseDao {
 		PathManager pathManager = new PathManager();
 		ProjectPath = pathManager.getProjectPath();
 
-		String sessionPath = ProjectPath + "sessionCourse.txt";
+		String sessionCoursesPath = ProjectPath + "sessionCourse.txt";
 
 		try {
 			// File myObj = new File("personnes.txt");
-			Scanner myReader = new Scanner(new File(sessionPath));
+			Scanner myReader = new Scanner(new File(sessionCoursesPath));
 
 			String coursesLine;
 
@@ -93,7 +138,7 @@ public class CourseDao {
 
 		System.out.println(" The specific Line to add the course is: " + targetLine);
 
-		if (targetLine != -1) { // if the user has a course
+		if (targetLine != -1) { // if the session exist
 
 			Path path = Paths.get(coursesPath);
 			java.util.List<String> lines = null;
@@ -116,11 +161,35 @@ public class CourseDao {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+
+			String coursesDetailsPath = ProjectPath + "CoursesDetails/" + newCourse.getSessionCode() + "-"
+					+ newCourse.getCourseLevel() + ".txt";
+
+			try {
+				File newCoursesDetails = new File(coursesDetailsPath);
+				if (newCoursesDetails.createNewFile()) {
+					System.out.println("File created: " + newCoursesDetails.getName());
+					FileWriter myWriter = new FileWriter(coursesDetailsPath);
+					myWriter.write(newCourse.getDescription());
+					myWriter.write("\n");
+					myWriter.write("\n");
+					myWriter.write(newCourse.getNbPlace());
+					myWriter.write("\n");
+					myWriter.write(newCourse.getprice());
+					myWriter.write("\n");
+					myWriter.close();
+				} else {
+					System.out.println("File already exists.");
+				}
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 
 	}
 
-	public boolean UserInscription(String Username, String CourseLevel) {
+	public boolean UserInscription(String Username, String CourseCode) {
 
 		PathManager pathManager = new PathManager();
 		ProjectPath = pathManager.getProjectPath();
@@ -163,7 +232,7 @@ public class CourseDao {
 			}
 
 			int position = targetLine - 1;
-			String extraLine = newline + " " + CourseLevel;
+			String extraLine = newline + " " + CourseCode;
 
 			lines.add(position, extraLine);
 			lines.remove(targetLine);
@@ -187,7 +256,7 @@ public class CourseDao {
 			}
 
 			int position = 0;
-			String extraLine = Username + " " + CourseLevel;
+			String extraLine = Username + " " + CourseCode;
 
 			lines.add(position, extraLine);
 
@@ -204,7 +273,7 @@ public class CourseDao {
 
 	}
 
-	public boolean ChildInscription(String ChildName, String CourseLevel) {
+	public boolean ChildInscription(String ChildName, String CourseCode) {
 
 		PathManager pathManager = new PathManager();
 		ProjectPath = pathManager.getProjectPath();
@@ -247,7 +316,7 @@ public class CourseDao {
 			}
 
 			int position = targetLine - 1;
-			String extraLine = newline + " " + CourseLevel;
+			String extraLine = newline + " " + CourseCode;
 
 			lines.add(position, extraLine);
 			lines.remove(targetLine);
@@ -271,7 +340,7 @@ public class CourseDao {
 			}
 
 			int position = 0;
-			String extraLine = ChildName + " " + CourseLevel;
+			String extraLine = ChildName + " " + CourseCode;
 
 			lines.add(position, extraLine);
 
@@ -411,6 +480,14 @@ public class CourseDao {
 		}
 
 		return Prerequisite_Satisfied;
+	}
+
+	public ArrayList<CourseDTO> getListCourses() {
+		return listCourses;
+	}
+
+	public void setListCourses(ArrayList<CourseDTO> listCourses) {
+		this.listCourses = listCourses;
 	}
 
 }

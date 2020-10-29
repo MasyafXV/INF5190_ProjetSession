@@ -56,9 +56,13 @@
 			<result name="success">Dashboards/UserCourseRegistrationView.jsp
 			</result>
 			<result name="input">Dashboards/Welcome.jsp</result>
-
 		</action>
-
+		
+		<action name="InitUserCourseInscription"
+			class="com.pronatation.Courses.ListCoursesAction" method="execute">
+			<result name="success">Dashboards/UserCourseRegistrationView.jsp
+			</result>
+		</action>
 
 		<action name="ChildCourseRegistration"
 			class="com.pronatation.Courses.CourseInscriptionAction"
@@ -68,8 +72,8 @@
 
 		</action>
 
-		<action name="childsList"
-			class="com.pronatation.Child.ListChildsAction" method="execute">
+		<action name="InitChildCourseInscription"
+			class="com.pronatation.Courses.CourseInscriptionInitAction" method="execute">
 			<result name="success">Dashboards/ChildCourseRegistrationView.jsp
 			</result>
 		</action>
@@ -82,24 +86,34 @@
 
 		<action name="ViewSession"
 			class="com.pronatation.Session.ViewSessionAction">
-			<result name="success">CreateSessionView.jsp</result>
+			<result name="success">Dashboards/CreateSessionView.jsp</result>
 		</action>
 
 		<action name="CreateNewSession"
 			class="com.pronatation.Session.CreateSessionAction">
 			<result name="success">Dashboards/WelcomeAdmin.jsp</result>
-			<result name="input">CreateSessionView.jsp</result>
+			<result name="input">Dashboards/CreateSessionView.jsp</result>
 		</action>
 		
 		<action name="CreateCourse"
 			class="com.pronatation.Courses.CreateCourseAction">
 			<result name="success">Dashboards/WelcomeAdmin.jsp</result>
-			<result name="input">CreateCourseView.jsp</result>
+			<result name="input">Dashboards/CreateCourseView.jsp</result>
 		</action>
 		
 		<action name="listSessions"
 			class="com.pronatation.Session.ViewSessionAction">
-			<result name="success">CreateCourseView.jsp</result>
+			<result name="success">Dashboards/CreateCourseView.jsp</result>
+		</action>
+		
+		<action name="gradeSwimmer"
+			class="com.pronatation.Courses.GradeSwimmerAction">
+			<result name="success">Dashboards/GradeSwimmerView.jsp</result>
+		</action>
+		
+		<action name="CoursesList"
+			class="com.pronatation.Courses.ListCoursesAction">
+			<result name="success">Dashboards/CoursesList.jsp</result>
 		</action>
 
 	</package>

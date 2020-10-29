@@ -22,9 +22,11 @@
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"
 	charset="utf-8"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 </head>
 <body>
-	<s:url action='childsList' />
+
+	
 	<input type="checkbox" id="check">
 	<!--header area start-->
 	<header> <label for="check"> <i class="fas fa-bars"
@@ -68,7 +70,7 @@
 			<s:set var="sessionUsername" value="userName" />
 		</div>
 	  <a id="RegisterUserCoursePage" href="<s:url action="redirectUserCourseRegistration.action" ><s:param name="userName" value="sessionUsername"/></s:url>"><i class="fas fa-desktop"></i><span>S'inscrire a un cours</span></a>
-      <a id="RegisterChildCoursePage" href="<s:url action="childsList.action" ><s:param name="userName" value="sessionUsername"/></s:url>"><i class="fas fa-cogs"></i><span>Inscrire mon enfant</span></a>      
+      <a id="RegisterChildCoursePage" href="<s:url action="InitChildCourseInscription.action" ><s:param name="userName" value="sessionUsername"/></s:url>"><i class="fas fa-cogs"></i><span>Inscrire mon enfant</span></a>      
       <a id="RegisterChildPage" href="<s:url action="redirectAddChild.action" ><s:param name="userName" value="sessionUsername"/></s:url>"><i class="fas fa-table"></i><span>Ajouter un enfant</span></a>
       <a href="#"><i class="fas fa-th"></i><span>Forms</span></a>
       <a href="#"><i class="fas fa-info-circle"></i><span>About</span></a>
@@ -83,31 +85,26 @@
 
 
 		<div class="CourseSelection">
-
-			<s:form action="ChildCourseRegistration">
+			<s:form action="ChildCourseRegistration" name="CourseRegistration">
 
 				<s:hidden name="user.userName" value="%{#sessionUsername}" />
 				<s:hidden name="childInscription" value="true" />
 
 				<div class="select">
-					<select name="course.courseLevel" id="format">
+					<select name="course.courseCode" id="format" onchange="setValueCourseCode(this)">
 						<option selected disabled>Choisissez un cours</option>
-						<option value="Etoile_de_mer">Étoile de mer</option>
-						<option value="Bambins">Bambins</option>
-						<option value="Tortues">Tortues</option>
-						<option value="Pingouins">Pingouins</option>
-						<option value="Salamandre">Salamandre</option>
-						<option value="Baleines">Baleines</option>
-						<option value="Grenouilles">Grenouilles</option>
-						<option value="Dauphins">Dauphins</option>
-						<option value="Maitre_Nageur">Maître-Nageur</option>
-
+						
+						<c:forEach items="${coursesList}" var="course">
+							<option value="${course.courseLevel}">
+								<c:out value="${course.sessionCode}"/>-<c:out value="${course.courseLevel}"/>
+							</option>
+						</c:forEach>
 					</select>
+				</div>
 				
-					
-					<s:hidden name="childInscription" value="true" />
+				<s:hidden name="childInscription" value="true" />
 
-					<h1>Liste de mes enfants</h1>
+				<h1>Liste de mes enfants</h1>
 
 
 					<div class="select">
@@ -123,8 +120,6 @@
 
 					</div>
 					
-					
-				</div>
 					<br/>
 				
 				<div class="buttons">
@@ -132,17 +127,20 @@
 				          <button class="btn effect01" type="submit" class="btn" value="UserCourseRegistration">Register</button>
 				  </div>
 				</div>
-
-			</s:form>
-
+		</s:form>
+		</div>
+		<script type="text/javascript">
+		function setValueCourseCode(selectCourse) {
+			let text = selectCourse.options[selectCourse.selectedIndex].text;
+			selectCourse.options[selectCourse.selectedIndex].value = text;
+		}
+		</script>
 
 		</div>
 		<br>
 		<div>
 
 		</div>
-
-	</div>
 
 
 </body>
