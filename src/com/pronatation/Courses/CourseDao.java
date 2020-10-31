@@ -169,8 +169,7 @@ public class CourseDao {
 			try {
 				if (newCoursesDetails.createNewFile()) {
 					FileWriter myWriter = new FileWriter(coursesDetailsPath);
-					myWriter.write(newCourse.getDescription());
-					myWriter.write("\n");
+					myWriter.write(newCourse.getDescription().replace("\n", "\\n"));
 					myWriter.write("\n");
 					myWriter.write(newCourse.getNbPlace());
 					myWriter.write("\n");
@@ -530,7 +529,7 @@ public class CourseDao {
 			}
 
 			int position = lines.size();
-			String extraLine = PersonName;
+			String extraLine = PersonName + " ";
 
 			lines.add(position, extraLine);
 

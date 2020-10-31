@@ -62,7 +62,7 @@
       </div>
       <a id="CreateSessionPage" href="<s:url action="ViewSession.action"></s:url>"><i class="fas fa-calendar"></i><span>Créer une session</span></a>
       <a id="CreateCoursePage" href="<s:url action="listSessions.action" ></s:url>"><i class="fas fa-table"></i><span>Ajouter un cours</span></a>      
-      <a id="RegisterChildPage" href="<s:url action="ListCoursesForGrades.action" ></s:url>"><i class="fas fa-graduation-cap"></i><span>Noter les nageurs</span></a>
+      <a id="RegisterChildPage" href="<s:url action="redirectAddChild.action" ></s:url>"><i class="fas fa-graduation-cap"></i><span>Noter les nageurs</span></a>
       <a href="#"><i class="fas fa-th"></i><span>Forms</span></a>
       <a href="#"><i class="fas fa-info-circle"></i><span>About</span></a>
       <a href="#"><i class="fas fa-sliders-h"></i><span>Settings</span></a>
@@ -70,8 +70,69 @@
     <!--sidebar end-->
 
     <div class="content">
+	<br/>
+
+		<h1>Noter les nageurs</h1>
 
 
+		<div class="CourseSelection">
+			<s:form action="ListGrades" name="SelectCourse">
+
+				<div class="select">
+					<select name="courseCode" id="format" onchange="setValueCourseCode(this)">
+						<option selected disabled>Choisissez un cours</option>
+						
+						<c:forEach items="${coursesList}" var="course">
+							<option value="${course.courseLevel}">
+								<c:out value="${course.sessionCode}"/>-<c:out value="${course.courseLevel}"/>
+							</option>
+						</c:forEach>
+					</select>
+				</div>
+				
+				<div class="buttons">
+				  <div class="button-container">
+				          <button class="btn effect01" type="submit" class="btn">OK</button>
+				  </div>
+				</div>
+		</s:form>
+    </div>
+    <script type="text/javascript">
+		function setValueCourseCode(selectCourse) {
+			let text = selectCourse.options[selectCourse.selectedIndex].text;
+			selectCourse.options[selectCourse.selectedIndex].value = text;
+		}
+	</script>
+		<div class=GradeSwimmer>
+			<h1>Noter les nageurs du cour : <c:out value="${courseCode}"/></h1>
+			<s:form action="gradeSwimmer">
+			<s:textfield id="hidden" name="courseCode" cssClass="textfield" cssStyle="display:none;"><c:out value="${courseCode}"/></s:textfield>
+			<table>
+					<tr>
+						<th>Nom</th>
+						<th>Commentaires</th>
+						<th>Note</th>
+					</tr>
+				<s:iterator value="listGrades">
+					<tr>
+						<td><s:property value="personName"/></td>
+						<td><textarea><s:property value="comments"/></textarea></td>
+						<td>
+							<select name="grade">
+								<option selected value="<s:property value="grade"/>"><s:property value="grade"/></option>
+								<option value="Succes">Succes</option>
+								<option value="Echec">Echec</option>
+							</select>
+						</td>
+					</tr>
+				</s:iterator>
+			</table>
+			<button type="submit" class="button"><i class="fa fa-check-square"></i>Noter</button>
+			</s:form>
+		</div>
+	
+	
+	
     </div>
 
   </body>
