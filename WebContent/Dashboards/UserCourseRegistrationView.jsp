@@ -68,7 +68,7 @@
 			<s:set var="sessionUsername" value="userName" />
 		</div>
       <a id="RegisterUserCoursePage" href="<s:url action="redirectUserCourseRegistration.action" ><s:param name="userName" value="sessionUsername"/></s:url>"><i class="fas fa-desktop"></i><span>S'inscrire a un cours</span></a>
-      <a id="RegisterChildCoursePage" href="<s:url action="childsList.action" ><s:param name="userName" value="sessionUsername"/></s:url>"><i class="fas fa-cogs"></i><span>Inscrire mon enfant</span></a>      
+      <a id="RegisterChildCoursePage" href="<s:url action="InitChildCourseInscription.action" ><s:param name="userName" value="sessionUsername"/></s:url>"><i class="fas fa-cogs"></i><span>Inscrire mon enfant</span></a>      
       <a id="RegisterChildPage" href="<s:url action="redirectAddChild.action" ><s:param name="userName" value="sessionUsername"/></s:url>"><i class="fas fa-table"></i><span>Ajouter un enfant</span></a>
       <a href="#"><i class="fas fa-th"></i><span>Forms</span></a>
       <a href="#"><i class="fas fa-info-circle"></i><span>About</span></a>
@@ -92,18 +92,14 @@
 				<s:hidden name="UserInscription" value="true" />
 
 				<div class="select">
-					<select name="course.courseLevel" id="format">
+					<select name="course.courseCode" id="format" onchange="setValueCourseCode(this)">
 						<option selected disabled>Choisissez un cours</option>
-						<option value="Etoile_de_mer">Étoile de mer</option>
-						<option value="Bambins">Bambins</option>
-						<option value="Tortues">Tortues</option>
-						<option value="Pingouins">Pingouins</option>
-						<option value="Salamandre">Salamandre</option>
-						<option value="Baleines">Baleines</option>
-						<option value="Grenouilles">Grenouilles</option>
-						<option value="Dauphins">Dauphins</option>
-						<option value="Maitre_Nageur">Maître-Nageur</option>
-
+						
+						<c:forEach items="${coursesList}" var="course">
+							<option value="${course.courseLevel}">
+								<c:out value="${course.sessionCode}"/>-<c:out value="${course.courseLevel}"/>
+							</option>
+						</c:forEach>
 					</select>
 				</div>
 					<br/>
@@ -118,6 +114,12 @@
 
 
 		</div>
+		<script type="text/javascript">
+		function setValueCourseCode(selectCourse) {
+			let text = selectCourse.options[selectCourse.selectedIndex].text;
+			selectCourse.options[selectCourse.selectedIndex].value = text;
+		}
+		</script>
 
 	</div>
 

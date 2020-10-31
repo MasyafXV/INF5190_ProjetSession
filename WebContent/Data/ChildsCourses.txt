@@ -1,4 +1,4 @@
-child2 Pingouins Etoile_de_mer Bambins Tortues Salamandre
-mychild Dauphins Tortues Baleines
-child1 Dauphins
-child3 Baleines
+U2_child3 H19-Etoile_de_mer E19-Bambins
+U1_child1 H19-Etoile_de_mer
+U1_child1 H19-Etoile_de_mer
+U1_child1 H19-Etoile_de_mer

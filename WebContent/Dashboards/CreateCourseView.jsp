@@ -88,6 +88,11 @@
 						<option value="Baleines">Baleines</option>
 						<option value="Grenouilles">Grenouilles</option>
 						<option value="Dauphins">Dauphins</option>
+						<option value="Junior1">Junior1</option>
+						<option value="Junior2">Junior2</option>
+						<option value="Junior3">Junior3</option>
+						<option value="Junior4">Junior4</option>
+						<option value="Junior5">Junior5</option>
 						<option value="Maitre_Nageur">Maître-Nageur</option>
 					</select>
 				</div>
@@ -98,7 +103,17 @@
 				</div>
 				<br/>
 				<br/>
-				<button type="submit" class="button" value="UserCourseRegistration"><i class="fa fa-check-square"></i>Register</button>
+				<div class="textfield">
+					<textarea name="newCourse.NbPlace" id="format" placeholder="Inscrivez le nombre de place disponible pour ce cours"></textarea>
+				</div>
+				<br/>
+				<br/>
+				<div class="textfield">
+					<textarea name="newCourse.price" id="format" placeholder="Inscrivez le prix du cours"></textarea>
+				</div>
+				<br/>
+				<br/>
+				<button type="submit" class="button"><i class="fa fa-check-square"></i>Ajouter</button>
 
 			</s:form>
     	</div>

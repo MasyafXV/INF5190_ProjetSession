@@ -6,11 +6,11 @@ import java.util.Date;
 
 public class SessionBeans {
 
-	private String code;
-	private String season;
-	private String year;
-	private Date sessionFrom;
-	private Date sessionTo;
+	private String code = "";
+	private String season = "";
+	private String year = "";
+	private Date sessionFrom = new Date();
+	private Date sessionTo = new Date();
 
 	public SessionBeans() {
 	}

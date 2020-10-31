@@ -2,18 +2,39 @@ package com.pronatation.Courses;
 
 public class CourseDTO {
 
-	private String sessionCode;
-	private String courseLevel;
+	private String courseCode = "";
+	private String sessionCode = "";
+	private String courseLevel = "";
 	private String description = "";
+	private String NbPlace = "";
+	private String price = "";
 
-	public CourseDTO(String courseLevel) {
+	public CourseDTO(String sessionCode, String courseLevel) {
+		this.sessionCode = sessionCode;
+		this.courseLevel = courseLevel;
+
+	}
+
+	public CourseDTO(String courseCode, String sessionCode, String courseLevel) {
+		this.courseCode = courseCode;
+		this.sessionCode = sessionCode;
 		this.courseLevel = courseLevel;
 	}
 
-	public CourseDTO(String sessionCode, String courseLevel, String description) {
+	public CourseDTO(String sessionCode, String courseLevel, String description, String NbPlace, String price) {
 		this.sessionCode = sessionCode;
 		this.courseLevel = courseLevel;
 		this.description = description;
+		this.NbPlace = NbPlace;
+		this.price = price;
+	}
+
+	public String getCourseCode() {
+		return courseCode;
+	}
+
+	public void setCourseCode(String courseCode) {
+		this.courseCode = courseCode;
 	}
 
 	public String getCourseLevel() {
@@ -38,6 +59,22 @@ public class CourseDTO {
 
 	public void setDescription(String description) {
 		this.description = description;
+	}
+
+	public String getNbPlace() {
+		return NbPlace;
+	}
+
+	public void setNbPlace(String nbPlace) {
+		NbPlace = nbPlace;
+	}
+
+	public String getprice() {
+		return this.price;
+	}
+
+	public void setprice(String price) {
+		this.price = price;
 	}
 
 }
