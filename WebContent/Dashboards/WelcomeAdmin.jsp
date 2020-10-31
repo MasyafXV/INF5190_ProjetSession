@@ -62,7 +62,7 @@
       </div>
       <a id="CreateSessionPage" href="<s:url action="ViewSession.action"></s:url>"><i class="fas fa-calendar"></i><span>Créer une session</span></a>
       <a id="CreateCoursePage" href="<s:url action="listSessions.action" ></s:url>"><i class="fas fa-table"></i><span>Ajouter un cours</span></a>      
-      <a id="RegisterChildPage" href="<s:url action="ListCoursesForGrades.action" ></s:url>"><i class="fas fa-graduation-cap"></i><span>Noter les nageurs</span></a>
+      <a id="RegisterChildPage" href="#"><i class="fas fa-graduation-cap"></i><span>Noter les nageurs</span></a>
       <a href="#"><i class="fas fa-th"></i><span>Forms</span></a>
       <a href="#"><i class="fas fa-info-circle"></i><span>About</span></a>
       <a href="#"><i class="fas fa-sliders-h"></i><span>Settings</span></a>
