@@ -1,8 +1,13 @@
 package com.pronatation.Child;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.OutputStreamWriter;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.nio.charset.StandardCharsets;
@@ -20,6 +25,34 @@ public class ChildDao {
 
 	   public ChildDao() {
 		   
+	   }
+	   
+	   public boolean registerChild(String childFname, String childLname, String childAge) throws IOException {
+		   
+		   System.out.println("writing in child.txt for " + childFname);
+		   
+			
+		   PathManager pathManager= new PathManager();
+		   ProjectPath= pathManager.getProjectPath();
+		   
+		   String userAccountsPath = ProjectPath+"Childs.txt";
+		   
+				File fout = new File(userAccountsPath);
+				
+				FileOutputStream fos = new FileOutputStream(fout,true);
+			 
+				BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(fos));
+			
+					bw.write(childFname);
+					bw.newLine();
+					bw.write(childLname);
+					bw.newLine();
+					bw.write(childAge);
+					bw.newLine();
+					bw.close();
+			
+			return true;
+
 	   }
 	   
 	   

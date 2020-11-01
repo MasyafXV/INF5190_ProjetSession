@@ -2,6 +2,7 @@ package com.pronatation.Courses;
 
 import com.opensymphony.xwork2.ActionSupport;
 import com.pronatation.Child.ChildBean;
+import com.pronatation.users.UserBean;
 
 public class CourseInscriptionAction extends ActionSupport {
 

@@ -26,7 +26,7 @@ public class CourseDao {
 	}
 
 	public ArrayList<CourseDTO> getAllCourses() {
-		System.out.println("\nGetting all courses");
+		System.out.println("\n Getting all courses");
 
 		PathManager pathManager = new PathManager();
 		ProjectPath = pathManager.getProjectPath();
@@ -374,7 +374,7 @@ public class CourseDao {
 		return firstWord;
 	}
 
-	public boolean VerifyPrerequisite(String Username, String course, PersonProcessing processAs) {
+	public boolean VerifyPrerequisite(String Username, int childAge, String course, PersonProcessing processAs) {
 
 		System.out.println("Verification of the Prerequisite for " + course);
 		boolean Prerequisite_Satisfied = false;
@@ -466,12 +466,51 @@ public class CourseDao {
 						&& userCourses.contains("Etoile_de_mer");
 
 				break;
-			case "Maitre_Nageur":
+			case "Junior_1":
 				// code block
 				Prerequisite_Satisfied = userCourses.contains("Dauphins") && userCourses.contains("Grenouilles")
-						&& userCourses.contains("Baleines") && userCourses.contains("Salamandre")
-						&& userCourses.contains("Pingouins") && userCourses.contains("Tortues")
-						&& userCourses.contains("Bambins") && userCourses.contains("Etoile_de_mer");
+				&& userCourses.contains("Baleines") && userCourses.contains("Salamandre")
+				&& userCourses.contains("Pingouins") && userCourses.contains("Tortues")
+				&& userCourses.contains("Bambins") && userCourses.contains("Etoile_de_mer");
+
+				break;
+			case "Junior_2":
+				// code block
+				Prerequisite_Satisfied = userCourses.contains("Junior_1") && userCourses.contains("Dauphins") && userCourses.contains("Grenouilles")
+				&& userCourses.contains("Baleines") && userCourses.contains("Salamandre")
+				&& userCourses.contains("Pingouins") && userCourses.contains("Tortues")
+				&& userCourses.contains("Bambins") && userCourses.contains("Etoile_de_mer");
+
+				break;
+				
+			case "Junior_3":
+				// code block
+				Prerequisite_Satisfied =  userCourses.contains("Junior_2") && userCourses.contains("Junior_1") && userCourses.contains("Dauphins") && userCourses.contains("Grenouilles")
+				&& userCourses.contains("Baleines") && userCourses.contains("Salamandre")
+				&& userCourses.contains("Pingouins") && userCourses.contains("Tortues")
+				&& userCourses.contains("Bambins") && userCourses.contains("Etoile_de_mer");
+
+				break;
+			case "Junior_4":
+				// code block
+				Prerequisite_Satisfied =  userCourses.contains("Junior_3") &&  userCourses.contains("Junior_2") && userCourses.contains("Junior_1") && userCourses.contains("Dauphins") && userCourses.contains("Grenouilles")
+				&& userCourses.contains("Baleines") && userCourses.contains("Salamandre")
+				&& userCourses.contains("Pingouins") && userCourses.contains("Tortues")
+				&& userCourses.contains("Bambins") && userCourses.contains("Etoile_de_mer");
+
+				break;
+			case "Junior_5":
+				// code block
+				Prerequisite_Satisfied =  userCourses.contains("Junior_4") &&  userCourses.contains("Junior_2") && userCourses.contains("Junior_1") && userCourses.contains("Dauphins") && userCourses.contains("Grenouilles")
+				&& userCourses.contains("Baleines") && userCourses.contains("Salamandre")
+				&& userCourses.contains("Pingouins") && userCourses.contains("Tortues")
+				&& userCourses.contains("Bambins") && userCourses.contains("Etoile_de_mer");
+
+				break;
+			case "Maitre_Nageur": // enfant doit avoir 16 ans minimum
+				// code block
+				Prerequisite_Satisfied = processAs == PersonProcessing.Parent || 
+						 				 (processAs == PersonProcessing.Child && childAge>=16)	;
 
 				break;
 			default:

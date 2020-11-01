@@ -6,7 +6,9 @@ import com.pronatation.processingBehavior.PersonProcessing;
 
 public class ChildBean {
 
-	private String childName;
+	private String childName="";
+	private int childAge=12;
+
 	private PersonProcessing processAs = PersonProcessing.Child;
 
 	public ChildBean() {
@@ -23,7 +25,7 @@ public class ChildBean {
 
 		CourseDao course = new CourseDao();
 
-		if (course.VerifyPrerequisite(childName, courseDTO.getCourseLevel(), processAs)) {
+		if (course.VerifyPrerequisite(childName,childAge, courseDTO.getCourseLevel(), processAs)) {
 
 			course.ChildInscription(childName, courseDTO.getCourseCode());
 
