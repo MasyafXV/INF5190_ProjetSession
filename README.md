@@ -26,7 +26,7 @@ Nous nous sommes concentrés sur l'essentielle, c'est-à-dire le fonctionnement 
 
 ## Repartition du travail
 
-L'ensemble des taches du projet ont été reparties initialement en 3 taches par personne. Le rôle de chacun se trouver dans le backlog du projet.
+L'ensemble des taches du projet ont été reparties initialement en 3 taches par personne. Le rôle de chacun se trouve dans le backlog du projet.
 https://github.com/trafalgarxlaw/INF5190_ProjetSession/projects/1
 
 
