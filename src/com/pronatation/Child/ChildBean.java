@@ -7,7 +7,7 @@ import com.pronatation.processingBehavior.PersonProcessing;
 public class ChildBean {
 
 	private String childName="";
-	private int childAge=12;
+	private int childAge=12; //ceci est un age temporaire
 
 	private PersonProcessing processAs = PersonProcessing.Child;
 
