@@ -1,7 +1,9 @@
 package com.pronatation.Grade;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
@@ -49,14 +51,14 @@ public class GradeDAO {
 			while (myReader.hasNext()) {
 
 				line = myReader.next();
-				grade = line.split("\\s+");
+				grade = line.split("#");
 
-				if (line.split("\\s+").length == 1) {
+				if (grade.length == 1) {
 					System.out.print("\n");
 					System.out.print(grade[0]);
 					System.out.print("\n");
 					listGrades.add(new GradeDTO(grade[0], "", ""));
-				} else if (line.split("\\s+").length == 2) {
+				} else if (grade.length == 2) {
 					System.out.print("\n");
 					System.out.print(grade[0]);
 					System.out.print(" ");
@@ -85,32 +87,75 @@ public class GradeDAO {
 		return listGrades;
 	}
 
-	public boolean setAllGrades(String courseCode, ArrayList<GradeDTO> listGrades) {
-		System.out.println("\nSetting all grades");
+	public boolean setGrade(String courseCode, GradeDTO personGrade) {
+		System.out.println("\nSetting grade of " + personGrade.getPersonName() + " in course " + courseCode);
 
 		PathManager pathManager = new PathManager();
 		ProjectPath = pathManager.getProjectPath();
 
 		String coursesDetailsPath = ProjectPath + "CoursesDetails/" + courseCode + ".txt";
 
+		int lineNumber;
+		int targetLine = -1;
 		try {
+			FileReader readfile = new FileReader(coursesDetailsPath);
+			BufferedReader readbuffer = new BufferedReader(readfile);
+			for (lineNumber = 1; lineNumber < 53; lineNumber++) {
 
-			Path path = Paths.get(coursesDetailsPath);
-			java.util.List<String> lines = null;
-			lines = Files.readAllLines(path, StandardCharsets.UTF_8);
-			int j = 0;
-			for (int i = 4; i < lines.size() - 1; i++) {
-				lines.set(i, listGrades.get(j).getPersonName() + " " + listGrades.get(j).getComments() + " "
-						+ listGrades.get(j).getGrade());
+				if (readFirstWord(readbuffer.readLine()).equals(personGrade.getPersonName())) {
+					targetLine = lineNumber;
+
+				}
+
 			}
-
-			Files.write(path, lines, StandardCharsets.UTF_8);
-
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		System.out.println(" The specific Line to add the course is: " + targetLine);
+
+		if (targetLine != -1) { // if swimmer is registered to course
+
+			Path path = Paths.get(coursesDetailsPath);
+			java.util.List<String> lines = null;
+			try {
+				lines = Files.readAllLines(path, StandardCharsets.UTF_8);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+			int position = targetLine - 1;
+			String extraLine = personGrade.getPersonName() + "#"
+					+ personGrade.getComments().replaceAll("\r", ". ").replaceAll("\n", ". ") + "#"
+					+ personGrade.getGrade();
+
+			lines.add(position, extraLine);
+			lines.remove(targetLine);
+
+			try {
+				Files.write(path, lines, StandardCharsets.UTF_8);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+		}
 
 		return true;
+	}
+
+	private static String readFirstWord(String line) {
+		String firstWord = "";
+
+		if (line != null) {
+
+			String arr[] = line.split(" ", 2);
+
+			firstWord = arr[0];
+
+		}
+
+		return firstWord;
 	}
 
 }

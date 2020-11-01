@@ -1,7 +1,5 @@
 package com.pronatation.Grade;
 
-import java.util.ArrayList;
-
 import com.opensymphony.xwork2.ActionSupport;
 
 public class GradeSwimmerAction extends ActionSupport {
@@ -10,35 +8,23 @@ public class GradeSwimmerAction extends ActionSupport {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private ArrayList<GradeBean> listGrades;
+
 	private String courseCode;
+	private String personName;
+	private String comments;
+	private String grade;
 
 	public String execute() {
 		System.out.println("\nListing grades for course :" + courseCode);
+		System.out.print("\npersonName : " + personName);
+		System.out.print("\ncomments : " + comments);
+		System.out.print("\ngrade : " + grade);
 
 		GradeBusiness gradesBusiness = new GradeBusiness();
-		System.out.print("\nStill working ?");
-		ArrayList<GradeDTO> listGradesDTO = new ArrayList<>();
+		GradeDTO personGradeDTO = new GradeDTO(personName, comments, grade);
 
-		for (int i = 0; i < listGrades.size(); i++) {
-			listGradesDTO.add(new GradeDTO(listGrades.get(i).getPersonName(), listGrades.get(i).getComments(),
-					listGrades.get(i).getGrade()));
-			System.out.print("\nPersonName : " + listGrades.get(i).getPersonName());
-			System.out.print("\nComments : " + listGrades.get(i).getComments());
-			System.out.print("\nGrade : " + listGrades.get(i).getGrade());
-		}
-
-		gradesBusiness.setAllGrades(courseCode, listGradesDTO);
-
+		gradesBusiness.setGrade(courseCode, personGradeDTO);
 		return SUCCESS;
-	}
-
-	public ArrayList<GradeBean> getListGrades() {
-		return listGrades;
-	}
-
-	public void setListGrades(ArrayList<GradeBean> listGrades) {
-		this.listGrades = listGrades;
 	}
 
 	public String getCourseCode() {
@@ -47,6 +33,30 @@ public class GradeSwimmerAction extends ActionSupport {
 
 	public void setCourseCode(String courseCode) {
 		this.courseCode = courseCode;
+	}
+
+	public String getPersonName() {
+		return personName;
+	}
+
+	public void setPersonName(String personName) {
+		this.personName = personName;
+	}
+
+	public String getComments() {
+		return comments;
+	}
+
+	public void setComments(String comments) {
+		this.comments = comments;
+	}
+
+	public String getGrade() {
+		return grade;
+	}
+
+	public void setGrade(String grade) {
+		this.grade = grade;
 	}
 
 }

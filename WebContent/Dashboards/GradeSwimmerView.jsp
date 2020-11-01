@@ -17,6 +17,7 @@
     <title>User Menu</title>
     <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
     <link href="${pageContext.request.contextPath}/css/User_menu_style.css" rel="stylesheet" type="text/css"/>
+    <link href="${pageContext.request.contextPath}/css/Admin_menu_style.css" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" charset="utf-8"></script>
   </head>
@@ -62,7 +63,7 @@
       </div>
       <a id="CreateSessionPage" href="<s:url action="ViewSession.action"></s:url>"><i class="fas fa-calendar"></i><span>Créer une session</span></a>
       <a id="CreateCoursePage" href="<s:url action="listSessions.action" ></s:url>"><i class="fas fa-table"></i><span>Ajouter un cours</span></a>      
-      <a id="RegisterChildPage" href="<s:url action="redirectAddChild.action" ></s:url>"><i class="fas fa-graduation-cap"></i><span>Noter les nageurs</span></a>
+      <a id="RegisterChildPage" href="<s:url action="ListCoursesForGrades.action" ></s:url>"><i class="fas fa-graduation-cap"></i><span>Noter les nageurs</span></a>
       <a href="#"><i class="fas fa-th"></i><span>Forms</span></a>
       <a href="#"><i class="fas fa-info-circle"></i><span>About</span></a>
       <a href="#"><i class="fas fa-sliders-h"></i><span>Settings</span></a>
@@ -70,11 +71,7 @@
     <!--sidebar end-->
 
     <div class="content">
-	<br/>
-
-		<h1>Noter les nageurs</h1>
-
-
+		<h1>Afficher les notes des nageurs d'un cours</h1>
 		<div class="CourseSelection">
 			<s:form action="ListGrades" name="SelectCourse">
 
@@ -104,10 +101,8 @@
 		}
 	</script>
 		<div class=GradeSwimmer>
-			<h1>Noter les nageurs du cour : <c:out value="${courseCode}"/></h1>
-			<s:form action="gradeSwimmer">
-			<s:textfield id="hidden" name="courseCode" cssClass="textfield" cssStyle="display:none;"><c:out value="${courseCode}"/></s:textfield>
-			<table>
+			<h1>Note des nageurs du cour : <c:out value="${courseCode}"/></h1>
+			<table class="tabSwimmer">
 					<tr>
 						<th>Nom</th>
 						<th>Commentaires</th>
@@ -116,18 +111,40 @@
 				<s:iterator value="listGrades">
 					<tr>
 						<td><s:property value="personName"/></td>
-						<td><textarea><s:property value="comments"/></textarea></td>
-						<td>
-							<select name="grade">
-								<option selected value="<s:property value="grade"/>"><s:property value="grade"/></option>
-								<option value="Succes">Succes</option>
-								<option value="Echec">Echec</option>
-							</select>
-						</td>
+						<td><s:property value="comments"/></td>
+						<td><s:property value="grade"/></td>
 					</tr>
 				</s:iterator>
 			</table>
-			<button type="submit" class="button"><i class="fa fa-check-square"></i>Noter</button>
+		</div>
+		<div class="GradeSwimmerList">
+			<s:form action="gradeSwimmer">
+				<h1 style="color:white;">Noter le nageur ou la nageuse</h1>
+				<s:textfield id="hidden" name="courseCode" cssClass="textfield" cssStyle="display:none;"/>
+				<div class="select">
+				<select name="personName" id="format">
+					<option selected disabled>Choisissez un nageur</option>
+					<s:iterator value="listGrades">
+						<option value="<s:property value="personName"/>"><s:property value="personName"/></option>
+					</s:iterator>
+				</select>
+				</div>
+				<br>
+				<textarea name="comments" class="textfield" placeholder="inscrivez un commentaire"></textarea>
+				<br>
+				<div class="select">
+				<select name="grade" id="format">
+					<option selected disabled>Choisissez une mention</option>
+					<option value="Succes">Succes</option>
+					<option value="Echec">Echec</option>
+				</select>
+				</div>
+				<br>
+				<div class="buttons">
+				  <div class="button-container">
+				          <button class="btn effect01" type="submit" class="btn">Noter</button>
+				  </div>
+				</div>
 			</s:form>
 		</div>
 	

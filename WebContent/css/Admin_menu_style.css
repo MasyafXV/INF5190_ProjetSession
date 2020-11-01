@@ -61,3 +61,44 @@ textarea::-ms-expand, input[type=text]::-ms-expand {
 	font-size: 1em;
 	color: #af0d00;
 }
+
+table.tab {
+  font-family: 'Open Sans', sans-serif;
+  border: 2px solid #000000;
+  background-color: #38443d;
+  width: 100%;
+  height: 200px;
+  text-align: left;
+  border-collapse: collapse;
+}
+table.tabSwimmer {
+  font-family: 'Open Sans', sans-serif;
+  border: 2px solid #000000;
+  background-color: #38443d;
+  text-align: left;
+  border-collapse: collapse;
+}
+table.tab td, table.tab th, table.tabSwimmer td, table.tabSwimmer th {
+  border: 2px solid #4A4A4A;
+  padding: 5px 20px;
+}
+table.tab td, table.tabSwimmer td {
+  font-size: 15px;
+  font-weight: bold;
+  color: #E6E6E6;
+}
+table.tab tr:nth-child(even), table.tabSwimmer tr:nth-child(even){
+  background: #5c6664;
+}
+table.tab th, table.tabSwimmer th{
+  background: #000000;
+  border-bottom: 3px solid #000000;
+  font-size: 17px;
+  font-weight: bold;
+  color: #E6E6E6;
+  text-align: center;
+  border-left: 2px solid #4A4A4A;
+}
+table.tab th:first-child, table.tabSwimmer th:first-child {
+  border-left: none;
+}

@@ -16,6 +16,7 @@
     <title>User Menu</title>
     <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
     <link href="${pageContext.request.contextPath}/css/User_menu_style.css" rel="stylesheet" type="text/css"/>
+    <link href="${pageContext.request.contextPath}/css/Admin_menu_style.css" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" charset="utf-8"></script>
   </head>
@@ -61,7 +62,7 @@
       </div>
       <a id="CreateSessionPage" href="<s:url action="ViewSession.action"></s:url>"><i class="fas fa-calendar"></i><span>Créer une session</span></a>
       <a id="CreateCoursePage" href="<s:url action="listSessions.action" ></s:url>"><i class="fas fa-table"></i><span>Ajouter un cours</span></a>      
-      <a id="RegisterChildPage" href="#"><i class="fas fa-graduation-cap"></i><span>Noter les nageurs</span></a>
+      <a id="RegisterChildPage" href="<s:url action="ListCoursesForGrades.action" ></s:url>"><i class="fas fa-graduation-cap"></i><span>Noter les nageurs</span></a>
       <a href="#"><i class="fas fa-th"></i><span>Forms</span></a>
       <a href="#"><i class="fas fa-info-circle"></i><span>About</span></a>
       <a href="#"><i class="fas fa-sliders-h"></i><span>Settings</span></a>
@@ -70,20 +71,27 @@
 
     <div class="content">
 
-    <div class="contentSession">
-    <br/><br/>
-    		<h2>Create a New Session</h2>
-    		
-    		
+    <div class="contentSession">    		
+    		<table class="tab">
+					<tr>
+						<th>Code Session</th>
+						<th>Nom Session</th>
+						<th>Début de session</th>
+						<th>Fin de session</th>
+					</tr>
     		<s:iterator value="listSessions" var="session">
-					<i class="fa fa-chevron-right fa-rotate-90"> </i>
-					<s:property value="#session.code"/>
-					<s:property value="#session.season"/>
-					<s:property value="#session.year"/>
-					<s:property value="#session.sessionFrom"/>
-					<s:property value="#session.sessionTo"/> <br><br>
-				</s:iterator>
-				
+    			<tr>
+					<td><s:property value="#session.code"/></td>
+					<td>
+						<s:property value="#session.season"/>
+						<s:property value="#session.year"/>
+					</td>
+					<td><s:property value="#session.sessionFrom"/></td>
+					<td><s:property value="#session.sessionTo"/></td>
+				</tr>
+			</s:iterator>
+			</table>
+		<h2>Créer une nouvelle session</h2>
     	<s:form action="CreateNewSession" name="ajouterSession" onsubmit="return validForm()">
 				<s:textfield cssClass="textfield" name="newSession.code" cssStyle="display:none;"/>
 				<div class="select">
@@ -94,10 +102,14 @@
 						<option value="Automne">Automne</option>
 					</select>
 				</div>
-				<s:textfield cssClass="textfield" name="newSession.year" placeholder="Année : YYYY" />
-				<s:textfield cssClass="textfield" name="newSession.sessionFrom" placeholder="Début : DD/MM/YYYY " />
-				<s:textfield cssClass="textfield" name="newSession.sessionTo" placeholder="Fin : DD/MM/YYYY --" />
-				<s:submit cssClass="button" value="Ajouter"></s:submit>
+				<s:textfield class="textfield" name="newSession.year" placeholder="Année : YYYY" />
+				<s:textfield class="textfield" name="newSession.sessionFrom" placeholder="Début : DD/MM/YYYY " />
+				<s:textfield class="textfield" name="newSession.sessionTo" placeholder="Fin : DD/MM/YYYY --" />
+				<div class="buttons">
+				  <div class="button-container">
+				          <s:submit cssClass="btn effect01" value="Ajouter"></s:submit>
+				  </div>
+				</div>
     	</s:form>
     	<h2 id="errorMsg" class="error"></h2>
     	
