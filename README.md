@@ -20,6 +20,10 @@ Pour que le projet fonctionne correctement avec les fichiers simulant la base de
 
 - Le Path de nos fichiers text (il existe déjà) est: ProjectWorkplace/INF5190_ProjetSession/WebContent/Data/
 
+## À savoir
+
+Nous nous sommes concentrés sur l'essentielle, c'est-à-dire le fonctionnement des fonctionnalités demandées dans l'énoncé du TP. Nous sommes conscients qu'il y a des use cases marginaux qu'on ne couvre pas dans nos fonctionnalités, mais nous espérons avoir le temps de couvrir cela dans la deuxième partie afin de rendre notre application encore plus robuste pour le lancement en production. Nous avons aussi rencontré quelques difficultés au sein de notre équipe de développement, nous avons dû nous séparer notre équipe initiale pour des raisons d'équité en termes de collaboration pour ce projet. Un nouveau membre nous a rejoints par la suite en mi-chemin de développement.
+
 ## Repartition du travail
 
 L'ensemble des taches du projet ont été reparties initialement en 3 taches par personne. Le rôle de chacun se trouver dans le backlog du projet.
