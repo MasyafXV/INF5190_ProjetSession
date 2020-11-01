@@ -4,6 +4,9 @@ Ceci est une application web pour l’inscription de cours de natation d'un nouv
 
 Nous avons decider d'utiliser Struts 2 afin de profiter de ses multiples avantages dont sa facilité à être maintenue. Struts 2 offre notamment une conception simplifiée, car le code n'est pas étroitement lié au framework Struts ou à l'API Servlet. Il peut ce Plug-in facilement, les développeurs peuvent facilement utiliser d'autres technologies comme SiteMesh, Spring, Tiles, etc. De plus, les Actions sont également de simple plain old Java objects et elles n'ont pas besoin d'implémenter une interface ou d'étendre une classe. 
 
+![preview](/preview.png)
+
+
 - Url du login pour les Utilisateurs : http://localhost:8080/INF5190_ProjetSession/Login.jsp Il es possible de se loger en utilisant le **nom d'utilisateur : User1 et le password : pass1**
 
  - Url du login pout les Administrateurs : http://localhost:8080/INF5190_ProjetSession/AdminLogin.jsp Il es possible de se loger en utilisant le **nom d'administrateur : admintest1 et le password : pass1**
