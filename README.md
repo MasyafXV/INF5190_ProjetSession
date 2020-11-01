@@ -14,7 +14,7 @@ Pour que le projet fonctionne correctement avec les fichier simulant la base de 
 
 - Le repertoire workspace d'eclipse doit contenire le projet **INF5190_ProjetSession**
 
-Le Path de nos fichiers text est: ProjectWorkplace/INF5190_ProjetSession/WebContent/Data/
+- Le Path de nos fichiers text (il existe deja) est: ProjectWorkplace/INF5190_ProjetSession/WebContent/Data/
 
 ## Repartition du travail
 
