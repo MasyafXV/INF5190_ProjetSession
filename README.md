@@ -4,7 +4,7 @@ Ceci est une application web pour l’inscription de cours de natation d'un nouv
 
 - Url du login pour les Utilisateurs : http://localhost:8080/INF5190_ProjetSession/Login.jsp Il es possible de se loger en utilisant le **nom d'utilisateur : User1 et le password : pass1**
 
- - Url du login pout les Administrateurs : http://localhost:8080/INF5190_ProjetSession/AdminLogin.jsp
+ - Url du login pout les Administrateurs : http://localhost:8080/INF5190_ProjetSession/AdminLogin.jsp Il es possible de se loger en utilisant le **nom d'administrateur : admintest1 et le password : pass1**
 
 ## Important
 
