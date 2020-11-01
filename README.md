@@ -6,9 +6,9 @@ Nous avons décidé d'utiliser Struts 2 afin de profiter de ses multiples avanta
 
 ![preview](/preview.png)
 
-- Url du login pour les Utilisateurs : http://localhost:8080/INF5190_ProjetSession/Login.jsp Il est possible de se loger en utilisant le **nom d'utilisateur : User1 et le password : pass1**
+- Url du login pour les Utilisateurs : http://localhost:8080/INF5190_ProjetSession/Login.jsp Il est possible de s'authentifier en utilisant le **nom d'utilisateur : User1 et le password : pass1**
 
-- Url du login pour les Administrateurs : http://localhost:8080/INF5190_ProjetSession/AdminLogin.jsp Il est possible de se loger en utilisant le **nom d'administrateur : admintest1 et le password : pass1**
+- Url du login pour les Administrateurs : http://localhost:8080/INF5190_ProjetSession/AdminLogin.jsp Il est possible de s'authentifier en utilisant le **nom d'administrateur : admintest1 et le password : pass1**
 
 ## Important
 
