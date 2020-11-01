@@ -25,10 +25,12 @@ public class ChildRegistrationAction extends ActionSupport {
  
     public void validate() {
     	
-    	System.out.println(userName);
-    	System.out.println(child_firstname);
-    	System.out.println(child_lastname);
-    	System.out.println(child_bdate);
+   		System.out.println("Registration of  "+child_firstname);
+    	
+//    	System.out.println(userName);
+//    	System.out.println(child_firstname);
+//    	System.out.println(child_lastname);
+//    	System.out.println(child_bdate);
     	
     	
     	ChildDao childDao= new ChildDao();
@@ -37,6 +39,8 @@ public class ChildRegistrationAction extends ActionSupport {
             addFieldError("userName", "Invalid User !!!");
     	}
     	else{
+       		System.out.println(child_firstname+" Have been successfully registered ");
+
     		
     	}
     	

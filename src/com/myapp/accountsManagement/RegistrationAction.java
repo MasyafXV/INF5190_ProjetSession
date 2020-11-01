@@ -93,11 +93,13 @@ public class RegistrationAction  extends ActionSupport{
     	
     	try {
 			if(registrationDao.RegisterUser(userName, password,firstname,lastname,email,adress,bdate)){
-//            addFieldError("userName", "Invalid User !!!");
 				registrationDao.addUserToDatabase(userName, password);
+		   		System.out.println("User "+userName+" have been successfully registered");
+
 			}
 			else{
-				
+		   		System.out.println("User "+userName+" has not been registered");
+
 			}
 		} catch (IOException e) {
 			// TODO Auto-generated catch block

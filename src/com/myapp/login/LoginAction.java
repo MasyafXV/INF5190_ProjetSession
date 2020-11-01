@@ -40,11 +40,13 @@ public class LoginAction extends ActionSupport {
     	
     	if(loginDao.validateUser(userName, password)==false){
             addFieldError("userName", "Invalid User, Try again");
+      		 System.out.println("LOGIN FAILURE");
+
     	}
     	else{
    		 Map<String,Object> session = ActionContext.getContext().getSession();
    		 session.put("userName", userName);
-   		 session.remove(userName);
+   		 System.out.println("LOGIN SUCCES");
 
     	}
     	

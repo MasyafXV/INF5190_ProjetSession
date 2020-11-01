@@ -16,8 +16,7 @@ public class LoginDao  {
 	
 	static ArrayList<UserDTO> UserList = new ArrayList<>();
 	static ArrayList<AdminDTO> AdminList = new ArrayList<>();
-//	static String myPath = "/Users/vorolf/Documents/Course/SessionLive/Web app/INF5190_ProjetSession/WebContent/Data/Users.txt";
-//	static String ElsaPath = "/Users/elsatran/Desktop/PROJECT_INF5190/INF5190_ProjetSession/WebContent/Data/Users.txt";
+
 	private String ProjectPath;
 
 	   public LoginDao() {
@@ -63,7 +62,7 @@ public class LoginDao  {
 		   
 		   String allAdminsPath = ProjectPath+"Admins.txt";
 
-		System.out.println("Getting all users");
+		System.out.println("Getting all admins");
 	      
 	      try {
 		     //File myObj = new File("personnes.txt");
@@ -101,15 +100,14 @@ public class LoginDao  {
 		ArrayList<UserDTO> users = getAllUsers();
 		boolean status=false;
 		
-    	System.out.println("ENTERED username: "+userName);
-    	System.out.println("ENTERED pass: "+password);
+    	System.out.println("Entered user username: "+userName);
+    	System.out.println("Entered user pass: "+password);
 		
         for (int i = 0; i < users.size(); i++) {
 
             if (users.get(i).getUsername().equals(userName)) {  
             	if(users.get(i).getPassword().equals(password)) {
                 	status=true;
-                	System.out.println("LOGIN SUCCES");
             	}
             }
         }
@@ -121,15 +119,14 @@ public class LoginDao  {
 		ArrayList<AdminDTO> admins = getAllAdmins();
 		boolean status=false;
 		
-    	System.out.println("ENTERED username: "+userName);
-    	System.out.println("ENTERED pass: "+password);
+    	System.out.println("Entered admin username: "+userName);
+    	System.out.println("Entered admin pass: "+password);
 		
         for (int i = 0; i < admins.size(); i++) {
 
             if (admins.get(i).getUsername().equals(userName)) {  
             	if(admins.get(i).getPassword().equals(password)) {
                 	status=true;
-                	System.out.println("LOGIN SUCCES");
             	}
             }
         }

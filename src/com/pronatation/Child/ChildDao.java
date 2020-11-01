@@ -15,8 +15,6 @@ import com.sun.tools.javac.util.List;
 
 public class ChildDao {
 	
-//	 String myPath = "/Users/vorolf/Documents/Course/SessionLive/Web app/INF5190_ProjetSession/WebContent/Data/UserChilds.txt";
-//	 String ElsaPath = "/Users/elsatran/Desktop/PROJECT_INF5190/INF5190_ProjetSession/WebContent/Data/UserChilds.txt";
 
 	private String ProjectPath;
 
@@ -56,7 +54,7 @@ public class ChildDao {
 		    } catch (IOException e) {
 		      e.printStackTrace();
 		    }
-		    System.out.println(" The specific Line to add the child is: " + targetLine);
+//		    System.out.println(" The specific Line to add the child is: " + targetLine);
 		    
 		    if(targetLine!=-1) { //if the user has a child
 		    	
