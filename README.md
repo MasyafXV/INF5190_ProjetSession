@@ -1,8 +1,6 @@
 # INF5190_ProjetSession
 
-description brouillon:
-Java EE application utilisant le framework front-end struts 2. Pour la premiere iteration, nous n'avons pas inclus de base de donnée mais plutots des fichiers text (Le path vers ces fichiers devra changer d'une machine a une autre).Pour lancer cette application, il est necessaire d'installer tomcat v9.
-
+Ceci est une application web pour l’inscription de cours de natation d'un nouveau centre aquatique utilisant Java EE avec le framework front-end struts 2. Pour la premiere iteration, nous n'avons pas inclus de base de donnée mais plutots des fichiers .txt (Le path vers ces fichiers devrais s'adapter d'une machine a une autre).Pour lancer cette application, il est necessaire d'installer tomcat v9.
 
 Url du login pour les Utilisateurs : http://localhost:8080/INF5190_ProjetSession/Login.jsp
 
