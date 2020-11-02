@@ -13,8 +13,8 @@ public class GradeBusiness {
 		return grade.getAllGrades(CourseCode);
 	}
 
-	public void setAllGrades(String CourseCode, ArrayList<GradeDTO> listGrades) {
-		System.out.print("\nGradeBusiness setAllGrades");
-		grade.setAllGrades(CourseCode, listGrades);
+	public void setGrade(String CourseCode, GradeDTO personGrade) {
+		System.out.print("\nGradeBusiness setGrade for " + personGrade.getPersonName() + " in course " + CourseCode);
+		grade.setGrade(CourseCode, personGrade);
 	}
 }

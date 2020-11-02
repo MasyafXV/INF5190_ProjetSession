@@ -1,8 +1,13 @@
 package com.pronatation.Child;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.OutputStreamWriter;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.nio.charset.StandardCharsets;
@@ -15,8 +20,6 @@ import com.sun.tools.javac.util.List;
 
 public class ChildDao {
 	
-//	 String myPath = "/Users/vorolf/Documents/Course/SessionLive/Web app/INF5190_ProjetSession/WebContent/Data/UserChilds.txt";
-//	 String ElsaPath = "/Users/elsatran/Desktop/PROJECT_INF5190/INF5190_ProjetSession/WebContent/Data/UserChilds.txt";
 
 	private String ProjectPath;
 
@@ -24,6 +27,34 @@ public class ChildDao {
 		   
 	   }
 	   
+	   public boolean registerChild(String childFname, String childLname, String childAge) throws IOException {
+		   
+		   System.out.println("writing in child.txt for " + childFname);
+		   
+			
+		   PathManager pathManager= new PathManager();
+		   ProjectPath= pathManager.getProjectPath();
+		   
+		   String userAccountsPath = ProjectPath+"Childs.txt";
+		   
+				File fout = new File(userAccountsPath);
+				
+				FileOutputStream fos = new FileOutputStream(fout,true);
+			 
+				BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(fos));
+			
+					bw.write(childFname);
+					bw.newLine();
+					bw.write(childLname);
+					bw.newLine();
+					bw.write(childAge);
+					bw.newLine();
+					bw.close();
+			
+			return true;
+
+	   }
+	   	   
 	   
 	   public boolean addChild(String Parent_username,String childName) {
 		   
@@ -56,7 +87,7 @@ public class ChildDao {
 		    } catch (IOException e) {
 		      e.printStackTrace();
 		    }
-		    System.out.println(" The specific Line to add the child is: " + targetLine);
+//		    System.out.println(" The specific Line to add the child is: " + targetLine);
 		    
 		    if(targetLine!=-1) { //if the user has a child
 		    	

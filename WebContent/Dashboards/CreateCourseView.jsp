@@ -50,7 +50,7 @@
       </div>
       <a id="CreateSessionPage" href="<s:url action="ViewSession.action"></s:url>"><i class="fas fa-calendar"></i><span>Créer une session</span></a>
       <a id="CreateCoursePage" href="<s:url action="listSessions.action" ></s:url>"><i class="fas fa-table"></i><span>Ajouter un cours</span></a>      
-      <a id="RegisterChildPage" href="<s:url action="redirectAddChild.action" ></s:url>"><i class="fas fa-graduation-cap"></i><span>Noter les nageurs</span></a>
+      <a id="RegisterChildPage" href="<s:url action="ListCoursesForGrades.action" ></s:url>"><i class="fas fa-graduation-cap"></i><span>Noter les nageurs</span></a>
       <a href="#"><i class="fas fa-th"></i><span>Forms</span></a>
       <a href="#"><i class="fas fa-info-circle"></i><span>About</span></a>
       <a href="#"><i class="fas fa-sliders-h"></i><span>Settings</span></a>
@@ -59,13 +59,13 @@
     
 
     <div class="content">
-    	<h1>Ajouter un cours une session</h1>
+    	<h1>Ajouter un cours à une session</h1>
 
 		<div class="CourseSelection">
 
 			<s:form action="CreateCourse">
 				<div class="select">
-						<select name="newCourse.SessionCode" id="format">
+						<select name="newCourse.SessionCode" id="format" required>
 							<option selected disabled>Choisissez une session</option>
 							
 							<c:forEach items="${listSessions}" var="session">
@@ -76,9 +76,8 @@
 						</select>
 				</div>
 				<br/>
-				<br/>
 				<div class="select">
-					<select name="newCourse.CourseLevel" id="format">
+					<select name="newCourse.CourseLevel" id="format" required>
 						<option selected disabled>Choisissez un cours</option>
 						<option value="Etoile_de_mer">Étoile de mer</option>
 						<option value="Bambins">Bambins</option>
@@ -88,32 +87,32 @@
 						<option value="Baleines">Baleines</option>
 						<option value="Grenouilles">Grenouilles</option>
 						<option value="Dauphins">Dauphins</option>
-						<option value="Junior1">Junior1</option>
-						<option value="Junior2">Junior2</option>
-						<option value="Junior3">Junior3</option>
-						<option value="Junior4">Junior4</option>
-						<option value="Junior5">Junior5</option>
+						<option value="Junior1">Junior_1</option>
+						<option value="Junior2">Junior_2</option>
+						<option value="Junior3">Junior_3</option>
+						<option value="Junior4">Junior_4</option>
+						<option value="Junior5">Junior_5</option>
 						<option value="Maitre_Nageur">Maître-Nageur</option>
 					</select>
 				</div>
 				<br/>
-				<br/>
 				<div class="textfield">
-					<textarea name="newCourse.Description" id="format" placeholder="Inscrivez la description du cours"></textarea>
+					<textarea name="newCourse.Description" id="format" placeholder="Inscrivez la description du cours" required ></textarea>
 				</div>
 				<br/>
-				<br/>
 				<div class="textfield">
-					<textarea name="newCourse.NbPlace" id="format" placeholder="Inscrivez le nombre de place disponible pour ce cours"></textarea>
+					<textarea name="newCourse.NbPlace" id="format" placeholder="Inscrivez le nombre de place disponible pour ce cours" required></textarea>
 				</div>
 				<br/>
-				<br/>
 				<div class="textfield">
-					<textarea name="newCourse.price" id="format" placeholder="Inscrivez le prix du cours"></textarea>
+					<textarea name="newCourse.price" id="format" placeholder="Inscrivez le prix du cours" required></textarea>
 				</div>
 				<br/>
-				<br/>
-				<button type="submit" class="button"><i class="fa fa-check-square"></i>Ajouter</button>
+				<div class="buttons">
+				  <div class="button-container">
+				          <s:submit cssClass="btn effect01" value="Ajouter"><i class="fa fa-check-square"></i>Ajouter</s:submit>
+				  </div>
+				</div>
 
 			</s:form>
     	</div>

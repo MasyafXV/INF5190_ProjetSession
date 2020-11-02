@@ -39,6 +39,9 @@ public class UserDTO {
     }
     public ArrayList<ChildDto> getAllChilds(){
     	
+	    System.out.println("Fetching " + username+ " childs...");
+
+    	
     	   ArrayList<ChildDto> childsDtoArray= new ArrayList<ChildDto>();
 		   PathManager pathManager= new PathManager();
 		   ProjectPath= pathManager.getProjectPath();
@@ -81,7 +84,8 @@ public class UserDTO {
 		    }else if (childs.equals("")) { //if the user has no childs
 		    	
 		    
-				
+			    System.out.println( username+ " Has no childs");
+
 		    	
 		    }
     	

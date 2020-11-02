@@ -1,5 +1,7 @@
-package com.pronatation.Courses;
+package com.pronatation.users;
 
+import com.pronatation.Courses.CourseDTO;
+import com.pronatation.Courses.CourseDao;
 import com.pronatation.processingBehavior.PersonProcessing;
 
 public class UserBean {
@@ -28,7 +30,7 @@ public class UserBean {
 
 		CourseDao course = new CourseDao();
 
-		if (course.VerifyPrerequisite(userName, courseDTO.getCourseLevel(), processAs)) {
+		if (course.VerifyPrerequisite(userName,-1, courseDTO.getCourseLevel(), processAs)) {
 
 			course.UserInscription(userName, courseDTO.getCourseCode());
 

@@ -39,10 +39,14 @@ public class AdminLoginAction extends ActionSupport {
 
     	if(loginDao.validateAdmin(userName, password)==false){
             addFieldError("userName", "Invalid User, Try again");
+     		 System.out.println("LOGIN FAILURE");
+
     	}
     	else{
     		 Map<String,Object> session = ActionContext.getContext().getSession();
     		 session.put("userName", userName);
+       		 System.out.println("LOGIN SUCCES");
+
     	}
     	
     }

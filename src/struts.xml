@@ -107,7 +107,10 @@
 		
 		<action name="gradeSwimmer"
 			class="com.pronatation.Grade.GradeSwimmerAction">
-			<result name="success">Dashboards/GradeSwimmerView.jsp</result>
+			<result name="success" type="redirectAction">
+				<param name="actionName">ListGrades</param>
+        		<param name="courseCode">${courseCode}</param>
+        	</result>
 		</action>
 		
 		<action name="ListGrades"

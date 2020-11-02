@@ -23,9 +23,7 @@ public class RegistrationDao {
 			String email,
 			String adress,
 			String bdate) throws IOException {
-		
-		System.out.println("User Registration ");
-		
+				
 		
 		   PathManager pathManager= new PathManager();
 		   ProjectPath= pathManager.getProjectPath();

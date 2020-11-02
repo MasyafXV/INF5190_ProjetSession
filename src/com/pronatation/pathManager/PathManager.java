@@ -14,6 +14,8 @@ public class PathManager {
 
 
 	   public String getProjectPath() {
+		    System.out.println("Starting path manager ... : ");
+
 		    String myPorjectpath = this.getClass().getClassLoader().getResource("").getPath();
 		    String fullPath = null;
 		    

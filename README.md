@@ -1,21 +1,34 @@
 # INF5190_ProjetSession
 
-description brouillon:
-Java EE application utilisant le framework front-end struts 2. Pour la premiere iteration, nous n'avons pas inclus de base de donnée mais plutots des fichiers text (Le path vers ces fichiers devra changer d'une machine a une autre).Pour lancer cette application, il est necessaire d'installer tomcat v9.
+Yassine Hasnaoui - HASY04089702
 
+Elsa -
 
-Url du login pour les Utilisateurs : http://localhost:8080/INF5190_ProjetSession/Login.jsp
+Ceci est une application web pour l’inscription de cours de natation d'un nouveau centre aquatique utilisant Java EE avec le framework front-end struts 2. Pour la première itération, nous n'avons pas inclus de base de données mes plutons des fichiers .txt (le path vers ces fichiers devrait s'adapter d'une machine a une autre).Pour lancer cette application, il est nécessaire d'installer tomcat v9.
 
-Url du login pout les Administrateurs : http://localhost:8080/INF5190_ProjetSession/AdminLogin.jsp
+Nous avons décidé d'utiliser Struts 2 afin de profiter de ses multiples avantages dont sa facilité à être maintenue. Struts 2 offre notamment une conception simplifiée, car le code n'est pas étroitement lié au framework Struts ou à l'API Servlet. Il peut ce Plug-in facilement, les développeurs peuvent facilement utiliser d'autres technologies comme SiteMesh, Spring, Tiles, etc. De plus, les Actions sont également de simple plain old Java objects et elles n'ont pas besoin d'implémenter une interface ou d'étendre une classe. 
+
+![preview](/preview.png)
+
+- Url du login pour les Utilisateurs : http://localhost:8080/INF5190_ProjetSession/Login.jsp Il est possible de s'authentifier en utilisant le **nom d'utilisateur : User1 et le password : pass1**
+
+- Url du login pour les Administrateurs : http://localhost:8080/INF5190_ProjetSession/AdminLogin.jsp Il est possible de s'authentifier en utilisant le **nom d'administrateur : admintest1 et le password : pass1**
 
 ## Important
 
-Pour que le projet fonctionne correctement avec les fichier simulant la base de donnee, nous avons implementer un Path manager qui rend notre Application portable sous certaine conditions:
+Pour que le projet fonctionne correctement avec les fichiers simulant la base de données, nous avons implémenter un Path manager qui rend notre Application portable sous certaines conditions:
 
-- Le repertoire workspace d'eclipse doit contenire le projet **INF5190_ProjetSession**
+- Le répertoire workspace d'éclipse doit contenir le projet **INF5190_ProjetSession**
+
+- Le Path de nos fichiers text (ce repertoire est temporaire en attendant l'implementation de notre base de donnée) est: ProjectWorkplace/INF5190_ProjetSession/WebContent/Data/
+
+## À savoir
+
+Nous nous sommes concentrés sur l'essentielle, c'est-à-dire le fonctionnement des fonctionnalités demandées dans l'énoncé du TP. Nous sommes conscients qu'il y a des use cases marginaux qu'on ne couvre pas dans nos fonctionnalités, mais nous espérons avoir le temps de couvrir cela dans la deuxième partie afin de rendre notre application encore plus robuste pour le lancement en production. Nous avons aussi rencontré quelques difficultés au sein de notre équipe de développement, nous avons dû nous séparer notre équipe initiale pour des raisons d'équité en termes de collaboration pour ce projet. Un nouveau membre nous a rejoints par la suite en mi-chemin de développement.
 
 ## Repartition du travail
 
-L'ensemble des taches du projet ont ete repartie initialement en 3 taches par personnes. Le role de chacun se trouvre dans le backlog du projet.
+L'ensemble des taches du projet ont été reparties initialement en 3 taches par personne. Le rôle de chacun se trouve dans le backlog du projet.
+https://github.com/trafalgarxlaw/INF5190_ProjetSession/projects/1
 
 
