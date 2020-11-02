@@ -582,8 +582,6 @@ public class CourseDao {
 		return true;
 	}
 
-	
-
 	public ArrayList<CourseDTO> getUserCourses() {
 		System.out.println("\nGetting User courses");
 

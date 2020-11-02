@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import com.opensymphony.xwork2.ActionSupport;
 
-public class CourseHistory extends ActionSupport{
+public class CourseHistoryAction extends ActionSupport{
 
 	/**
 	 * 
