@@ -2,7 +2,7 @@
 
 Yassine Hasnaoui - HASY04089702
 
-Elsa -
+Tran Thien My Elsa - TRAT24569808
 
 Ceci est une application web pour l’inscription de cours de natation d'un nouveau centre aquatique utilisant Java EE avec le framework front-end struts 2. Pour la première itération, nous n'avons pas inclus de base de données mes plutons des fichiers .txt (le path vers ces fichiers devrait s'adapter d'une machine a une autre).Pour lancer cette application, il est nécessaire d'installer tomcat v9.
 
