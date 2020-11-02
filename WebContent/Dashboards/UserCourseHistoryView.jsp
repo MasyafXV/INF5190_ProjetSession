@@ -81,41 +81,32 @@
 	<br/>
 
 
-		<h1>M'inscrire a un cours</h1>
+		<h1>Historique de mes cours</h1>
 
 
 		<div class="CourseSelection">
 		
-
-			<s:form action="UserCourseRegistration">
+		<s:form action="UserCourseHistory">
 
 				<s:hidden name="user.userName" value="%{#sessionUsername}" />
 				<s:hidden name="UserInscription" value="true" />
-				<h2>Cours disponibles :</h2>
-
-				<div class="select">
-					<select name="course.courseCode" id="format" onchange="setValueCourseCode(this)">
-						<option selected disabled>Choisissez un cours</option>
-						
+		
+		<div>
+					<ul name="course.courseCode" id="format" onchange="setValueCourseCode(this)">
 						
 						
 						<c:forEach items="${coursesList}" var="course">
-							<option value="${course.courseLevel}">
+							<li value="${course.courseLevel}">
 								<c:out value="${course.sessionCode}"/>-<c:out value="${course.courseLevel}"/>
-							</option>
+							</li>
 						</c:forEach>
-					</select>
+					</ul>
 				</div>
 					<br/>
-				
-							<div class="buttons">
-				  <div class="button-container">
-				          <button class="btn effect01" type="submit" class="btn" value="UserCourseRegistration">Register</button>
-				  </div>
-				</div>
+					</s:form>
+		
 
-				<h1><a id="UserHistoryCoursePage" href="<s:url action="UserCourseHistory.action" ><s:param name="userName" value="sessionUsername"/></s:url>"><span>Historique de mes cours</span></a> </h1>
-			</s:form>
+		
 
 
 		</div>

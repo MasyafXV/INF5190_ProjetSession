@@ -77,6 +77,12 @@
 			<result name="success">Dashboards/ChildCourseRegistrationView.jsp
 			</result>
 		</action>
+		
+		<action name="UserCourseHistory"
+			class="com.pronatation.Courses.CourseHistoryAction" method="execute">
+			<result name="success">Dashboards/UserCourseHistoryView.jsp
+			</result>
+		</action>
 
 	</package>
 
