@@ -582,6 +582,51 @@ public class CourseDao {
 		return true;
 	}
 
+	
+
+	public ArrayList<CourseDTO> getUserCourses() {
+		System.out.println("\nGetting User courses");
+
+		PathManager pathManager = new PathManager();
+		ProjectPath = pathManager.getProjectPath();
+
+		String usersCoursesPath = ProjectPath + "UsersCourses.txt";
+
+		try {
+			// File myObj = new File("personnes.txt");
+			Scanner myReader = new Scanner(new File(usersCoursesPath));
+
+			String coursesLine;
+			String user;
+			String [] session = null;
+			String[] coursesUser = null;
+			listCourses = new ArrayList<>();
+
+			while (myReader.hasNextLine()) {
+				coursesLine = myReader.nextLine();
+				System.out.print("\ncourseLine : " + coursesLine);
+				user = readFirstWord(coursesLine);
+				System.out.print("\nuser : " + user);
+				coursesUser = coursesLine.replaceFirst(user + " ", "").split("\\s+");
+				System.out.print("\nlength courses : " + coursesUser.length);
+
+				for (int i = 0; i < coursesUser.length; i++) {
+					System.out
+							.print("\n" + i + ". user : " + user + ", courseLevel : " + coursesUser[i] + "\n");
+					listCourses.add(new CourseDTO(user, coursesUser[i]));
+				}
+
+			}
+			myReader.close();
+
+		} catch (FileNotFoundException e) {
+			System.out.println("Le fichier est inexistant.");
+			e.printStackTrace();
+		}
+
+		return listCourses;
+	}
+	
 	public ArrayList<CourseDTO> getListCourses() {
 		return listCourses;
 	}

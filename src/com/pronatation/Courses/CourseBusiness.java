@@ -17,5 +17,10 @@ public class CourseBusiness {
 		System.out.print("\nCourseBusiness addCourse");
 		course.addCourse(newCourse);
 	}
+	
+	public ArrayList<CourseDTO> getUserCourses() {
+		System.out.print("\nCourseBusiness getUserCourses");
+		return course.getUserCourses();
+	}
 
 }
