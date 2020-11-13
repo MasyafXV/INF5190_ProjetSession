@@ -1,8 +1,11 @@
 package com.myapp.login;
 
 import java.util.ArrayList;
+
 import java.io.File;
 import java.util.Scanner;
+
+import javax.swing.text.Document;
 
 import com.pronatation.admins.AdminDTO;
 import com.pronatation.pathManager.PathManager;
@@ -11,6 +14,18 @@ import com.pronatation.users.UserDTO;
 import java.io.FileNotFoundException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
+
+import com.mongodb.ConnectionString;
+import com.mongodb.DB;
+import com.mongodb.DBCollection;
+import com.mongodb.client.MongoClients;
+import com.mongodb.client.MongoCollection;
+import com.mongodb.client.MongoCursor;
+import com.mongodb.client.FindIterable;
+import com.mongodb.client.MongoClient;
+import com.mongodb.client.MongoDatabase;
+import com.mongodb.MongoClientSettings;
+import com.mongodb.MongoClientURI;
 
 public class LoginDao  {
 	
@@ -97,6 +112,14 @@ public class LoginDao  {
 
 	
 	public  boolean validateUser(String userName,String password){
+    	MongoClient mongoClient = MongoClients.create("mongodb://localhost:27017");
+        MongoDatabase mydatabase = mongoClient.getDatabase("MyDatabase");
+        
+        MongoCollection<org.bson.Document> collection = mydatabase.getCollection("characters");
+    	System.out.println("test: "+collection.count());
+
+
+
 		ArrayList<UserDTO> users = getAllUsers();
 		boolean status=false;
 		
