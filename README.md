@@ -24,6 +24,31 @@ Pour que le projet fonctionne correctement avec les fichiers simulant la base de
 
 - Le Path de nos fichiers text (ce repertoire est temporaire en attendant l'implementation de notre base de donnée) est: ProjectWorkplace/INF5190_ProjetSession/WebContent/Data/
 
+## Instruction pour l'utilisation de MangoDB
+
+Installer MangoDB sur votre machine à l'aide de la `commande brew install mongodb-community` dans votre terminal. Verifier que MangoDB est bien installer a laide de `mongo --version` et demarrer le a l'aide de `brew services run mongodb-community`.
+
+Acceder au Shell mango a laide de la commande `Mango`.
+
+Entrez 
+
+>`use MyDatabase`
+
+Afin de creer une nouvelle base de donnees sous ce nom. Une fois completez, Telechargez et installer MongoDB Compass Afin de se connecter en local vers la base de donnes qu'on viens de creer. Pour vous connecter à votre MongoDB local, vous définissez Hostname sur localhost et Port sur 27017. Ces valeurs sont par défaut pour toutes les connexions MongoDB locales (sauf si vous les avez modifiées). Appuyez sur Connect, et vous devriez voir les bases de données dans votre MongoDB local. 
+
+![DbConnection](/DbConnection.png)
+
+Ici, vous devriez pouvoir voir `MyDatabase`.
+
+![ConSuccess](/ConSuccess.png)
+
+
+Toutes les dependances Jars necessaire au fonctionnement de MangoDB sont deja incluses dans le projet.
+
+
+
+
+
 ## À savoir
 
 Nous nous sommes concentrés sur l'essentielle, c'est-à-dire le fonctionnement des fonctionnalités demandées dans l'énoncé du TP. Nous sommes conscients qu'il y a des use cases marginaux qu'on ne couvre pas dans nos fonctionnalités, mais nous espérons avoir le temps de couvrir cela dans la deuxième partie afin de rendre notre application encore plus robuste pour le lancement en production. Nous avons aussi rencontré quelques difficultés au sein de notre équipe de développement, nous avons dû nous séparer notre équipe initiale pour des raisons d'équité en termes de collaboration pour ce projet. Un nouveau membre nous a rejoints par la suite en mi-chemin de développement.
