@@ -45,6 +45,14 @@ Ici, vous devriez pouvoir voir `MyDatabase`.
 
 Toutes les dependances Jars necessaire au fonctionnement de MangoDB sont deja incluses dans le projet.
 
+### Pour plus d'information
+
+https://zellwk.com/blog/install-mongodb/
+
+https://zellwk.com/blog/local-mongodb/#:~:text=To%20connect%20to%20your%20local,databases%20in%20your%20local%20MongoDB.
+
+
+
 
 
 
