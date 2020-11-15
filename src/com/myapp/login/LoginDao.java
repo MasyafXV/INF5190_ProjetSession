@@ -45,38 +45,7 @@ public class LoginDao  {
 		   
 	   }
 	   
-	public  ArrayList<UserDTO> getAllUsers() {
-				
-		
-		   PathManager pathManager= new PathManager();
-		   ProjectPath= pathManager.getProjectPath();
-		   
-		   String allUsersPath = ProjectPath+"Users.txt";
 
-		System.out.println("Getting all users");
-		      
-		      try {
-			     //File myObj = new File("personnes.txt");
-				 Scanner myReader = new Scanner(new File(allUsersPath));
-				 
-				 String username;
-				 String password;
-				 
-				 while (myReader.hasNextLine()) {
-					 username   = myReader.nextLine();
-					 password      = myReader.nextLine();
-				    	
-				    UserList.add(new UserDTO(username,password));
-				    
-				 }
-				 myReader.close();
-			  } catch (FileNotFoundException e) {
-			     System.out.println("Le fichier est inexistant.");
-				 e.printStackTrace();
-			  }
-		   		
-			  return UserList;
-		   }
 	public  ArrayList<AdminDTO> getAllAdmins() {
 		
 		   PathManager pathManager= new PathManager();

@@ -21,7 +21,6 @@ public class UserService {
 	public String getUserPassword() {
 		
 		DatabaseManager dbManager = new DatabaseManager();
-		
 		MongoClient client = dbManager.connect();
 		
 		 MongoDatabase mydatabase = dbManager.getDatabase(client);
