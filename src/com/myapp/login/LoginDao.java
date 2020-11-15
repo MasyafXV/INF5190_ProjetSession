@@ -50,8 +50,8 @@ public class LoginDao  {
 	public  boolean validateAdmin(String userName,String password){
 		
 		boolean status=false;
-    	System.out.println("Entered user username: "+userName);
-    	System.out.println("Entered user pass: "+password);
+    	System.out.println("Entered admin username: "+userName);
+    	System.out.println("Entered admin pass: "+password);
 		
 		AdminService aservice = new AdminService(userName);
 		

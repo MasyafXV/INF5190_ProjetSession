@@ -27,9 +27,7 @@ public class UserService {
 	     MongoCollection<Document> collection = mydatabase.getCollection("UserCredentials");
 	     
 	    	System.out.println("count: "+collection.count());
-	    	
-//	    	Document myDoc = collection.find().first();
-//	    	System.out.println(myDoc.toJson());
+
 	    	
 	    	Document UserDoc = collection.find(eq("name", userName)).first();
 	    	System.out.println(UserDoc.toJson());

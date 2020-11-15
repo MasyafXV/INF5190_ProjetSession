@@ -12,6 +12,8 @@ import com.mongodb.client.MongoDatabase;
 
 
 public class DatabaseManager {
+	MongoClient mongoClient;
+
 	
 	public DatabaseManager() {
 		init();
@@ -22,11 +24,10 @@ public class DatabaseManager {
     	System.out.println("Database initialisation...");
 
 		// here we create the collections and documents to populate our database, ex: users, courses etc..
-		
-    	MongoClient mongoClient = MongoClients.create("mongodb://localhost:27017");
+    	mongoClient = MongoClients.create("mongodb://localhost:27017");
 
 		//check if UserCredentials collection already exists
-		if(mongoClient.getDatabase("MyDatabase").listCollectionNames().into(new ArrayList<String>()).contains("UserCredentials")) {
+		if(collectionExists("UserCredentials")) {
 			// if exists do nothing
 		}else {
 	    	System.out.println("Database is creating user stuff...");
@@ -44,7 +45,7 @@ public class DatabaseManager {
 		}
 		
 		//check if AdminCredentials collection already exists
-		if(mongoClient.getDatabase("MyDatabase").listCollectionNames().into(new ArrayList<String>()).contains("AdminCredentials")) {
+		if(collectionExists("AdminCredentials")) {
 			// if exists do nothing
 		}else {
 	    	System.out.println("Database is creating admin stuff...");
@@ -81,6 +82,12 @@ public class DatabaseManager {
         MongoDatabase mydatabase = mongoClient.getDatabase("MyDatabase");
         
         return mydatabase;
+	}
+	
+	private boolean collectionExists(String collection) {
+		
+		return mongoClient.getDatabase("MyDatabase").listCollectionNames().into(new ArrayList<String>()).contains("UserCredentials");
+		
 	}
 
 }

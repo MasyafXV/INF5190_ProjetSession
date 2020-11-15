@@ -27,9 +27,6 @@ public class AdminService {
 	     
 	    	System.out.println("count: "+collection.count());
 	    	
-//	    	Document myDoc = collection.find().first();
-//	    	System.out.println(myDoc.toJson());
-	    	
 	    	Document UserDoc = collection.find(eq("name", userName)).first();
 	    	System.out.println(UserDoc.toJson());
 	    	System.out.println(UserDoc.getString("password"));
