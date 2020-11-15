@@ -1,23 +1,30 @@
 package com.myapp.login;
 
 import java.util.ArrayList;
-
+import java.util.Arrays;
+import java.util.Iterator;
+import java.util.List;
 import java.io.File;
 import java.util.Scanner;
 
-import javax.swing.text.Document;
+import org.bson.Document;
 
 import com.pronatation.admins.AdminDTO;
 import com.pronatation.pathManager.PathManager;
 import com.pronatation.users.UserDTO;
 
+import mangodb.DatabaseManager;
+import service.UserService;
+
 import java.io.FileNotFoundException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 
+import com.mongodb.BasicDBObject;
 import com.mongodb.ConnectionString;
 import com.mongodb.DB;
 import com.mongodb.DBCollection;
+import com.mongodb.DBCursor;
 import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoCursor;
@@ -39,7 +46,7 @@ public class LoginDao  {
 	   }
 	   
 	public  ArrayList<UserDTO> getAllUsers() {
-		
+				
 		
 		   PathManager pathManager= new PathManager();
 		   ProjectPath= pathManager.getProjectPath();
@@ -112,28 +119,17 @@ public class LoginDao  {
 
 	
 	public  boolean validateUser(String userName,String password){
-    	MongoClient mongoClient = MongoClients.create("mongodb://localhost:27017");
-        MongoDatabase mydatabase = mongoClient.getDatabase("MyDatabase");
-        
-        MongoCollection<org.bson.Document> collection = mydatabase.getCollection("characters");
-    	System.out.println("test: "+collection.count());
-
-
-
-		ArrayList<UserDTO> users = getAllUsers();
-		boolean status=false;
 		
+		boolean status=false;
     	System.out.println("Entered user username: "+userName);
     	System.out.println("Entered user pass: "+password);
 		
-        for (int i = 0; i < users.size(); i++) {
+		UserService uservice = new UserService(userName);
+		
+		if(uservice.getUserPassword().equals(password)) {
+        	status=true;
 
-            if (users.get(i).getUsername().equals(userName)) {  
-            	if(users.get(i).getPassword().equals(password)) {
-                	status=true;
-            	}
-            }
-        }
+		}
 		
 		return status;
 	}
