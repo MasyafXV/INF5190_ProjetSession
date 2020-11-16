@@ -1,7 +1,5 @@
 package com.pronatation.Child;
 
-import java.io.IOException;
-
 import com.opensymphony.xwork2.ActionSupport;
 
 public class ChildRegistrationAction extends ActionSupport {
@@ -27,30 +25,22 @@ public class ChildRegistrationAction extends ActionSupport {
  
     public void validate() {
     	
-   		System.out.println("Registration of  "+child_firstname);
-    	
-//    	System.out.println(userName);
-//    	System.out.println(child_firstname);
-//    	System.out.println(child_lastname);
-//    	System.out.println(child_bdate);
-    	
+		System.out.println("registration of your child " + child_firstname);
     	
     	ChildDao childDao= new ChildDao();
     	
-    	try {
-			if(childDao.registerChild(child_firstname, child_lastname,child_bdate)==false){
-			    addFieldError("child_firstname", "Error !!!");
+			if(childDao.registerChild(userName,child_firstname, child_lastname,child_bdate)){
+				
+				System.out.println(child_firstname+" Have been successfully registered ");
+
+
 			}
 			else{
-				childDao.addChild(userName, child_firstname);
-				System.out.println(child_firstname+" Have been successfully registered ");
+				System.out.println(child_firstname+" - registration failure ");
 
 				
 			}
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+
     	
     }
 

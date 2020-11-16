@@ -2,11 +2,16 @@ package service;
 
 import static com.mongodb.client.model.Filters.eq;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 import org.bson.Document;
 
+import com.mongodb.BasicDBObject;
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
+
 
 import mangodb.DatabaseManager;
 
@@ -69,6 +74,32 @@ public class UserService {
 		Document userCred = new Document("userName", userName)
 			      .append("password", password);
 		UsersCredCollection.insertOne(userCred);
+
+
+
+		
+		return true;
+		
+	}
+	
+	public boolean addNewChild(String childFname, String childLname, String childAge) {
+		DatabaseManager dbManager = new DatabaseManager();
+
+		
+		MongoClient client = dbManager.connect();
+		
+		MongoDatabase mydatabase = dbManager.getDatabase(client);
+		
+	    MongoCollection<Document> usersCollection = mydatabase.getCollection("Users");
+	    
+    	Document UserDoc = usersCollection.find(eq("userName", userName)).first();
+    	ArrayList<BasicDBObject> childs = new ArrayList<>();
+    	Document child = new Document("childs", Arrays.asList(childFname, childLname, childAge));
+
+
+    	usersCollection.updateOne(eq("userName", userName), new Document("$push", child));
+
+    	
 
 
 
