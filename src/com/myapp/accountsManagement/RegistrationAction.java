@@ -1,7 +1,9 @@
 package com.myapp.accountsManagement;
 
 import java.io.IOException;
+import java.util.Map;
 
+import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 
 public class RegistrationAction  extends ActionSupport{
@@ -91,20 +93,20 @@ public class RegistrationAction  extends ActionSupport{
     public void validate() {
     	RegistrationDao registrationDao = new RegistrationDao();
     	
-    	try {
+    
 			if(registrationDao.RegisterUser(userName, password,firstname,lastname,email,adress,bdate)){
-				registrationDao.addUserToDatabase(userName, password);
+		   		 Map<String,Object> session = ActionContext.getContext().getSession();
+		   		 session.put("userName", userName);
 		   		System.out.println("User "+userName+" have been successfully registered");
 
 			}
 			else{
 		   		System.out.println("User "+userName+" has not been registered");
+		   		 Map<String,Object> session = ActionContext.getContext().getSession();
+		   		 session.put("userName", null);
 
 			}
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+	
     	
     }
 

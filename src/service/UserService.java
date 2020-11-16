@@ -29,7 +29,7 @@ public class UserService {
 	    	System.out.println("count: "+collection.count());
 
 	    	
-	    	Document UserDoc = collection.find(eq("name", userName)).first();
+	    	Document UserDoc = collection.find(eq("userName", userName)).first();
 	    	System.out.println(UserDoc.toJson());
 	    	System.out.println(UserDoc.getString("password"));
 
@@ -37,6 +37,43 @@ public class UserService {
 		
 		
 		return UserDoc.getString("password");
+		
+	}
+	
+	public boolean createUser(
+			String userName,
+			String password,
+			String firstname,
+			String lastname,
+			String email,
+			String adress,
+			String bdate) {
+		
+		DatabaseManager dbManager = new DatabaseManager();
+		MongoClient client = dbManager.connect();
+		
+		MongoDatabase mydatabase = dbManager.getDatabase(client);
+		
+	    MongoCollection<Document> UsersCollection = mydatabase.getCollection("Users");
+		Document userProfile = new Document("userName", userName)
+			      .append("password", password)
+			      .append("firstname", firstname)
+			      .append("lastname", lastname)
+			      .append("email", email)
+			      .append("adress", adress)
+			      .append("bdate", bdate);
+		UsersCollection.insertOne(userProfile);
+		
+		//adding the user pass to credentials collection
+	    MongoCollection<Document> UsersCredCollection = mydatabase.getCollection("UserCredentials");
+		Document userCred = new Document("userName", userName)
+			      .append("password", password);
+		UsersCredCollection.insertOne(userCred);
+
+
+
+		
+		return true;
 		
 	}
 

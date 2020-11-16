@@ -6,7 +6,7 @@
  <% HttpSession sess = request.getSession(true);
     if (sess.getAttribute("userName")==null)
     {
-        response.sendRedirect("http://localhost:8080/INF5190_ProjetSession/Login");
+        response.sendRedirect("http://localhost:8080/INF5190_ProjetSession/Login.jsp");
     }
 %>
 <html lang="en" dir="ltr">

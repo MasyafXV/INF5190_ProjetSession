@@ -32,16 +32,39 @@ public class DatabaseManager {
 		}else {
 	    	System.out.println("Database is creating user stuff...");
 
+	    	// creating users credentials
 	        MongoDatabase mydatabase = mongoClient.getDatabase("MyDatabase");
-			Document user1 = new Document("name", "User1")
+			Document user1Cred = new Document("userName", "User1")
 				      .append("password", "pass1")
 				      .append("arrayTest", Arrays.asList("v3.2", "v3.0", "v2.6"));
-			Document user2 = new Document("name", "User2")
+			Document user2Cred = new Document("userName", "User2")
 				      .append("password", "pass2")
 				      .append("arrayTest", Arrays.asList("v3.2", "v3.0", "v2.6"));
-		    MongoCollection<Document> collection = mydatabase.getCollection("UserCredentials");
-			collection.insertOne(user1);
-			collection.insertOne(user2);
+		    MongoCollection<Document> UCredcollection = mydatabase.getCollection("UserCredentials");
+		    UCredcollection.insertOne(user1Cred);
+		    UCredcollection.insertOne(user2Cred);
+			
+		    //creating user profiles
+		    MongoCollection<Document> UsersCollection = mydatabase.getCollection("Users");
+			Document user1_Profile = new Document("userName", "User1")
+				      .append("password", "pass1")
+				      .append("firstname", "John")
+				      .append("lastname", "Doe")
+				      .append("email", "John@example.com")
+				      .append("adress", "999 av.xxx")
+				      .append("bdate", "99/99/9999");
+			
+			Document user2_Profile = new Document("userName", "User2")
+				      .append("password", "pass2")
+				      .append("firstname", "Smith")
+				      .append("lastname", "Jael")
+				      .append("email", "Smith@example.com")
+				      .append("adress", "9191 av.yyy")
+				      .append("bdate", "99/99/9999");
+			UsersCollection.insertOne(user1_Profile);
+			UsersCollection.insertOne(user2_Profile);
+			
+			
 		}
 		
 		//check if AdminCredentials collection already exists
@@ -52,10 +75,10 @@ public class DatabaseManager {
 
 	        MongoDatabase mydatabase = mongoClient.getDatabase("MyDatabase");
 
-			Document admin1 = new Document("name", "admintest1")
+			Document admin1 = new Document("userName", "admintest1")
 				      .append("password", "pass1")
 				      .append("arrayTest", Arrays.asList("v3.2", "v3.0", "v2.6"));
-			Document admin2 = new Document("name", "admintest2")
+			Document admin2 = new Document("userName", "admintest2")
 				      .append("password", "pass2")
 				      .append("arrayTest", Arrays.asList("v3.2", "v3.0", "v2.6"));
 		    MongoCollection<Document> collection = mydatabase.getCollection("AdminCredentials");
