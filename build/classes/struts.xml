@@ -57,12 +57,7 @@
 			</result>
 			<result name="input">Dashboards/Welcome.jsp</result>
 		</action>
-		
-		<action name="InitUserCourseInscription"
-			class="com.pronatation.Courses.ListCoursesAction" method="execute">
-			<result name="success">Dashboards/UserCourseRegistrationView.jsp
-			</result>
-		</action>
+
 
 		<action name="ChildCourseRegistration"
 			class="com.pronatation.Courses.CourseInscriptionAction"
@@ -70,6 +65,12 @@
 			<result name="success">Dashboards/Welcome.jsp</result>
 			<result name="input">Dashboards/Welcome.jsp</result>
 
+		</action>
+		
+		<action name="InitUserCourseInscription"
+			class="com.pronatation.Courses.ListCoursesAction" method="execute">
+			<result name="success">Dashboards/UserCourseRegistrationView.jsp
+			</result>
 		</action>
 
 		<action name="InitChildCourseInscription"

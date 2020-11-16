@@ -23,6 +23,8 @@ public class CourseInscriptionAction extends ActionSupport {
 	private ChildBean child;
 
 	public String execute() {
+		System.out.println("courseInscription");
+
 		String courseCode = course.getCourseCode();
 		String[] partsCourseCode = courseCode.split("-");
 		course.setSessionCode(partsCourseCode[0]);

@@ -13,8 +13,12 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import com.pronatation.Child.ChildBean;
 import com.pronatation.pathManager.PathManager;
 import com.pronatation.processingBehavior.PersonProcessing;
+
+import service.CourseService;
+import service.UserService;
 
 public class CourseDao {
 
@@ -26,43 +30,12 @@ public class CourseDao {
 	}
 
 	public ArrayList<CourseDTO> getAllCourses() {
-		System.out.println("\n Getting all courses");
+		
+		CourseService cservice = new CourseService();
+		cservice.getAllCourses();
 
-		PathManager pathManager = new PathManager();
-		ProjectPath = pathManager.getProjectPath();
 
-		String sessionCoursesPath = ProjectPath + "sessionCourses.txt";
-
-		try {
-			// File myObj = new File("personnes.txt");
-			Scanner myReader = new Scanner(new File(sessionCoursesPath));
-
-			String coursesLine;
-			String session;
-			String[] coursesSession = null;
-			listCourses = new ArrayList<>();
-
-			while (myReader.hasNextLine()) {
-				coursesLine = myReader.nextLine();
-				System.out.print("\ncourseLine : " + coursesLine);
-				session = readFirstWord(coursesLine);
-				System.out.print("\nsessionCode : " + session);
-				coursesSession = coursesLine.replaceFirst(session + " ", "").split("\\s+");
-				System.out.print("\nlength courses : " + coursesSession.length);
-
-				for (int i = 0; i < coursesSession.length; i++) {
-					System.out
-							.print("\n" + i + ". session : " + session + ", courseLevel : " + coursesSession[i] + "\n");
-					listCourses.add(new CourseDTO(session, coursesSession[i]));
-				}
-
-			}
-			myReader.close();
-
-		} catch (FileNotFoundException e) {
-			System.out.println("Le fichier est inexistant.");
-			e.printStackTrace();
-		}
+    	listCourses = cservice.getAllCourses();
 
 		return listCourses;
 	}

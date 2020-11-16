@@ -25,6 +25,143 @@ public class DatabaseManager {
 
 		// here we create the collections and documents to populate our database, ex: users, courses etc..
     	mongoClient = MongoClients.create("mongodb://localhost:27017");
+    	
+		//check if Courses collection already exists
+		if(collectionExists("Courses")) {
+			// if exists do nothing
+
+		}else {
+	        MongoDatabase mydatabase = mongoClient.getDatabase("MyDatabase");
+
+			//creating courses
+		    MongoCollection<Document> CoursesCollection = mydatabase.getCollection("Courses");
+			Document Etoile_de_mer = new Document("courseLevel", "Etoile_de_mer")
+				      .append("sessionCode", "")
+				      .append("firstname", "")
+				      .append("description", "")
+				      .append("NbPlace", "")
+				      .append("price", "")
+				      ;
+			
+			Document Bambins =new Document("courseLevel", "Bambins")
+				      .append("sessionCode", "")
+				      .append("firstname", "")
+				      .append("description", "")
+				      .append("NbPlace", "")
+				      .append("price", "")
+				      ;
+			Document Tortues = new Document("courseLevel", "Tortues")
+				      .append("sessionCode", "")
+				      .append("firstname", "")
+				      .append("description", "")
+				      .append("NbPlace", "")
+				      .append("price", "")
+				      ;
+
+			Document Pingouins =new Document("courseLevel", "Pingouins")
+				      .append("sessionCode", "")
+				      .append("firstname", "")
+				      .append("description", "")
+				      .append("NbPlace", "")
+				      .append("price", "")
+				      ;
+
+			Document Salamandre = new Document("courseLevel", "Salamandre")
+				      .append("sessionCode", "")
+				      .append("firstname", "")
+				      .append("description", "")
+				      .append("NbPlace", "")
+				      .append("price", "")
+				      ;
+
+			Document Baleines = new Document("courseLevel", "Baleines")
+				      .append("sessionCode", "")
+				      .append("firstname", "")
+				      .append("description", "")
+				      .append("NbPlace", "")
+				      .append("price", "")
+				      ;
+
+			Document Grenouilles = new Document("courseLevel", "Grenouilles")
+				      .append("sessionCode", "")
+				      .append("firstname", "")
+				      .append("description", "")
+				      .append("NbPlace", "")
+				      .append("price", "")
+				      ;
+
+			Document Dauphins =new Document("courseLevel", "Dauphins")
+				      .append("sessionCode", "")
+				      .append("firstname", "")
+				      .append("description", "")
+				      .append("NbPlace", "")
+				      .append("price", "")
+				      ;
+
+			Document Junior1 = new Document("courseLevel", "Junior1")
+				      .append("sessionCode", "")
+				      .append("firstname", "")
+				      .append("description", "")
+				      .append("NbPlace", "")
+				      .append("price", "")
+				      ;
+
+			Document Junior2 = new Document("courseLevel", "Junior2")
+				      .append("sessionCode", "")
+				      .append("firstname", "")
+				      .append("description", "")
+				      .append("NbPlace", "")
+				      .append("price", "")
+				      ;
+
+			Document Junior3 = new Document("courseLevel", "Junior3")
+				      .append("sessionCode", "")
+				      .append("firstname", "")
+				      .append("description", "")
+				      .append("NbPlace", "")
+				      .append("price", "")
+				      ;
+
+			Document Junior4 = new Document("courseLevel", "Junior4")
+				      .append("sessionCode", "")
+				      .append("firstname", "")
+				      .append("description", "")
+				      .append("NbPlace", "")
+				      .append("price", "")
+				      ;
+
+			Document Junior5 =new Document("courseLevel", "Junior5")
+				      .append("sessionCode", "")
+				      .append("firstname", "")
+				      .append("description", "")
+				      .append("NbPlace", "")
+				      .append("price", "")
+				      ;
+			Document Maitre_Nageur = new Document("courseLevel", "Maitre_Nageur")
+				      .append("sessionCode", "")
+				      .append("firstname", "")
+				      .append("description", "")
+				      .append("NbPlace", "")
+				      .append("price", "")
+				      ;
+
+
+
+			CoursesCollection.insertOne(Etoile_de_mer);
+			CoursesCollection.insertOne(Bambins);
+			CoursesCollection.insertOne(Tortues);
+			CoursesCollection.insertOne(Salamandre);
+			CoursesCollection.insertOne(Baleines);
+			CoursesCollection.insertOne(Grenouilles);
+			CoursesCollection.insertOne(Dauphins);
+			CoursesCollection.insertOne(Junior1);
+			CoursesCollection.insertOne(Junior2);
+			CoursesCollection.insertOne(Junior3);
+			CoursesCollection.insertOne(Junior4);
+			CoursesCollection.insertOne(Junior5);
+			CoursesCollection.insertOne(Maitre_Nageur);
+			
+		}
 
 		//check if UserCredentials collection already exists
 		if(collectionExists("UserCredentials")) {
@@ -63,8 +200,7 @@ public class DatabaseManager {
 				      .append("bdate", "99/99/9999");
 			UsersCollection.insertOne(user1_Profile);
 			UsersCollection.insertOne(user2_Profile);
-			
-			
+	
 		}
 		
 		//check if AdminCredentials collection already exists

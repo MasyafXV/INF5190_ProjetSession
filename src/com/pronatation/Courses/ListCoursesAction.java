@@ -4,6 +4,9 @@ import java.util.ArrayList;
 
 import com.opensymphony.xwork2.ActionSupport;
 
+import service.CourseService;
+import service.UserService;
+
 public class ListCoursesAction extends ActionSupport {
 
 	/**
@@ -16,7 +19,7 @@ public class ListCoursesAction extends ActionSupport {
 	public String execute() {
 
 		System.out.println("\nListing courses");
-
+		
 		CourseBusiness courseBusiness = new CourseBusiness();
 
 		ArrayList<CourseDTO> listCoursesDTO = courseBusiness.getAllCourses();
