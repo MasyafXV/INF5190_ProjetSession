@@ -108,12 +108,12 @@
 
 
 					<div class="select">
-						<select name="child.childName" id="format">
+						<select name="child.childFname" id="format">
 							<option selected disabled>Choisissez un enfants</option>
 
 							<c:forEach items="${childsList}" var="child">
-								<option value="${child.childName}"><c:out
-										value="${child.childName}" /></option>
+								<option value="${child.childFname}"><c:out
+										value="${child.childFname}" /></option>
 							</c:forEach>
 
 						</select>

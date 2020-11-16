@@ -6,7 +6,7 @@ import com.pronatation.processingBehavior.PersonProcessing;
 
 public class ChildBean {
 
-	private String childName="";
+	private String childFname="";
 	private int childAge=12; //ceci est un age temporaire
 
 	private PersonProcessing processAs = PersonProcessing.Child;
@@ -15,33 +15,33 @@ public class ChildBean {
 
 	}
 
-	public ChildBean(String childName) {
-		this.childName = childName;
+	public ChildBean(String childFname) {
+		this.childFname = childFname;
 	}
 
 	public boolean registerCourse(CourseDTO courseDTO) {
 
-		System.out.println("Registering " + childName + " to " + courseDTO.getCourseCode() + "...");
+		System.out.println("Registering " + childFname + " to " + courseDTO.getCourseCode() + "...");
 
 		CourseDao course = new CourseDao();
 
-		if (course.VerifyPrerequisite(childName,childAge, courseDTO.getCourseLevel(), processAs)) {
+		if (course.VerifyPrerequisite(childFname,childAge, courseDTO.getCourseLevel(), processAs)) {
 
-			course.ChildInscription(childName, courseDTO.getCourseCode());
+			course.ChildInscription(childFname, courseDTO.getCourseCode());
 
 		} else {
-			System.out.println(childName + " n'a pas les prealables pour ce cours");
+			System.out.println(childFname + " n'a pas les prealables pour ce cours");
 
 		}
 
 		return false;
 	}
 
-	public String getChildName() {
-		return childName;
+	public String getChildFname() {
+		return childFname;
 	}
 
-	public void setChildName(String childName) {
-		this.childName = childName;
+	public void setChildFname(String childName) {
+		this.childFname = childName;
 	}
 }

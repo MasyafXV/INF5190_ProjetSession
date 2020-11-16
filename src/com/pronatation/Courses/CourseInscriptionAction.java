@@ -42,7 +42,7 @@ public class CourseInscriptionAction extends ActionSupport {
 
 			System.out.println("Child Inscription...");
 			System.out.println("username : " + user.getUserName());
-			System.out.println("child : " + child.getChildName());
+			System.out.println("child : " + child.getChildFname());
 			System.out.println("course : " + course.getCourseCode());
 
 			// register the child to the selected course

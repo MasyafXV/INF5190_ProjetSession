@@ -4,18 +4,13 @@ import static com.mongodb.client.model.Filters.eq;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
 import org.bson.Document;
 
-import com.mongodb.BasicDBList;
-import com.mongodb.BasicDBObject;
-import com.mongodb.DBCursor;
-import com.mongodb.client.FindIterable;
+
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
-import com.pronatation.Child.ChildDto;
 
 import mangodb.DatabaseManager;
 
@@ -96,13 +91,37 @@ public class UserService {
 		
 	    MongoCollection<Document> usersCollection = mydatabase.getCollection("Users");
 	    
-    	Document UserDoc = usersCollection.find(eq("userName", userName)).first();
-    	ArrayList<BasicDBObject> childs = new ArrayList<>();
+	    //update the user
     	Document child = new Document("childs", Arrays.asList(childFname, childLname, childAge));
-
-
     	usersCollection.updateOne(eq("userName", userName), new Document("$push", child));
+    	
+    	//create child document in Childs collection
+	    MongoCollection<Document> childsCollection = mydatabase.getCollection("Childs");
+		Document child_profile = new Document("childFname", childFname)
+			      .append("childLname", childLname)
+			      .append("childAge", childAge);
+		childsCollection.insertOne(child_profile);
 
+    	
+
+		return true;
+		
+	}
+	
+	public boolean courseInscription(String CourseLevel) {
+		
+		DatabaseManager dbManager = new DatabaseManager();
+
+		
+		MongoClient client = dbManager.connect();
+		
+		MongoDatabase mydatabase = dbManager.getDatabase(client);
+		
+	    MongoCollection<Document> usersCollection = mydatabase.getCollection("Users");
+    	
+    	Document course = new Document("RegisteredCourses", Arrays.asList(CourseLevel));
+    	usersCollection.updateOne(eq("userName", userName), new Document("$push", course));
+    	
 		return true;
 		
 	}
