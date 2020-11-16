@@ -28,7 +28,7 @@ public class DatabaseManager {
     	
 		//check if Courses collection already exists
 		if(collectionExists("Courses")) {
-			// if exists do nothing
+			//do nothing if exists
 
 		}else {
 	        MongoDatabase mydatabase = mongoClient.getDatabase("MyDatabase");
@@ -41,7 +41,7 @@ public class DatabaseManager {
 				      .append("description", "")
 				      .append("NbPlace", "")
 				      .append("price", "")
-				      ;
+				      .append("prerequisite", Arrays.asList("none"));
 			
 			Document Bambins =new Document("courseLevel", "Bambins")
 				      .append("sessionCode", "")
@@ -49,14 +49,16 @@ public class DatabaseManager {
 				      .append("description", "")
 				      .append("NbPlace", "")
 				      .append("price", "")
-				      ;
+				      .append("prerequisite", Arrays.asList("Etoile_de_mer"));
+				      
 			Document Tortues = new Document("courseLevel", "Tortues")
 				      .append("sessionCode", "")
 				      .append("firstname", "")
 				      .append("description", "")
 				      .append("NbPlace", "")
 				      .append("price", "")
-				      ;
+				      .append("prerequisite", Arrays.asList("Etoile_de_mer", "Bambins"));
+				      
 
 			Document Pingouins =new Document("courseLevel", "Pingouins")
 				      .append("sessionCode", "")
@@ -64,7 +66,7 @@ public class DatabaseManager {
 				      .append("description", "")
 				      .append("NbPlace", "")
 				      .append("price", "")
-				      ;
+				      .append("prerequisite", Arrays.asList("Etoile_de_mer", "Bambins","Tortues"));
 
 			Document Salamandre = new Document("courseLevel", "Salamandre")
 				      .append("sessionCode", "")
@@ -72,7 +74,7 @@ public class DatabaseManager {
 				      .append("description", "")
 				      .append("NbPlace", "")
 				      .append("price", "")
-				      ;
+				      .append("prerequisite", Arrays.asList("Etoile_de_mer", "Bambins","Tortues","Pingouins"));
 
 			Document Baleines = new Document("courseLevel", "Baleines")
 				      .append("sessionCode", "")
@@ -80,7 +82,7 @@ public class DatabaseManager {
 				      .append("description", "")
 				      .append("NbPlace", "")
 				      .append("price", "")
-				      ;
+				      .append("prerequisite", Arrays.asList("Etoile_de_mer", "Bambins","Tortues","Pingouins","Salamandre"));
 
 			Document Grenouilles = new Document("courseLevel", "Grenouilles")
 				      .append("sessionCode", "")
@@ -88,7 +90,7 @@ public class DatabaseManager {
 				      .append("description", "")
 				      .append("NbPlace", "")
 				      .append("price", "")
-				      ;
+				      .append("prerequisite", Arrays.asList("Etoile_de_mer", "Bambins","Tortues","Pingouins","Salamandre","Baleines"));
 
 			Document Dauphins =new Document("courseLevel", "Dauphins")
 				      .append("sessionCode", "")
@@ -96,7 +98,8 @@ public class DatabaseManager {
 				      .append("description", "")
 				      .append("NbPlace", "")
 				      .append("price", "")
-				      ;
+				      .append("prerequisite", Arrays.asList("Etoile_de_mer", "Bambins","Tortues","Pingouins","Salamandre","Baleines","Grenouilles"));
+
 
 			Document Junior1 = new Document("courseLevel", "Junior1")
 				      .append("sessionCode", "")
@@ -104,7 +107,8 @@ public class DatabaseManager {
 				      .append("description", "")
 				      .append("NbPlace", "")
 				      .append("price", "")
-				      ;
+				      .append("prerequisite", Arrays.asList("Etoile_de_mer", "Bambins","Tortues","Pingouins","Salamandre","Baleines","Grenouilles","Dauphins"));
+
 
 			Document Junior2 = new Document("courseLevel", "Junior2")
 				      .append("sessionCode", "")
@@ -112,7 +116,8 @@ public class DatabaseManager {
 				      .append("description", "")
 				      .append("NbPlace", "")
 				      .append("price", "")
-				      ;
+				      .append("prerequisite", Arrays.asList("Etoile_de_mer", "Bambins","Tortues","Pingouins","Salamandre","Baleines","Grenouilles","Dauphins","Junior1"));
+
 
 			Document Junior3 = new Document("courseLevel", "Junior3")
 				      .append("sessionCode", "")
@@ -120,7 +125,8 @@ public class DatabaseManager {
 				      .append("description", "")
 				      .append("NbPlace", "")
 				      .append("price", "")
-				      ;
+				      .append("prerequisite", Arrays.asList("Etoile_de_mer", "Bambins","Tortues","Pingouins","Salamandre","Baleines","Grenouilles","Dauphins","Junior1","Junior2"));
+
 
 			Document Junior4 = new Document("courseLevel", "Junior4")
 				      .append("sessionCode", "")
@@ -128,7 +134,8 @@ public class DatabaseManager {
 				      .append("description", "")
 				      .append("NbPlace", "")
 				      .append("price", "")
-				      ;
+				      .append("prerequisite", Arrays.asList("Etoile_de_mer", "Bambins","Tortues","Pingouins","Salamandre","Baleines","Grenouilles","Dauphins","Junior1","Junior2","Junior3"));
+
 
 			Document Junior5 =new Document("courseLevel", "Junior5")
 				      .append("sessionCode", "")
@@ -136,20 +143,22 @@ public class DatabaseManager {
 				      .append("description", "")
 				      .append("NbPlace", "")
 				      .append("price", "")
-				      ;
+				      .append("prerequisite", Arrays.asList("Etoile_de_mer", "Bambins","Tortues","Pingouins","Salamandre","Baleines","Grenouilles","Dauphins","Junior1","Junior2","Junior3","Junior4"));
+
 			Document Maitre_Nageur = new Document("courseLevel", "Maitre_Nageur")
 				      .append("sessionCode", "")
 				      .append("firstname", "")
 				      .append("description", "")
 				      .append("NbPlace", "")
-				      .append("price", "")
-				      ;
+				      .append("price", "");
+
 
 
 
 			CoursesCollection.insertOne(Etoile_de_mer);
 			CoursesCollection.insertOne(Bambins);
 			CoursesCollection.insertOne(Tortues);
+			CoursesCollection.insertOne(Pingouins);
 			CoursesCollection.insertOne(Salamandre);
 			CoursesCollection.insertOne(Baleines);
 			CoursesCollection.insertOne(Grenouilles);
@@ -245,7 +254,7 @@ public class DatabaseManager {
 	
 	private boolean collectionExists(String collection) {
 		
-		return mongoClient.getDatabase("MyDatabase").listCollectionNames().into(new ArrayList<String>()).contains("UserCredentials");
+		return mongoClient.getDatabase("MyDatabase").listCollectionNames().into(new ArrayList<String>()).contains(collection);
 		
 	}
 
