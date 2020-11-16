@@ -4,8 +4,9 @@ import java.util.ArrayList;
 
 import com.opensymphony.xwork2.ActionSupport;
 import com.pronatation.Child.ChildBean;
-import com.pronatation.Child.ChildDto;
-import com.pronatation.users.UserDTO;
+
+
+import service.UserService;
 
 public class CourseInscriptionInitAction extends ActionSupport {
 
@@ -19,15 +20,30 @@ public class CourseInscriptionInitAction extends ActionSupport {
 
 	public String execute() {
 
-		System.out.println("\nListing childs of " + userName);
+		System.out.println("\nListing the childs of " + userName);
+		UserService uservice = new UserService(userName);
+    	ArrayList<Object> childs =uservice.getAllChilds();
 
-		ArrayList<ChildDto> listChildsDTO = new ArrayList<ChildDto>();
-		listChildsDTO = getAllChilds();
 
 		childsList = new ArrayList<>();
+		
+		
 
-		for (int i = 1; i < listChildsDTO.size(); i++) {
-			childsList.add(new ChildBean(listChildsDTO.get(i).getChild_firstname()));
+		for (int i = 0; i < childs.size(); i++) {
+			
+			String childObject = childs.get(i).toString();
+			
+			childObject = childObject.replace("[", "");
+			childObject= childObject.replace("]", "");
+			childObject= childObject.replace(",", "");
+
+
+			String arr[] = childObject.split(" ", 2);
+
+			String firstName= arr[0];   
+			String theRest = arr[1];    
+
+			childsList.add(new ChildBean(firstName));
 		}
 
 		System.out.println("\nListing courses");
@@ -46,12 +62,6 @@ public class CourseInscriptionInitAction extends ActionSupport {
 		return SUCCESS;
 	}
 
-	private ArrayList<ChildDto> getAllChilds() {
-
-		UserDTO userDTO = new UserDTO(userName, "");
-
-		return userDTO.getAllChilds();
-	}
 
 	public String getUserName() {
 		return userName;

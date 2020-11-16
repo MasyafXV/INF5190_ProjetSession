@@ -4,14 +4,18 @@ import static com.mongodb.client.model.Filters.eq;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 import org.bson.Document;
 
+import com.mongodb.BasicDBList;
 import com.mongodb.BasicDBObject;
+import com.mongodb.DBCursor;
+import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
-
+import com.pronatation.Child.ChildDto;
 
 import mangodb.DatabaseManager;
 
@@ -99,13 +103,29 @@ public class UserService {
 
     	usersCollection.updateOne(eq("userName", userName), new Document("$push", child));
 
-    	
-
-
-
-		
 		return true;
 		
 	}
+	
+	@SuppressWarnings("unchecked")
+	public ArrayList<Object> getAllChilds() {
+		
+		DatabaseManager dbManager = new DatabaseManager();
+
+		
+		MongoClient client = dbManager.connect();
+		
+		MongoDatabase mydatabase = dbManager.getDatabase(client);
+		
+	    MongoCollection<Document> usersCollection = mydatabase.getCollection("Users");
+    	Document UserDoc = usersCollection.find(eq("userName", userName)).first();
+    	
+    	ArrayList<Object> childs =null;
+		childs = (ArrayList<Object>) UserDoc.get("childs");
+    	System.out.println(childs.toString());
+    	
+    	return childs;
+	}
+
 
 }

@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import com.opensymphony.xwork2.ActionSupport;
 import com.pronatation.users.UserDTO;
 
+import service.UserService;
+
 public class ListChildsAction extends ActionSupport{
 	
 	
@@ -18,16 +20,20 @@ public class ListChildsAction extends ActionSupport{
 	
 	public String execute() {
         
-		System.out.println("Listing childs of "+userName);
+		System.out.println("Listing the childs of "+userName);
 		
-		ArrayList<ChildDto> listChildsDTO = new ArrayList<ChildDto> ();
-		listChildsDTO = getAllChilds();
+		UserService uservice = new UserService(userName);
+		uservice.getAllChilds();
+
 		
-		childsList = new ArrayList<>();
-		
-		for(int i = 1; i < listChildsDTO.size(); i++) {
-			childsList.add(new ChildBean(listChildsDTO.get(i).getChild_firstname()));
-		}
+//		ArrayList<ChildDto> listChildsDTO = new ArrayList<ChildDto> ();
+//		listChildsDTO = getAllChilds();
+//		
+//		childsList = new ArrayList<>();
+//		
+//		for(int i = 1; i < listChildsDTO.size(); i++) {
+//			childsList.add(new ChildBean(listChildsDTO.get(i).getChild_firstname()));
+//		}
     	
         return SUCCESS;
     }
