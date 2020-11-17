@@ -144,7 +144,7 @@ public class UserService {
     	
     	ArrayList<Object> childs =null;
 		childs = (ArrayList<Object>) UserDoc.get("childs");
-    	System.out.println(childs.toString());
+//    	System.out.println(childs.toString());
     	
     	return childs;
 	}

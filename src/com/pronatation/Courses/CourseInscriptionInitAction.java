@@ -24,27 +24,30 @@ public class CourseInscriptionInitAction extends ActionSupport {
 		UserService uservice = new UserService(userName);
     	ArrayList<Object> childs =uservice.getAllChilds();
 
-
 		childsList = new ArrayList<>();
-		
-		
 
-		for (int i = 0; i < childs.size(); i++) {
+		if(childs!=null) {
 			
-			String childObject = childs.get(i).toString();
-			
-			childObject = childObject.replace("[", "");
-			childObject= childObject.replace("]", "");
-			childObject= childObject.replace(",", "");
+			for (int i = 0; i < childs.size(); i++) {
+				
+				String childObject = childs.get(i).toString();
+				
+				childObject = childObject.replace("[", "");
+				childObject= childObject.replace("]", "");
+				childObject= childObject.replace(",", "");
 
 
-			String arr[] = childObject.split(" ", 2);
+				String arr[] = childObject.split(" ", 2);
 
-			String firstName= arr[0];   
-			String theRest = arr[1];    
+				String firstName= arr[0];   
+				String theRest = arr[1];    
 
-			childsList.add(new ChildBean(firstName));
+				childsList.add(new ChildBean(firstName));
+			}
 		}
+		
+		
+
 
 		System.out.println("\nListing courses");
 
