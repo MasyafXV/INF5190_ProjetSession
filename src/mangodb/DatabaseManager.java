@@ -1,5 +1,7 @@
 package mangodb;
 
+import static com.mongodb.client.model.Filters.eq;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -150,7 +152,9 @@ public class DatabaseManager {
 				      .append("firstname", "")
 				      .append("description", "")
 				      .append("NbPlace", "")
-				      .append("price", "");
+				      .append("price", "")
+				      .append("prerequisite", Arrays.asList(""));
+
 
 
 
@@ -209,6 +213,10 @@ public class DatabaseManager {
 				      .append("bdate", "99/99/9999");
 			UsersCollection.insertOne(user1_Profile);
 			UsersCollection.insertOne(user2_Profile);
+			
+	    	Document course = new Document("RegisteredCourses", Arrays.asList("none"));
+	    	UsersCollection.updateOne(eq("userName", "User1"), new Document("$push", course));
+	    	UsersCollection.updateOne(eq("userName", "User2"), new Document("$push", course));
 	
 		}
 		

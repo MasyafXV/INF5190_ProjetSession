@@ -1,5 +1,6 @@
 package com.pronatation.Courses;
 
+
 public class CourseDTO {
 
 	private String courseCode = "";
@@ -8,6 +9,12 @@ public class CourseDTO {
 	private String description = "";
 	private String NbPlace = "";
 	private String price = "";
+	private Object[] prerequisite=null;
+	
+	public CourseDTO(String courseLevel,  Object[] prerequisite) {
+		this.courseLevel = courseLevel;
+		this.prerequisite=prerequisite;
+	}
 
 	public CourseDTO(String sessionCode, String courseLevel) {
 		this.sessionCode = sessionCode;
@@ -75,6 +82,14 @@ public class CourseDTO {
 
 	public void setprice(String price) {
 		this.price = price;
+	}
+
+	public Object[] getPrerequisite() {
+		return prerequisite;
+	}
+
+	public void setPrerequisite(Object[] prerequisite) {
+		this.prerequisite = prerequisite;
 	}
 
 }

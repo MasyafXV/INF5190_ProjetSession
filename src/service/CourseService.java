@@ -1,6 +1,8 @@
 package service;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 import org.bson.Document;
 
@@ -43,7 +45,12 @@ public class CourseService {
     	while(cursor.hasNext()) {
     		
     		Document course = cursor.next();
-    		CourseDTO courseDTO = new CourseDTO(course.get("sessionCode").toString(), course.getString("courseLevel"));
+    		
+    		
+    		@SuppressWarnings("unchecked")
+			Object[] prerequisites = ((ArrayList<String>) course.get("prerequisite")).toArray();
+    		
+    		CourseDTO courseDTO = new CourseDTO(course.getString("courseLevel"), prerequisites);
     		coursesList.add(courseDTO);
     	}
     	

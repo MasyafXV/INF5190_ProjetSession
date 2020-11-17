@@ -195,153 +195,56 @@ public class CourseDao {
 		return firstWord;
 	}
 
-	public boolean VerifyPrerequisite(String Username, int childAge, String course, PersonProcessing processAs) {
-
-		System.out.println("Verification of the Prerequisite for " + course);
+	public boolean VerifyPrerequisite(String Username, int childAge, String courseLevel, PersonProcessing processAs) {
+		
+		System.out.println("Verification of the Prerequisite for " + courseLevel);
 		boolean Prerequisite_Satisfied = false;
 
-		PathManager pathManager = new PathManager();
-		ProjectPath = pathManager.getProjectPath();
-
-		String usercoursePath = "";
-
-		if (processAs == PersonProcessing.Parent) {
-			usercoursePath = ProjectPath + "UsersCourses.txt";
-
-		} else if (processAs == PersonProcessing.Child) {
-			usercoursePath = ProjectPath + "ChildsCourses.txt";
-		}
-
-		String line = "";
-		String userCourses = "";
-
-		int lineNumber;
-		int targetLine = -1;
-		try {
-			FileReader readfile = new FileReader(usercoursePath);
-			BufferedReader readbuffer = new BufferedReader(readfile);
-			for (lineNumber = 1; lineNumber < 10; lineNumber++) {
-
-				line = readbuffer.readLine();
-
-				if (readFirstWord(line).equals(Username)) {
-					targetLine = lineNumber;
-					userCourses = line;
-
-				}
-
+		CourseService courseservice = new CourseService();
+		ArrayList<CourseDTO> courses = courseservice.getAllCourses();
+		CourseDTO course = null;
+		
+		for (CourseDTO courseDto : courses) 
+			
+		{ 
+			if(courseDto.getCourseLevel().equals(courseLevel)) {
+				course=courseDto;
 			}
-		} catch (IOException e) {
-			e.printStackTrace();
 		}
+		
+		// the prerequisite needed to be satisfied for courseLevel
+		Object[] courseprerequisites = course.getPrerequisite();
+		
+		ArrayList<Object> Courses = new ArrayList<Object> ();
+		
+		if(processAs==processAs.Parent) {
+			UserService uService = new UserService(Username);
+			Courses = uService.getUserCourses();
+			
+		}else if (processAs==processAs.Child) {
+			ChildService cService = new ChildService(Username);
+			Courses = cService.getChildCourses();
+		}
+		
 
-		if (targetLine != -1) { // if the user has courses
 
-			// Verify Prerequisite
-
-			System.out.println(userCourses);
-
-			switch (course) {
-			case "Etoile_de_mer":
-				// code block
+		for (Object courseprerequisite : courseprerequisites) 
+			
+		{ 
+			if (Courses.toString().contains(courseprerequisite.toString())) {
 				Prerequisite_Satisfied = true;
-				break;
-			case "Bambins":
-				// code block
-				Prerequisite_Satisfied = userCourses.contains("Etoile_de_mer");
-				break;
-			case "Tortues":
-				// code block
-				Prerequisite_Satisfied = userCourses.contains("Bambins") && userCourses.contains("Etoile_de_mer");
-				break;
-			case "Pingouins":
-				// code block
-				Prerequisite_Satisfied = userCourses.contains("Tortues") && userCourses.contains("Bambins")
-						&& userCourses.contains("Etoile_de_mer");
-				break;
-			case "Salamandre":
-				// code block
-				Prerequisite_Satisfied = userCourses.contains("Pingouins") && userCourses.contains("Tortues")
-						&& userCourses.contains("Bambins") && userCourses.contains("Etoile_de_mer");
 
-				break;
-			case "Baleines":
-				// code block
-				Prerequisite_Satisfied = userCourses.contains("Salamandre") && userCourses.contains("Pingouins")
-						&& userCourses.contains("Tortues") && userCourses.contains("Bambins")
-						&& userCourses.contains("Etoile_de_mer");
+				System.out.println("Prerequisite "+ courseprerequisite.toString() + " satisfied.");
 
-				break;
-			case "Grenouilles":
-				// code block
-				Prerequisite_Satisfied = userCourses.contains("Baleines") && userCourses.contains("Salamandre")
-						&& userCourses.contains("Pingouins") && userCourses.contains("Tortues")
-						&& userCourses.contains("Bambins") && userCourses.contains("Etoile_de_mer");
+			}else {
+				Prerequisite_Satisfied = false;
+				System.out.println("Prerequisite "+ courseprerequisite.toString() + " unsatisfied.");
 
-				break;
-			case "Dauphins":
-				// code block
-				Prerequisite_Satisfied = userCourses.contains("Grenouilles") && userCourses.contains("Baleines")
-						&& userCourses.contains("Salamandre") && userCourses.contains("Pingouins")
-						&& userCourses.contains("Tortues") && userCourses.contains("Bambins")
-						&& userCourses.contains("Etoile_de_mer");
-
-				break;
-			case "Junior_1":
-				// code block
-				Prerequisite_Satisfied = userCourses.contains("Dauphins") && userCourses.contains("Grenouilles")
-				&& userCourses.contains("Baleines") && userCourses.contains("Salamandre")
-				&& userCourses.contains("Pingouins") && userCourses.contains("Tortues")
-				&& userCourses.contains("Bambins") && userCourses.contains("Etoile_de_mer");
-
-				break;
-			case "Junior_2":
-				// code block
-				Prerequisite_Satisfied = userCourses.contains("Junior_1") && userCourses.contains("Dauphins") && userCourses.contains("Grenouilles")
-				&& userCourses.contains("Baleines") && userCourses.contains("Salamandre")
-				&& userCourses.contains("Pingouins") && userCourses.contains("Tortues")
-				&& userCourses.contains("Bambins") && userCourses.contains("Etoile_de_mer");
-
-				break;
-				
-			case "Junior_3":
-				// code block
-				Prerequisite_Satisfied =  userCourses.contains("Junior_2") && userCourses.contains("Junior_1") && userCourses.contains("Dauphins") && userCourses.contains("Grenouilles")
-				&& userCourses.contains("Baleines") && userCourses.contains("Salamandre")
-				&& userCourses.contains("Pingouins") && userCourses.contains("Tortues")
-				&& userCourses.contains("Bambins") && userCourses.contains("Etoile_de_mer");
-
-				break;
-			case "Junior_4":
-				// code block
-				Prerequisite_Satisfied =  userCourses.contains("Junior_3") &&  userCourses.contains("Junior_2") && userCourses.contains("Junior_1") && userCourses.contains("Dauphins") && userCourses.contains("Grenouilles")
-				&& userCourses.contains("Baleines") && userCourses.contains("Salamandre")
-				&& userCourses.contains("Pingouins") && userCourses.contains("Tortues")
-				&& userCourses.contains("Bambins") && userCourses.contains("Etoile_de_mer");
-
-				break;
-			case "Junior_5":
-				// code block
-				Prerequisite_Satisfied =  userCourses.contains("Junior_4") &&  userCourses.contains("Junior_2") && userCourses.contains("Junior_1") && userCourses.contains("Dauphins") && userCourses.contains("Grenouilles")
-				&& userCourses.contains("Baleines") && userCourses.contains("Salamandre")
-				&& userCourses.contains("Pingouins") && userCourses.contains("Tortues")
-				&& userCourses.contains("Bambins") && userCourses.contains("Etoile_de_mer");
-
-				break;
-			case "Maitre_Nageur": // enfant doit avoir 16 ans minimum
-				// code block
-				Prerequisite_Satisfied = processAs == PersonProcessing.Parent || 
-						 				 (processAs == PersonProcessing.Child && childAge>=16)	;
-
-				break;
-			default:
-				// code block
 			}
 
-		} else if (targetLine == -1 && course.equals("Etoile_de_mer")) { // if the user has no courses
-			Prerequisite_Satisfied = true;
 		}
 
+		
 		return Prerequisite_Satisfied;
 	}
 

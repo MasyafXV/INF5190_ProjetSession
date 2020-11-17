@@ -2,6 +2,7 @@ package service;
 
 import static com.mongodb.client.model.Filters.eq;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 
 import org.bson.Document;
@@ -36,6 +37,24 @@ public class ChildService {
     	
 		return true;
 		
+	}
+
+	public ArrayList<Object> getChildCourses() {
+		
+		DatabaseManager dbManager = new DatabaseManager();
+
+		
+		MongoClient client = dbManager.connect();
+		
+		MongoDatabase mydatabase = dbManager.getDatabase(client);
+		
+	    MongoCollection<Document> usersCollection = mydatabase.getCollection("Childs");
+    	Document UserDoc = usersCollection.find(eq("childFname", childFname)).first();
+
+    	ArrayList<Object> courses =null;
+    	courses = (ArrayList<Object>) UserDoc.get("RegisteredCourses");
+    	
+		return courses;
 	}
 
 }

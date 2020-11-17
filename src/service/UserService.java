@@ -101,6 +101,9 @@ public class UserService {
 			      .append("childLname", childLname)
 			      .append("childAge", childAge);
 		childsCollection.insertOne(child_profile);
+		
+    	Document course = new Document("RegisteredCourses", Arrays.asList("none"));
+    	childsCollection.updateOne(eq("childFname", childFname), new Document("$push", course));
 
     	
 
@@ -144,6 +147,25 @@ public class UserService {
     	System.out.println(childs.toString());
     	
     	return childs;
+	}
+	
+	@SuppressWarnings("unchecked")
+	public ArrayList<Object>  getUserCourses() {
+		
+		DatabaseManager dbManager = new DatabaseManager();
+
+		
+		MongoClient client = dbManager.connect();
+		
+		MongoDatabase mydatabase = dbManager.getDatabase(client);
+		
+	    MongoCollection<Document> usersCollection = mydatabase.getCollection("Users");
+    	Document UserDoc = usersCollection.find(eq("userName", userName)).first();
+
+    	ArrayList<Object> courses =null;
+    	courses = (ArrayList<Object>) UserDoc.get("RegisteredCourses");
+    	
+		return courses;
 	}
 
 
