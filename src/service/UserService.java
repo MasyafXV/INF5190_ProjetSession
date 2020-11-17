@@ -60,7 +60,6 @@ public class UserService {
 		
 	    MongoCollection<Document> UsersCollection = mydatabase.getCollection("Users");
 		Document userProfile = new Document("userName", userName)
-			      .append("password", password)
 			      .append("firstname", firstname)
 			      .append("lastname", lastname)
 			      .append("email", email)
