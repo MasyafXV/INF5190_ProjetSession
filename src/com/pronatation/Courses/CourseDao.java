@@ -13,7 +13,6 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import com.pronatation.Child.ChildBean;
 import com.pronatation.pathManager.PathManager;
 import com.pronatation.processingBehavior.PersonProcessing;
 
@@ -196,7 +195,7 @@ public class CourseDao {
 		return firstWord;
 	}
 
-	public boolean VerifyPrerequisite(String Username, String childAge, String courseLevel, PersonProcessing processAs) {
+	public boolean VerifyPrerequisite(String Username, String child_bdate, String courseLevel, PersonProcessing processAs) {
 		
 		System.out.println("Verification of the Prerequisite for " + courseLevel);
 		boolean Prerequisite_Satisfied = false;
@@ -206,6 +205,7 @@ public class CourseDao {
 		ArrayList<CourseDTO> courses = courseservice.getAllCourses();
 		CourseDTO course = null;
 		
+		// looking for which course we want to register for
 		for (CourseDTO courseDto : courses) 
 			
 		{ 
@@ -231,7 +231,7 @@ public class CourseDao {
 		}else if (processAs==processAs.Child) {
 			ChildService cService = new ChildService(Username);
 			Courses = cService.getChildCourses();
-			StudentAge= converter.getAgeFromBdate(childAge);
+			StudentAge= converter.getAgeFromBdate(child_bdate);
 
 		}
 		

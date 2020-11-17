@@ -11,11 +11,11 @@ public class ChildDao {
 		   
 	   }
 	   
-	   public boolean registerChild(String userName,String childFname, String childLname, String childAge) {
+	   public boolean registerChild(String userName,String childFname, String childLname, String child_bdate) {
 		   
 			UserService uservice = new UserService(userName);
 			
-			uservice.addNewChild(childFname, childLname, childAge);
+			uservice.addNewChild(childFname, childLname, child_bdate);
 
 			   
 			
