@@ -80,6 +80,9 @@
 
 	<div class="content">
 	<br/>
+		<br/>
+		<br/>
+	
 
 		<h1>Inscrire mon enfant a un cours</h1>
 
