@@ -33,9 +33,6 @@ public class CourseDao {
 	public ArrayList<CourseDTO> getAllCourses() {
 		
 		CourseService cservice = new CourseService();
-		cservice.getAllCourses();
-
-
     	listCourses = cservice.getAllCourses();
 
 		return listCourses;

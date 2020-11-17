@@ -14,18 +14,21 @@ import com.pronatation.Courses.CourseDTO;
 import mangodb.DatabaseManager;
 
 public class CourseService {
-
+	
+	DatabaseManager dbManager;
+	MongoClient client;
+	MongoDatabase mydatabase;
+	
 	public CourseService() {
+		
+		dbManager = new DatabaseManager();
+		client = dbManager.connect();
+		mydatabase = dbManager.getDatabase(client);
 
 	}
 
 	public ArrayList<CourseDTO> getAllCourses() {
 
-		DatabaseManager dbManager = new DatabaseManager();
-
-		MongoClient client = dbManager.connect();
-
-		MongoDatabase mydatabase = dbManager.getDatabase(client);
 
 		MongoCollection<Document> courseCollection = mydatabase.getCollection("Courses");
 

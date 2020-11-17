@@ -17,17 +17,21 @@ import mangodb.DatabaseManager;
 public class UserService {
 	
 	String userName="";
+	DatabaseManager dbManager;
+	MongoClient client;
+	MongoDatabase mydatabase;
 	
 	public UserService (String userName) {
+		
 		this.userName=userName;	
+		dbManager = new DatabaseManager();
+		client = dbManager.connect();
+		mydatabase = dbManager.getDatabase(client);
 	}
 	
 	public String getUserPassword() {
 		
-		DatabaseManager dbManager = new DatabaseManager();
-		MongoClient client = dbManager.connect();
-		
-		 MongoDatabase mydatabase = dbManager.getDatabase(client);
+
 	     MongoCollection<Document> collection = mydatabase.getCollection("UserCredentials");
 	     
 	    	System.out.println("count: "+collection.count());
@@ -53,10 +57,7 @@ public class UserService {
 			String adress,
 			String bdate) {
 		
-		DatabaseManager dbManager = new DatabaseManager();
-		MongoClient client = dbManager.connect();
-		
-		MongoDatabase mydatabase = dbManager.getDatabase(client);
+
 		
 	    MongoCollection<Document> UsersCollection = mydatabase.getCollection("Users");
 		Document userProfile = new Document("userName", userName)
@@ -81,13 +82,7 @@ public class UserService {
 	}
 	
 	public boolean addNewChild(String childFname, String childLname, String childAge) {
-		DatabaseManager dbManager = new DatabaseManager();
 
-		
-		MongoClient client = dbManager.connect();
-		
-		MongoDatabase mydatabase = dbManager.getDatabase(client);
-		
 	    MongoCollection<Document> usersCollection = mydatabase.getCollection("Users");
 	    
 	    //update the user
@@ -112,13 +107,6 @@ public class UserService {
 	
 	public boolean courseInscription(String CourseLevel) {
 		
-		DatabaseManager dbManager = new DatabaseManager();
-
-		
-		MongoClient client = dbManager.connect();
-		
-		MongoDatabase mydatabase = dbManager.getDatabase(client);
-		
 	    MongoCollection<Document> usersCollection = mydatabase.getCollection("Users");
     	
     	Document course = new Document("RegisteredCourses", Arrays.asList(CourseLevel));
@@ -131,12 +119,6 @@ public class UserService {
 	@SuppressWarnings("unchecked")
 	public ArrayList<Object> getAllChilds() {
 		
-		DatabaseManager dbManager = new DatabaseManager();
-
-		
-		MongoClient client = dbManager.connect();
-		
-		MongoDatabase mydatabase = dbManager.getDatabase(client);
 		
 	    MongoCollection<Document> usersCollection = mydatabase.getCollection("Users");
     	Document UserDoc = usersCollection.find(eq("userName", userName)).first();
@@ -151,12 +133,6 @@ public class UserService {
 	@SuppressWarnings("unchecked")
 	public ArrayList<Object>  getUserCourses() {
 		
-		DatabaseManager dbManager = new DatabaseManager();
-
-		
-		MongoClient client = dbManager.connect();
-		
-		MongoDatabase mydatabase = dbManager.getDatabase(client);
 		
 	    MongoCollection<Document> usersCollection = mydatabase.getCollection("Users");
     	Document UserDoc = usersCollection.find(eq("userName", userName)).first();

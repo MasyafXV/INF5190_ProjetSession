@@ -14,20 +14,22 @@ import com.mongodb.client.MongoDatabase;
 import mangodb.DatabaseManager;
 
 public class ChildService {
+	
 	private String childFname;
+	DatabaseManager dbManager;
+	MongoClient client;
+	MongoDatabase mydatabase;
 	
 	public ChildService(String childFname) {
+		
 		this.childFname=childFname;
+		dbManager = new DatabaseManager();
+		client = dbManager.connect();
+		mydatabase = dbManager.getDatabase(client);
 	}
 
 	public boolean ChildcourseInscription(String courseLevel) {
 		
-		DatabaseManager dbManager = new DatabaseManager();
-
-		
-		MongoClient client = dbManager.connect();
-		
-		MongoDatabase mydatabase = dbManager.getDatabase(client);
 		
 	    MongoCollection<Document> childsCollection = mydatabase.getCollection("Childs");
 	  
@@ -41,12 +43,6 @@ public class ChildService {
 
 	public ArrayList<Object> getChildCourses() {
 		
-		DatabaseManager dbManager = new DatabaseManager();
-
-		
-		MongoClient client = dbManager.connect();
-		
-		MongoDatabase mydatabase = dbManager.getDatabase(client);
 		
 	    MongoCollection<Document> usersCollection = mydatabase.getCollection("Childs");
     	Document childDoc = usersCollection.find(eq("childFname", childFname)).first();
@@ -59,13 +55,6 @@ public class ChildService {
 	
 
 	public String getChildBdate() {
-		
-		DatabaseManager dbManager = new DatabaseManager();
-
-		
-		MongoClient client = dbManager.connect();
-		
-		MongoDatabase mydatabase = dbManager.getDatabase(client);
 		
 	    MongoCollection<Document> usersCollection = mydatabase.getCollection("Childs");
     	Document childDoc = usersCollection.find(eq("childFname", childFname)).first();

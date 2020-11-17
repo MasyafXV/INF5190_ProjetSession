@@ -11,18 +11,23 @@ import com.mongodb.client.MongoDatabase;
 import mangodb.DatabaseManager;
 
 public class AdminService {
+	
 	String userName="";
+	DatabaseManager dbManager;
+	MongoClient client;
+	MongoDatabase mydatabase;
 	
 	public AdminService (String userName) {
+		
 		this.userName=userName;	
+		dbManager = new DatabaseManager();
+		client = dbManager.connect();
+		mydatabase = dbManager.getDatabase(client);
 	}
 	
 	public String getUserPassword() {
 		
-		DatabaseManager dbManager = new DatabaseManager();
-		MongoClient client = dbManager.connect();
-		
-		 MongoDatabase mydatabase = dbManager.getDatabase(client);
+
 	     MongoCollection<Document> collection = mydatabase.getCollection("AdminCredentials");
 	     
 	    	System.out.println("count: "+collection.count());
