@@ -49,12 +49,30 @@ public class ChildService {
 		MongoDatabase mydatabase = dbManager.getDatabase(client);
 		
 	    MongoCollection<Document> usersCollection = mydatabase.getCollection("Childs");
-    	Document UserDoc = usersCollection.find(eq("childFname", childFname)).first();
+    	Document childDoc = usersCollection.find(eq("childFname", childFname)).first();
 
     	ArrayList<Object> courses =null;
-    	courses = (ArrayList<Object>) UserDoc.get("RegisteredCourses");
+    	courses = (ArrayList<Object>) childDoc.get("RegisteredCourses");
     	
 		return courses;
+	}
+	
+
+	public String getChildBdate() {
+		
+		DatabaseManager dbManager = new DatabaseManager();
+
+		
+		MongoClient client = dbManager.connect();
+		
+		MongoDatabase mydatabase = dbManager.getDatabase(client);
+		
+	    MongoCollection<Document> usersCollection = mydatabase.getCollection("Childs");
+    	Document childDoc = usersCollection.find(eq("childFname", childFname)).first();
+
+    	String bdate =  (String) childDoc.get("childAge");
+    	
+		return bdate;
 	}
 
 }

@@ -4,6 +4,8 @@ import com.opensymphony.xwork2.ActionSupport;
 import com.pronatation.Child.ChildBean;
 import com.pronatation.users.UserBean;
 
+import service.ChildService;
+
 public class CourseInscriptionAction extends ActionSupport {
 
 	/**
@@ -39,11 +41,16 @@ public class CourseInscriptionAction extends ActionSupport {
 			user.registerCourse(courseDTO);
 
 		} else if (childInscription) {
+			ChildService cService= new ChildService(child.getChildFname());
 
 			System.out.println("Child Inscription...");
 			System.out.println("username : " + user.getUserName());
 			System.out.println("child : " + child.getChildFname());
+			System.out.println("child age : " + cService.getChildBdate());//i need to get it from the database
 			System.out.println("course : " + course.getCourseCode());
+			
+			
+			child.setChild_bdate(cService.getChildBdate());
 
 			// register the child to the selected course
 			child.registerCourse(courseDTO);

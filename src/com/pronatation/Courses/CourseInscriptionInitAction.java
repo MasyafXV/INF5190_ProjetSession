@@ -42,7 +42,7 @@ public class CourseInscriptionInitAction extends ActionSupport {
 				String firstName= arr[0];   
 				String theRest = arr[1];    
 
-				childsList.add(new ChildBean(firstName));
+				childsList.add(new ChildBean(firstName,""));
 			}
 		}
 		

@@ -150,7 +150,7 @@
 			  <label for="name" class="form__label">child last name</label>
 			</div>
 			<div class="form__group field">
-			  <input type="input" class="form__field" placeholder="Name" name="child_bdate" id='name' required />
+			  <input type="date" class="form__field" placeholder="Name" name="child_bdate" id='name' required />
 			  <label for="name" class="form__label">child bdate</label>
 			</div>
 			<br/>

@@ -7,7 +7,7 @@ import com.pronatation.processingBehavior.PersonProcessing;
 public class ChildBean {
 
 	private String childFname="";
-	private int childAge=12; //ceci est un age temporaire
+	private String child_bdate=""; 
 
 	private PersonProcessing processAs = PersonProcessing.Child;
 
@@ -15,8 +15,10 @@ public class ChildBean {
 
 	}
 
-	public ChildBean(String childFname) {
+	public ChildBean(String childFname,String child_bdate) {
 		this.childFname = childFname;
+		this.child_bdate = child_bdate;
+
 	}
 
 	public boolean registerCourse(CourseDTO courseDTO) {
@@ -25,7 +27,7 @@ public class ChildBean {
 
 		CourseDao course = new CourseDao();
 
-		if (course.VerifyPrerequisite(childFname,childAge, courseDTO.getCourseLevel(), processAs)) {
+		if (course.VerifyPrerequisite(childFname, child_bdate, courseDTO.getCourseLevel(), processAs)) {
 
 			course.ChildInscription(childFname, courseDTO.getCourseCode());
 
@@ -44,4 +46,12 @@ public class ChildBean {
 	public void setChildFname(String childName) {
 		this.childFname = childName;
 	}
+	public String getChild_bdate() {
+		return child_bdate;
+	}
+
+	public void setChild_bdate(String child_bdate) {
+		this.child_bdate = child_bdate;
+	}
+
 }

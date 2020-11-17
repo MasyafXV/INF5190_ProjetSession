@@ -30,7 +30,7 @@ public class UserBean {
 
 		CourseDao course = new CourseDao();
 
-		if (course.VerifyPrerequisite(userName,-1, courseDTO.getCourseLevel(), processAs)) {
+		if (course.VerifyPrerequisite(userName,"", courseDTO.getCourseLevel(), processAs)) {
 
 			course.UserInscription(userName, courseDTO.getCourseCode());
 

@@ -17,6 +17,7 @@ import com.pronatation.Child.ChildBean;
 import com.pronatation.pathManager.PathManager;
 import com.pronatation.processingBehavior.PersonProcessing;
 
+import dateManager.DateConversion;
 import service.ChildService;
 import service.CourseService;
 import service.UserService;
@@ -195,10 +196,11 @@ public class CourseDao {
 		return firstWord;
 	}
 
-	public boolean VerifyPrerequisite(String Username, int childAge, String courseLevel, PersonProcessing processAs) {
+	public boolean VerifyPrerequisite(String Username, String childAge, String courseLevel, PersonProcessing processAs) {
 		
 		System.out.println("Verification of the Prerequisite for " + courseLevel);
 		boolean Prerequisite_Satisfied = false;
+		String UserBdate = "1998-09-15";
 
 		CourseService courseservice = new CourseService();
 		ArrayList<CourseDTO> courses = courseservice.getAllCourses();
@@ -217,28 +219,44 @@ public class CourseDao {
 		
 		ArrayList<Object> Courses = new ArrayList<Object> ();
 		
+		int StudentAge=0;
+		DateConversion converter = new DateConversion();
+
+		// we process as parent or child inscription?
 		if(processAs==processAs.Parent) {
 			UserService uService = new UserService(Username);
 			Courses = uService.getUserCourses();
+			StudentAge= converter.getAgeFromBdate(UserBdate);
 			
 		}else if (processAs==processAs.Child) {
 			ChildService cService = new ChildService(Username);
 			Courses = cService.getChildCourses();
+			StudentAge= converter.getAgeFromBdate(childAge);
+
 		}
 		
 
 
+		// verifying the prerequisites
 		for (Object courseprerequisite : courseprerequisites) 
 			
 		{ 
-			if (Courses.toString().contains(courseprerequisite.toString())) {
+			if (Courses.toString().contains(courseprerequisite.toString()) && courseprerequisite.toString().equals("Age higher than 16") ==false ) {
 				Prerequisite_Satisfied = true;
-
 				System.out.println("Prerequisite "+ courseprerequisite.toString() + " satisfied.");
 
+			// for maitre nageur
+			}else if (courseprerequisite.toString().equals("Age higher than 16") ==true && StudentAge >= 16) {
+				Prerequisite_Satisfied = true;
+				System.out.println("Prerequisite "+ "(Age higher than 16)"+ " satisfied.");
+				System.out.println("Student age: "+ StudentAge);
+
+				
 			}else {
 				Prerequisite_Satisfied = false;
 				System.out.println("Prerequisite "+ courseprerequisite.toString() + " unsatisfied.");
+				System.out.println("Student age: "+ StudentAge);
+
 
 			}
 

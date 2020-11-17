@@ -99,7 +99,7 @@ public class DatabaseManager {
 
 			Document Maitre_Nageur = new Document("courseLevel", "Maitre_Nageur").append("sessionCode", "A20")
 					.append("firstname", "").append("description", "").append("NbPlace", "").append("price", "")
-					.append("prerequisite", Arrays.asList(""));
+					.append("prerequisite", Arrays.asList("Age higher than 16"));
 
 			CoursesCollection.insertOne(Etoile_de_mer);
 			CoursesCollection.insertOne(Bambins);
