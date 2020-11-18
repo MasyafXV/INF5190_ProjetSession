@@ -16,68 +16,11 @@
     <title>User Menu</title>
     <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
     <link href="${pageContext.request.contextPath}/css/User_menu_style.css" rel="stylesheet" type="text/css"/>
+    <link href="${pageContext.request.contextPath}/css/FormStyle.css" rel="stylesheet" type="text/css"/>
+    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" charset="utf-8"></script>
-    	 <style>
-.form__group {
-  position: relative;
-  padding: 15px 0 0;
-  margin-top: 10px;
-  width: 50%;
-}
 
-.form__field {
-  font-family: inherit;
-  width: 100%;
-  border: 0;
-  border-bottom: 2px solid #9b9b9b;
-  outline: 0;
-  font-size: 1.3rem;
-  color: #9b9b9b;
-  padding: 7px 0;
-  background: transparent;
-  transition: border-color 0.2s;
-}
-.form__field::placeholder {
-  color: transparent;
-}
-.form__field:placeholder-shown ~ .form__label {
-  font-size: 1.3rem;
-  cursor: text;
-  top: 20px;
-}
-
-.form__label {
-  position: absolute;
-  top: 0;
-  display: block;
-  transition: 0.2s;
-  font-size: 1rem;
-  color: #9b9b9b;
-}
-
-.form__field:focus {
-  padding-bottom: 6px;
-  font-weight: 700;
-  border-width: 3px;
-  border-image: linear-gradient(to right, #11998e, #38ef7d);
-  border-image-slice: 1;
-}
-.form__field:focus ~ .form__label {
-  position: absolute;
-  top: 0;
-  display: block;
-  transition: 0.2s;
-  font-size: 1rem;
-  color: #11998e;
-  font-weight: 700;
-}
-
-/* reset input */
-.form__field:required, .form__field:invalid {
-  box-shadow: none;
-}
-		</style>
   </head>
   <body>
 <s:url action='childsList'/>
@@ -97,19 +40,7 @@
     <!--header area end-->
     <!--mobile navigation bar start-->
     <div class="mobile_nav">
-      <div class="nav_bar">
-		<img src="${pageContext.request.contextPath}/img/avatar.png" class="mobile_profile_image" alt="">
-		
-        <i class="fa fa-bars nav_btn"></i>
-      </div>
-      <div class="mobile_nav_items">
-        <a href="#"><i class="fas fa-desktop"></i><span>Dashboard</span></a>
-        <a href="#"><i class="fas fa-cogs"></i><span>Components</span></a>
-        <a ><i class="fas fa-table"></i><span>Tables</span></a>
-        <a href="#"><i class="fas fa-th"></i><span>Forms</span></a>
-        <a href="#"><i class="fas fa-info-circle"></i><span>About</span></a>
-        <a href="#"><i class="fas fa-sliders-h"></i><span>Settings</span></a>
-      </div>
+
     </div>
     <!--mobile navigation bar end-->
     <!--sidebar start-->

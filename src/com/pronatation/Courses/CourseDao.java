@@ -206,7 +206,7 @@ public class CourseDao {
 		for (CourseDTO courseDto : courses) 
 			
 		{ 
-			if(courseDto.getCourseLevel().equals(courseLevel)) {
+			if(courseLevel.contains(courseDto.getCourseLevel())) {
 				course=courseDto;
 			}
 		}
