@@ -20,8 +20,7 @@ if (sess.getAttribute("userName") == null) {
 
 <link href="${pageContext.request.contextPath}/css/Checkout.css"
 	rel="stylesheet" type="text/css" />
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/font-awesome-4.7.0/css/font-awesome.min.css">
+
 
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
@@ -149,7 +148,7 @@ if (sess.getAttribute("userName") == null) {
 
 						<div id="form-date" class="form-field">
 							<label for="expiry-month">Expiry date:</label> <input type="date"
-								id="cc-number" placeholder="expiry date" required>
+								id="" placeholder="expiry date" required>
 						</div>
 
 						<div id="form-sec-code" class="form-field">
