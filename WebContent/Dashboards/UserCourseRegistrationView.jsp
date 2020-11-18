@@ -47,9 +47,7 @@ if (sess.getAttribute("userName") == null) {
 	</header>
 	<!--header area end-->
 	<!--mobile navigation bar start-->
-	<div class="mobile_nav">
-	
-	</div>
+	<div class="mobile_nav"></div>
 	<!--mobile navigation bar end-->
 	<!--sidebar start-->
 	<div class="sidebar">
@@ -109,33 +107,34 @@ if (sess.getAttribute("userName") == null) {
 				<br />
 
 			</s:form>
-			
-	<!-- Trigger/Open The Modal -->
-			
-				<div class="buttons">
-					<div class="button-container">
-						<button id="myBtn" class="btn effect01" type="submit" class="btn"
-							value="UserCourseRegistration">Register</button>
-					</div>
+
+			<!-- Trigger/Open The Modal -->
+
+			<div class="buttons">
+				<div class="button-container">
+					<button id="myBtn" class="btn effect01" type="submit" class="btn"
+						value="UserCourseRegistration">Register</button>
 				</div>
+			</div>
 
 		</div>
 
-				<h1>
-					<a id="UserHistoryCoursePage"
-						href="<s:url action="UserCourseHistory.action" ><s:param name="userName" value="sessionUsername"/></s:url>"><span>Historique
-							de mes cours</span></a>
-				</h1>
+		<h1>
+			<a id="UserHistoryCoursePage"
+				href="<s:url action="UserCourseHistory.action" ><s:param name="userName" value="sessionUsername"/></s:url>"><span>Historique
+					de mes cours</span></a>
+		</h1>
 		<!-- The Modal -->
 		<div id="myModal" class="modal">
 
 			<!-- Modal content -->
 			<div class="modal-content">
-				<span class="close">&times;</span>
 
 				<div class="checkout-div">
 					<main id="main"> <section id="left">
 					<div id="head">
+						<span class="close">&times;</span>
+
 						<h1>Devenez un pro</h1>
 						<p>Venez nager!</p>
 					</div>
@@ -157,10 +156,10 @@ if (sess.getAttribute("userName") == null) {
 							<label for="sec-code">Security code:</label> <input
 								type="password" maxlength="3" placeholder="123" required>
 						</div>
-						<button   type="submit" value="UserCourseRegistration" form="UserCourseRegistration">Purchase !</button>
+						<button type="submit" value="UserCourseRegistration"
+							form="UserCourseRegistration">Purchase !</button>
 					</form>
-					</section> 
-				</main>
+					</section> </main>
 				</div>
 
 			</div>
