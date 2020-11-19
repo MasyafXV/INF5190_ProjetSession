@@ -16,17 +16,11 @@ Nous avons décidé d'utiliser Struts 2 afin de profiter de ses multiples avanta
 
 - Url du login pour les Administrateurs : http://localhost:8080/INF5190_ProjetSession/AdminLogin.jsp Il est possible de s'authentifier en utilisant le **nom d'administrateur : admintest1 et le password : pass1**
 
-## Important
+## Instruction pour l'utilisation de MangoDB (Mac OS / Linux)
 
-Pour que le projet fonctionne correctement avec les fichiers simulant la base de données, nous avons implémenter un Path manager qui rend notre Application portable sous certaines conditions:
+Installer MangoDB sur votre machine à l'aide de la `commande brew install mongodb-community` dans votre terminal. Verifier que MangoDB est bien installer a laide de `mongo --version` et demarrer le a l'aide de :
 
-- Le répertoire workspace d'éclipse doit contenir le projet **INF5190_ProjetSession**
-
-- Le Path de nos fichiers text (ce repertoire est temporaire en attendant l'implementation de notre base de donnée) est: ProjectWorkplace/INF5190_ProjetSession/WebContent/Data/
-
-## Instruction pour l'utilisation de MangoDB
-
-Installer MangoDB sur votre machine à l'aide de la `commande brew install mongodb-community` dans votre terminal. Verifier que MangoDB est bien installer a laide de `mongo --version` et demarrer le a l'aide de `brew services run mongodb-community`.
+>`brew services run mongodb-community`
 
 Acceder au Shell mango a laide de la commande `Mango` afin de creer une nouvelle base de donnees sous le nom de `MyDatabase`.
 
