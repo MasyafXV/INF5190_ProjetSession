@@ -29,17 +29,20 @@ public class AdminService {
 		
 
 	     MongoCollection<Document> collection = mydatabase.getCollection("AdminCredentials");
-	     
-	    	System.out.println("count: "+collection.count());
-	    	
+	     	    	
 	    	Document UserDoc = collection.find(eq("userName", userName)).first();
-	    	System.out.println(UserDoc.toJson());
-	    	System.out.println(UserDoc.getString("password"));
+	    	
+	    	String password="";
+	    	
+	    	if (UserDoc !=null) {
+		    	System.out.println(UserDoc.toJson());
+		    	System.out.println(UserDoc.getString("password"));
+		    	password=UserDoc.getString("password");
 
+	    		
+	    	}	
 		
-		
-		
-		return UserDoc.getString("password");
+		return password;
 		
 	}
 }
