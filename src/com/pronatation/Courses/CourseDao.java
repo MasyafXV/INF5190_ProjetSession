@@ -4,7 +4,6 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
@@ -31,9 +30,9 @@ public class CourseDao {
 	}
 
 	public ArrayList<CourseDTO> getAllCourses() {
-		
+
 		CourseService cservice = new CourseService();
-    	listCourses = cservice.getAllCourses();
+		listCourses = cservice.getAllCourses();
 
 		return listCourses;
 	}
@@ -73,94 +72,13 @@ public class CourseDao {
 	}
 
 	public void addCourse(CourseDTO newCourse) {
-		System.out.println("\nSaving new course to :" + newCourse.getSessionCode());
-
-		PathManager pathManager = new PathManager();
-		ProjectPath = pathManager.getProjectPath();
-
-		String coursesPath = ProjectPath + "sessionCourses.txt";
-
-		String line = "";
-		String newline = "";
-
-		int lineNumber;
-		int targetLine = -1;
-
-		try {
-			FileReader readfile;
-			readfile = new FileReader(coursesPath);
-			BufferedReader readbuffer = new BufferedReader(readfile);
-			for (lineNumber = 1; lineNumber < 10; lineNumber++) {
-
-				line = readbuffer.readLine();
-
-				if (readFirstWord(line).equals(newCourse.getSessionCode())) {
-					targetLine = lineNumber;
-					newline = line;
-				}
-			}
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-		System.out.println(" The specific Line to add the course is: " + targetLine);
-
-		if (targetLine != -1) { // if the session exist
-
-			Path path = Paths.get(coursesPath);
-			java.util.List<String> lines = null;
-			try {
-				lines = Files.readAllLines(path, StandardCharsets.UTF_8);
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-
-			int position = targetLine - 1;
-			String extraLine = newline + " " + newCourse.getCourseLevel();
-
-			lines.add(position, extraLine);
-			lines.remove(targetLine);
-
-			try {
-				Files.write(path, lines, StandardCharsets.UTF_8);
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-
-			String coursesDetailsPath = ProjectPath + "CoursesDetails/" + newCourse.getSessionCode() + "-"
-					+ newCourse.getCourseLevel() + ".txt";
-			System.out.print(coursesDetailsPath);
-			File newCoursesDetails = new File(coursesDetailsPath);
-			try {
-				if (newCoursesDetails.createNewFile()) {
-					FileWriter myWriter = new FileWriter(coursesDetailsPath);
-					myWriter.write(newCourse.getDescription().replace("\n", "\\n"));
-					myWriter.write("\n");
-					myWriter.write(newCourse.getNbPlace());
-					myWriter.write("\n");
-					myWriter.write(newCourse.getprice());
-					myWriter.write("\n");
-					myWriter.close();
-				} else {
-					System.out.println("File already exists.");
-				}
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			System.out.println("File created: " + newCoursesDetails.getName());
-		}
+		CourseService cservice = new CourseService();
+		cservice.createCourse(newCourse);
 
 	}
 
 	public boolean UserInscription(String Username, String CourseLevel) {
-		
+
 		UserService uservice = new UserService(Username);
 		uservice.courseInscription(CourseLevel);
 
@@ -169,8 +87,7 @@ public class CourseDao {
 	}
 
 	public boolean ChildInscription(String childFname, String CourseLevel) {
-		
-		
+
 		ChildService childservice = new ChildService(childFname);
 		childservice.ChildcourseInscription(CourseLevel);
 
@@ -192,8 +109,9 @@ public class CourseDao {
 		return firstWord;
 	}
 
-	public boolean VerifyPrerequisite(String Username, String child_bdate, String courseLevel, PersonProcessing processAs) {
-		
+	public boolean VerifyPrerequisite(String Username, String child_bdate, String courseLevel,
+			PersonProcessing processAs) {
+
 		System.out.println("Verification of the Prerequisite for " + courseLevel);
 		boolean Prerequisite_Satisfied = false;
 		String UserBdate = "1998-09-15";
@@ -201,65 +119,61 @@ public class CourseDao {
 		CourseService courseservice = new CourseService();
 		ArrayList<CourseDTO> courses = courseservice.getAllCourses();
 		CourseDTO course = null;
-		
+
 		// looking for which course we want to register for
-		for (CourseDTO courseDto : courses) 
-			
-		{ 
-			if(courseLevel.contains(courseDto.getCourseLevel())) {
-				course=courseDto;
+		for (CourseDTO courseDto : courses)
+
+		{
+			if (courseLevel.contains(courseDto.getCourseLevel())) {
+				course = courseDto;
 			}
 		}
-		
+
 		// the prerequisite needed to be satisfied for courseLevel
 		Object[] courseprerequisites = course.getPrerequisite();
-		
-		ArrayList<Object> Courses = new ArrayList<Object> ();
-		
-		int StudentAge=0;
+
+		ArrayList<Object> Courses = new ArrayList<Object>();
+
+		int StudentAge = 0;
 		DateConversion converter = new DateConversion();
 
 		// we process as parent or child inscription?
-		if(processAs==processAs.Parent) {
+		if (processAs == processAs.Parent) {
 			UserService uService = new UserService(Username);
 			Courses = uService.getUserCourses();
-			StudentAge= converter.getAgeFromBdate(UserBdate);
-			
-		}else if (processAs==processAs.Child) {
+			StudentAge = converter.getAgeFromBdate(UserBdate);
+
+		} else if (processAs == processAs.Child) {
 			ChildService cService = new ChildService(Username);
 			Courses = cService.getChildCourses();
-			StudentAge= converter.getAgeFromBdate(child_bdate);
+			StudentAge = converter.getAgeFromBdate(child_bdate);
 
 		}
-		
-
 
 		// verifying the prerequisites
-		for (Object courseprerequisite : courseprerequisites) 
-			
-		{ 
-			if (Courses.toString().contains(courseprerequisite.toString()) && courseprerequisite.toString().equals("Age higher than 16") ==false ) {
-				Prerequisite_Satisfied = true;
-				System.out.println("Prerequisite "+ courseprerequisite.toString() + " satisfied.");
+		for (Object courseprerequisite : courseprerequisites)
 
-			// for maitre nageur
-			}else if (courseprerequisite.toString().equals("Age higher than 16") ==true && StudentAge >= 16) {
+		{
+			if (Courses.toString().contains(courseprerequisite.toString())
+					&& courseprerequisite.toString().equals("Age higher than 16") == false) {
 				Prerequisite_Satisfied = true;
-				System.out.println("Prerequisite "+ "(Age higher than 16)"+ " satisfied.");
-				System.out.println("Student age: "+ StudentAge);
+				System.out.println("Prerequisite " + courseprerequisite.toString() + " satisfied.");
 
-				
-			}else {
+				// for maitre nageur
+			} else if (courseprerequisite.toString().equals("Age higher than 16") == true && StudentAge >= 16) {
+				Prerequisite_Satisfied = true;
+				System.out.println("Prerequisite " + "(Age higher than 16)" + " satisfied.");
+				System.out.println("Student age: " + StudentAge);
+
+			} else {
 				Prerequisite_Satisfied = false;
-				System.out.println("Prerequisite "+ courseprerequisite.toString() + " unsatisfied.");
-				System.out.println("Student age: "+ StudentAge);
-
+				System.out.println("Prerequisite " + courseprerequisite.toString() + " unsatisfied.");
+				System.out.println("Student age: " + StudentAge);
 
 			}
 
 		}
 
-		
 		return Prerequisite_Satisfied;
 	}
 
@@ -335,7 +249,7 @@ public class CourseDao {
 
 			String coursesLine;
 			String user;
-			String [] session = null;
+			String[] session = null;
 			String[] coursesUser = null;
 			listCourses = new ArrayList<>();
 
@@ -348,8 +262,7 @@ public class CourseDao {
 				System.out.print("\nlength courses : " + coursesUser.length);
 
 				for (int i = 0; i < coursesUser.length; i++) {
-					System.out
-							.print("\n" + i + ". user : " + user + ", courseLevel : " + coursesUser[i] + "\n");
+					System.out.print("\n" + i + ". user : " + user + ", courseLevel : " + coursesUser[i] + "\n");
 					listCourses.add(new CourseDTO(user, coursesUser[i]));
 				}
 
@@ -363,7 +276,7 @@ public class CourseDao {
 
 		return listCourses;
 	}
-	
+
 	public ArrayList<CourseDTO> getListCourses() {
 		return listCourses;
 	}
