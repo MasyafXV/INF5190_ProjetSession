@@ -32,7 +32,7 @@ Acceder au Shell mango a laide de la commande `Mango`.
 
 Entrez 
 
->`use C`
+>`use MyDatabase`
 
 Afin de creer une nouvelle base de donnees sous ce nom. Une fois completez, Telechargez et installer MongoDB Compass Afin de se connecter en local vers la base de donnes qu'on viens de creer. Pour vous connecter à votre MongoDB local, vous définissez Hostname sur localhost et Port sur 27017. Ces valeurs sont par défaut pour toutes les connexions MongoDB locales (sauf si vous les avez modifiées). Appuyez sur Connect, et vous devriez voir les bases de données dans votre MongoDB local. 
 
