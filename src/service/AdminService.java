@@ -32,7 +32,7 @@ public class AdminService {
 	     
 	    	System.out.println("count: "+collection.count());
 	    	
-	    	Document UserDoc = collection.find(eq("name", userName)).first();
+	    	Document UserDoc = collection.find(eq("userName", userName)).first();
 	    	System.out.println(UserDoc.toJson());
 	    	System.out.println(UserDoc.getString("password"));
 
