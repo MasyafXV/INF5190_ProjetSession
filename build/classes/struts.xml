@@ -74,7 +74,7 @@
 		</action>
 
 		<action name="InitChildCourseInscription"
-			class="com.pronatation.Courses.CourseInscriptionInitAction" method="execute">
+			class="com.pronatation.Courses.CourseInscriptionViewInitializationAction" method="execute">
 			<result name="success">Dashboards/ChildCourseRegistrationView.jsp
 			</result>
 		</action>

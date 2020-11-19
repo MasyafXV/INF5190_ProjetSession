@@ -8,7 +8,7 @@ import com.pronatation.Child.ChildBean;
 
 import service.UserService;
 
-public class CourseInscriptionInitAction extends ActionSupport {
+public class CourseInscriptionViewInitializationAction extends ActionSupport {
 
 	/**
 	 * 

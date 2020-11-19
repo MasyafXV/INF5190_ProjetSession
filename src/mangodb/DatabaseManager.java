@@ -127,7 +127,8 @@ public class DatabaseManager {
 
 			// creating courses
 			MongoCollection<Document> SessionsCollection = mydatabase.getCollection("Sessions");
-			Document Automne20 = new Document("sessionCode", "A20").append("season", "Automne").append("year", "2020");
+			Document Automne20 = new Document("sessionCode", "A20").append("season", "Automne").append("year", "2020")
+					.append("sessionFrom", "08/09/2020").append("sessionTo", "22/12/2020");
 
 			SessionsCollection.insertOne(Automne20);
 		}
@@ -150,13 +151,13 @@ public class DatabaseManager {
 
 			// creating user profiles
 			MongoCollection<Document> UsersCollection = mydatabase.getCollection("Users");
-			Document user1_Profile = new Document("userName", "User1")
-					.append("firstname", "John").append("lastname", "Doe").append("email", "John@example.com")
-					.append("adress", "999 av.xxx").append("bdate", "99/99/9999");
+			Document user1_Profile = new Document("userName", "User1").append("firstname", "John")
+					.append("lastname", "Doe").append("email", "John@example.com").append("adress", "999 av.xxx")
+					.append("bdate", "99/99/9999");
 
-			Document user2_Profile = new Document("userName", "User2")
-					.append("firstname", "Smith").append("lastname", "Jael").append("email", "Smith@example.com")
-					.append("adress", "9191 av.yyy").append("bdate", "99/99/9999");
+			Document user2_Profile = new Document("userName", "User2").append("firstname", "Smith")
+					.append("lastname", "Jael").append("email", "Smith@example.com").append("adress", "9191 av.yyy")
+					.append("bdate", "99/99/9999");
 			UsersCollection.insertOne(user1_Profile);
 			UsersCollection.insertOne(user2_Profile);
 

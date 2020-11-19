@@ -13,7 +13,7 @@ public class ViewSessionAction extends ActionSupport {
 	public ViewSessionAction() {
 	}
 
-	public String execute() {
+	public String execute() throws ParseException {
 
 		SessionBusiness sessionBusiness = new SessionBusiness();
 

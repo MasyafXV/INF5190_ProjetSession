@@ -1,5 +1,6 @@
 package com.pronatation.Session;
 
+import java.text.ParseException;
 import java.util.ArrayList;
 
 public class SessionBusiness {
@@ -8,7 +9,7 @@ public class SessionBusiness {
 	public SessionBusiness() {
 	}
 
-	public ArrayList<SessionDTO> getListSessions() {
+	public ArrayList<SessionDTO> getListSessions() throws ParseException {
 		return sessionDAO.getSessions();
 	}
 
