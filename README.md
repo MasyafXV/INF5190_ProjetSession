@@ -28,13 +28,13 @@ Pour que le projet fonctionne correctement avec les fichiers simulant la base de
 
 Installer MangoDB sur votre machine à l'aide de la `commande brew install mongodb-community` dans votre terminal. Verifier que MangoDB est bien installer a laide de `mongo --version` et demarrer le a l'aide de `brew services run mongodb-community`.
 
-Acceder au Shell mango a laide de la commande `Mango`.
+Acceder au Shell mango a laide de la commande `Mango` afin de creer une nouvelle base de donnees sous le nom de `MyDatabase`.
 
 Entrez 
 
 >`use MyDatabase`
 
-Afin de creer une nouvelle base de donnees sous ce nom. Une fois completez, Telechargez et installer MongoDB Compass Afin de se connecter en local vers la base de donnes qu'on viens de creer. Pour vous connecter à votre MongoDB local, vous définissez Hostname sur localhost et Port sur 27017. Ces valeurs sont par défaut pour toutes les connexions MongoDB locales (sauf si vous les avez modifiées). Appuyez sur Connect, et vous devriez voir les bases de données dans votre MongoDB local. 
+Une fois completez, Telechargez et installer MongoDB Compass afin de se connecter en local vers la base de donnes qu'on viens de creer. Pour vous connecter à votre MongoDB local, vous définissez Hostname sur localhost et Port sur 27017. Ces valeurs sont par défaut pour toutes les connexions MongoDB locales (sauf si vous les avez modifiées). Appuyez sur Connect, et vous devriez voir les bases de données dans votre MongoDB local. 
 
 ![DbConnection](/DbConnection.png)
 
