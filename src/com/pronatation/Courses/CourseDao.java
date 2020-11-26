@@ -27,8 +27,6 @@ import com.pronatation.pathManager.PathManager;
 import com.pronatation.processingBehavior.PersonProcessing;
 
 import dateManager.DateConversion;
-import service.ChildService;
-import service.CourseService;
 
 public class CourseDao {
 
@@ -114,9 +112,57 @@ public class CourseDao {
 	}
 
 	public void addCourse(CourseDTO newCourse) {
-		CourseService cservice = new CourseService();
-		cservice.createCourse(newCourse);
+//		CourseService cservice = new CourseService();
+//		cservice.createCourse(newCourse);
 
+	}
+	
+	public boolean ChildInscription(String childFname, String courseCode) {
+		String url = "http://localhost:8080/services/webapi/";
+		String url_param = "child/ChildcourseInscription";
+
+		System.out.println("\nConnection to  " + url + url_param);
+
+		URL post_url;
+		String string = 
+				"\n" 
+				+ "{\n"+ "\"inscription\": {\n" 
+				+ "\"childFname\": " + childFname + ",\n"
+				+ "\"course_code\": " + courseCode + "\n" + 
+				"}\n" + "}";
+
+		try {
+
+			JSONObject jsonObject = new JSONObject(string);
+
+			// Step2: Now pass JSON File Data to REST Service
+			try {
+				post_url = new URL(url + url_param);
+				URLConnection connection = post_url.openConnection();
+				connection.setDoOutput(true);
+				connection.setRequestProperty("Content-Type", "application/json");
+				connection.setConnectTimeout(5000);
+				connection.setReadTimeout(5000);
+				OutputStreamWriter out = new OutputStreamWriter(connection.getOutputStream());
+				out.write(jsonObject.toString());
+				out.close();
+
+				BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+
+				while (in.readLine() != null) {
+				}
+				System.out.println("\nREST Service Invoked Successfully..");
+				in.close();
+			} catch (Exception e) {
+				System.out.println("\nError while calling REST Service");
+				System.out.println(e);
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return true;
 	}
 
 	public boolean UserInscription(String userName, CourseDTO courseDTO) {
@@ -127,8 +173,12 @@ public class CourseDao {
 		System.out.println("\nConnection to  " + url + url_param);
 
 		URL post_url;
-		String string = "\n" + "{\n" + "    \"inscription\": {\n" + "        \"userName\": " + userName + ",\n"
-				+ "        \"course_code\": " + courseDTO.getCourseCode() + "\n" + "    }\n" + "}";
+		String string = 
+				"\n" 
+				+ "{\n"+ "\"inscription\": {\n" 
+				+ "\"userName\": " + userName + ",\n"
+				+ "\"course_code\": " + courseDTO.getCourseCode() + "\n" + 
+				"}\n" + "}";
 
 		try {
 
@@ -165,14 +215,14 @@ public class CourseDao {
 
 	}
 
-	public boolean ChildInscription(String childFname, String CourseLevel) {
-
-		ChildService childservice = new ChildService(childFname);
-		childservice.ChildcourseInscription(CourseLevel);
-
-		return true;
-
-	}
+//	public boolean ChildInscription(String childFname, String CourseLevel) {
+//
+//		ChildService childservice = new ChildService(childFname);
+//		childservice.ChildcourseInscription(CourseLevel);
+//
+//		return true;
+//
+//	}
 
 	private static String readFirstWord(String line) {
 		String firstWord = "";
@@ -188,8 +238,7 @@ public class CourseDao {
 		return firstWord;
 	}
 
-	public boolean VerifyPrerequisite(String Username, String bdate, String courseLevel,
-			PersonProcessing processAs) {
+	public boolean VerifyPrerequisite(String Username, String bdate, String courseLevel, PersonProcessing processAs) {
 
 		System.out.println("Verification of the Prerequisite for " + courseLevel);
 		boolean Prerequisite_Satisfied = false;
@@ -212,28 +261,25 @@ public class CourseDao {
 		// the prerequisite needed to be satisfied for courseLevel
 		JSONArray courseprerequisites = course.getPrerequisite();
 
-		String Courses ="";
+		String Courses = "";
 
 		int StudentAge = 0;
 		DateConversion converter = new DateConversion();
 
 		// we process as parent or child inscription?
 		if (processAs == processAs.Parent) {
-			
+
 			String url = "http://localhost:8080/services/webapi/";
-			String url_param = "user/getUserCourses/"+Username;
-			
-			System.out.println("\nConnection to  " + url+url_param);
+			String url_param = "user/getUserCourses/" + Username;
 
-	        HttpClient client = HttpClient.newHttpClient();
-	        HttpRequest request = HttpRequest.newBuilder()
-	                .uri(URI.create(url+url_param))
-	                .build();
+			System.out.println("\nConnection to  " + url + url_param);
 
-	        HttpResponse<String> response = null;
+			HttpClient client = HttpClient.newHttpClient();
+			HttpRequest request = HttpRequest.newBuilder().uri(URI.create(url + url_param)).build();
+
+			HttpResponse<String> response = null;
 			try {
-				response = client.send(request,
-				        HttpResponse.BodyHandlers.ofString());
+				response = client.send(request, HttpResponse.BodyHandlers.ofString());
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -241,25 +287,22 @@ public class CourseDao {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			Courses= response.body();
-			
+			Courses = response.body();
+
 			StudentAge = converter.getAgeFromBdate(UserBdate);
 
 		} else if (processAs == processAs.Child) {
 			String url = "http://localhost:8080/services/webapi/";
-			String url_param = "child/getChildCourses/"+Username;
-			
-			System.out.println("\nConnection to  " + url+url_param);
+			String url_param = "child/getChildCourses/" + Username;
 
-	        HttpClient client = HttpClient.newHttpClient();
-	        HttpRequest request = HttpRequest.newBuilder()
-	                .uri(URI.create(url+url_param))
-	                .build();
+			System.out.println("\nConnection to  " + url + url_param);
 
-	        HttpResponse<String> response = null;
+			HttpClient client = HttpClient.newHttpClient();
+			HttpRequest request = HttpRequest.newBuilder().uri(URI.create(url + url_param)).build();
+
+			HttpResponse<String> response = null;
 			try {
-				response = client.send(request,
-				        HttpResponse.BodyHandlers.ofString());
+				response = client.send(request, HttpResponse.BodyHandlers.ofString());
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -267,9 +310,9 @@ public class CourseDao {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			Courses= response.body();
-			
-			String child_bdate=bdate;
+			Courses = response.body();
+
+			String child_bdate = bdate;
 			StudentAge = converter.getAgeFromBdate(child_bdate);
 
 		}
