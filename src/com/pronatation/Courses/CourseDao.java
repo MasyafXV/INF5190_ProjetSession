@@ -5,12 +5,23 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.net.URI;
+import java.net.URL;
+import java.net.URLConnection;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Scanner;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 import com.pronatation.pathManager.PathManager;
 import com.pronatation.processingBehavior.PersonProcessing;
@@ -31,8 +42,40 @@ public class CourseDao {
 
 	public ArrayList<CourseDTO> getAllCourses() {
 
-		CourseService cservice = new CourseService();
-		listCourses = cservice.getAllCourses();
+		String url = "http://localhost:8080/services/webapi/";
+		String url_param = "course/getAllCourses/";
+
+		System.out.println("\nConnection to  " + url + url_param);
+
+		HttpClient client = HttpClient.newHttpClient();
+		HttpRequest request = HttpRequest.newBuilder().uri(URI.create(url + url_param)).build();
+
+		HttpResponse<String> response = null;
+
+		response = null;
+		try {
+			response = client.send(request, HttpResponse.BodyHandlers.ofString());
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		ArrayList<CourseDTO> coursesList = new ArrayList<>();
+
+		JSONArray coursesJSON = new JSONArray(response.body());
+		for (int i = 0; i < coursesJSON.length(); i++) {
+			JSONObject courseJSON = coursesJSON.getJSONObject(i);
+			System.out.println("json body : " + courseJSON);
+
+			coursesList
+					.add(new CourseDTO(courseJSON.getString("courseLevel"), courseJSON.getJSONArray("prerequisite")));
+
+		}
+
+		listCourses = coursesList;
 
 		return listCourses;
 	}
@@ -77,10 +120,47 @@ public class CourseDao {
 
 	}
 
-	public boolean UserInscription(String Username, String CourseLevel) {
+	public boolean UserInscription(String userName, CourseDTO courseDTO) {
 
-		UserService uservice = new UserService(Username);
-		uservice.courseInscription(CourseLevel);
+		String url = "http://localhost:8080/services/webapi/";
+		String url_param = "user/courseInscription/";
+
+		System.out.println("\nConnection to  " + url + url_param);
+
+		URL post_url;
+		String string = "\n" + "{\n" + "    \"inscription\": {\n" + "        \"userName\": " + userName + ",\n"
+				+ "        \"course_code\": " + courseDTO.getCourseCode() + "\n" + "    }\n" + "}";
+
+		try {
+
+			JSONObject jsonObject = new JSONObject(string);
+
+			// Step2: Now pass JSON File Data to REST Service
+			try {
+				post_url = new URL(url + url_param);
+				URLConnection connection = post_url.openConnection();
+				connection.setDoOutput(true);
+				connection.setRequestProperty("Content-Type", "application/json");
+				connection.setConnectTimeout(5000);
+				connection.setReadTimeout(5000);
+				OutputStreamWriter out = new OutputStreamWriter(connection.getOutputStream());
+				out.write(jsonObject.toString());
+				out.close();
+
+				BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+
+				while (in.readLine() != null) {
+				}
+				System.out.println("\nREST Service Invoked Successfully..");
+				in.close();
+			} catch (Exception e) {
+				System.out.println("\nError while calling REST Service");
+				System.out.println(e);
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 
 		return true;
 
@@ -116,21 +196,22 @@ public class CourseDao {
 		boolean Prerequisite_Satisfied = false;
 		String UserBdate = "1998-09-15";
 
-		CourseService courseservice = new CourseService();
-		ArrayList<CourseDTO> courses = courseservice.getAllCourses();
+		ArrayList<CourseDTO> courses = getAllCourses();
 		CourseDTO course = null;
 
 		// looking for which course we want to register for
 		for (CourseDTO courseDto : courses)
 
 		{
+
 			if (courseLevel.contains(courseDto.getCourseLevel())) {
 				course = courseDto;
 			}
 		}
+		System.out.println("print " + course.getCourseLevel());
 
 		// the prerequisite needed to be satisfied for courseLevel
-		Object[] courseprerequisites = course.getPrerequisite();
+		JSONArray courseprerequisites = course.getPrerequisite();
 
 		ArrayList<Object> Courses = new ArrayList<Object>();
 

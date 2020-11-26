@@ -1,5 +1,7 @@
 package com.pronatation.Courses;
 
+import org.json.JSONArray;
+
 public class CourseDTO {
 
 	private String courseCode = "";
@@ -8,15 +10,15 @@ public class CourseDTO {
 	private String description = "";
 	private String NbPlace = "";
 	private String price = "";
-	private Object[] prerequisite = null;
+	private JSONArray prerequisite = null;
 
-	public CourseDTO(String courseLevel, Object[] prerequisite) {
+	public CourseDTO(String courseLevel, JSONArray jsonArray) {
 		this.courseLevel = courseLevel;
-		this.prerequisite = prerequisite;
+		this.prerequisite = jsonArray;
 	}
 
 	public CourseDTO(String sessionCode, String courseLevel, String description, String NbPlace, String price,
-			Object[] prerequisite) {
+			JSONArray prerequisite) {
 		this.sessionCode = sessionCode;
 		this.courseLevel = courseLevel;
 		this.description = description;
@@ -93,11 +95,11 @@ public class CourseDTO {
 		this.price = price;
 	}
 
-	public Object[] getPrerequisite() {
+	public JSONArray getPrerequisite() {
 		return prerequisite;
 	}
 
-	public void setPrerequisite(Object[] prerequisite) {
+	public void setPrerequisite(JSONArray prerequisite) {
 		this.prerequisite = prerequisite;
 	}
 

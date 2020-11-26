@@ -1,14 +1,22 @@
 package service;
 
+import java.io.IOException;
+import java.net.URI;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
 import java.util.ArrayList;
 
 import org.bson.Document;
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoCursor;
 import com.mongodb.client.MongoDatabase;
+import com.pronatation.Courses.CourseBean;
 import com.pronatation.Courses.CourseDTO;
 import com.pronatation.Courses.CoursePrerequisite;
 
@@ -28,40 +36,6 @@ public class CourseService {
 
 	}
 
-	public ArrayList<CourseDTO> getAllCourses() {
-
-		MongoCollection<Document> courseCollection = mydatabase.getCollection("Courses");
-
-		FindIterable<Document> iterable = courseCollection.find(); // (1)
-
-		MongoCursor<Document> cursor = iterable.iterator(); // (2)
-
-		ArrayList<CourseDTO> coursesList = new ArrayList<CourseDTO>();
-
-		try {
-
-			while (cursor.hasNext()) {
-
-				Document course = cursor.next();
-
-				@SuppressWarnings("unchecked")
-				Object[] prerequisites = ((ArrayList<String>) course.get("prerequisite")).toArray();
-
-				CourseDTO courseDTO = new CourseDTO(course.getString("sessionCode"), course.getString("courseLevel"),
-						course.getString("description"), course.getString("NbPlace"), course.getString("price"),
-						prerequisites);
-				coursesList.add(courseDTO);
-			}
-
-		} finally {
-
-			cursor.close();
-
-		}
-
-		return coursesList;
-
-	}
 
 	public boolean createCourse(CourseDTO newCourse) {
 
