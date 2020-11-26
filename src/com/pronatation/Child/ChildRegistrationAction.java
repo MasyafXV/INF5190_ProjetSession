@@ -1,5 +1,9 @@
 package com.pronatation.Child;
 
+import java.io.IOException;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 import com.opensymphony.xwork2.ActionSupport;
 
 public class ChildRegistrationAction extends ActionSupport {
@@ -26,21 +30,32 @@ public class ChildRegistrationAction extends ActionSupport {
     public void validate() {
     	
 		System.out.println("registration of your child " + child_firstname);
-    	
-    	ChildDao childDao= new ChildDao();
-    	
-			if(childDao.registerChild(userName,child_firstname, child_lastname,child_bdate)){
-				
-				System.out.println(child_firstname+" Have been successfully registered ");
+		
+		String url = "http://localhost:8080/services/webapi/";
+		String url_param = "user/addNewChild/"+userName+"/"+child_firstname+"/"+child_lastname+"/"+child_bdate;
+		
+		System.out.println("\nConnection to  " + url+url_param);
+		
+		URL post_url;
+		try {
+			post_url = new URL ( url+url_param);
+			HttpURLConnection con = (HttpURLConnection)post_url.openConnection();
+			con.setRequestMethod("POST");
+			con.setRequestProperty("Content-Type", "application/json; utf-8");
+			con.setRequestProperty("Accept", "application/json");
+			con.setDoOutput(true);
+			con.disconnect();
+			System.out.println(child_firstname+" Have been successfully registered ");
 
 
-			}
-			else{
-				System.out.println(child_firstname+" - registration failure ");
 
-				
-			}
-
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
     	
     }
 
