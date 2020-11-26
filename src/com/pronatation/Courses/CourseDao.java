@@ -29,7 +29,6 @@ import com.pronatation.processingBehavior.PersonProcessing;
 import dateManager.DateConversion;
 import service.ChildService;
 import service.CourseService;
-import service.UserService;
 
 public class CourseDao {
 
@@ -189,7 +188,7 @@ public class CourseDao {
 		return firstWord;
 	}
 
-	public boolean VerifyPrerequisite(String Username, String child_bdate, String courseLevel,
+	public boolean VerifyPrerequisite(String Username, String bdate, String courseLevel,
 			PersonProcessing processAs) {
 
 		System.out.println("Verification of the Prerequisite for " + courseLevel);
@@ -213,20 +212,64 @@ public class CourseDao {
 		// the prerequisite needed to be satisfied for courseLevel
 		JSONArray courseprerequisites = course.getPrerequisite();
 
-		ArrayList<Object> Courses = new ArrayList<Object>();
+		String Courses ="";
 
 		int StudentAge = 0;
 		DateConversion converter = new DateConversion();
 
 		// we process as parent or child inscription?
 		if (processAs == processAs.Parent) {
-			UserService uService = new UserService(Username);
-			Courses = uService.getUserCourses();
+			
+			String url = "http://localhost:8080/services/webapi/";
+			String url_param = "user/getUserCourses/"+Username;
+			
+			System.out.println("\nConnection to  " + url+url_param);
+
+	        HttpClient client = HttpClient.newHttpClient();
+	        HttpRequest request = HttpRequest.newBuilder()
+	                .uri(URI.create(url+url_param))
+	                .build();
+
+	        HttpResponse<String> response = null;
+			try {
+				response = client.send(request,
+				        HttpResponse.BodyHandlers.ofString());
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			Courses= response.body();
+			
 			StudentAge = converter.getAgeFromBdate(UserBdate);
 
 		} else if (processAs == processAs.Child) {
-			ChildService cService = new ChildService(Username);
-			Courses = cService.getChildCourses();
+			String url = "http://localhost:8080/services/webapi/";
+			String url_param = "child/getChildCourses/"+Username;
+			
+			System.out.println("\nConnection to  " + url+url_param);
+
+	        HttpClient client = HttpClient.newHttpClient();
+	        HttpRequest request = HttpRequest.newBuilder()
+	                .uri(URI.create(url+url_param))
+	                .build();
+
+	        HttpResponse<String> response = null;
+			try {
+				response = client.send(request,
+				        HttpResponse.BodyHandlers.ofString());
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			Courses= response.body();
+			
+			String child_bdate=bdate;
 			StudentAge = converter.getAgeFromBdate(child_bdate);
 
 		}

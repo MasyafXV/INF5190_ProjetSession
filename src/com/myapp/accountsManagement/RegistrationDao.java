@@ -1,7 +1,6 @@
 package com.myapp.accountsManagement;
 
 
-import service.UserService;
 
 public class RegistrationDao {
 	
@@ -17,8 +16,8 @@ public class RegistrationDao {
 			String adress,
 			String bdate)  {
 		
-		UserService uservice = new UserService(userName);
-		uservice.createUser(userName, password, firstname, lastname, email, adress, bdate);
+//		UserService uservice = new UserService(userName);
+//		uservice.createUser(userName, password, firstname, lastname, email, adress, bdate);
 
 		return true;
 			

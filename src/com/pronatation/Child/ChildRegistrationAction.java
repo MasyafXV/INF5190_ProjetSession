@@ -35,54 +35,10 @@ public class ChildRegistrationAction extends ActionSupport {
     public void validate() {
     	
 		System.out.println("registration of your child " + child_firstname);
+		ChildDao childDao = new ChildDao();
+		childDao.registerChild(userName, child_firstname, child_lastname, child_bdate);
 		
-		String url = "http://localhost:8080/services/webapi/";
-		String url_param = "user/addNewChild";
-		
-		System.out.println("\nConnection to  " + url+url_param);
 
-
-		URL post_url;
-		String string = "\n"
-				+ "{\n"
-				+ "    \"child\": {\n"
-				+ "        \"parent_userName\": "+userName+",\n"
-				+ "        \"child_firstname\": "+child_firstname+",\n"
-				+ "        \"child_lastname\": "+child_lastname+",\n"
-				+ "        \"child_bdate\":  "+child_bdate+"\n"
-				+ "    }\n"
-				+ "}";
-		
-		try {
-
-			JSONObject jsonObject = new JSONObject(string);
- 
-			// Step2: Now pass JSON File Data to REST Service
-			try {
-				post_url = new URL(url+url_param);
-				URLConnection connection = post_url.openConnection();
-				connection.setDoOutput(true);
-				connection.setRequestProperty("Content-Type", "application/json");
-				connection.setConnectTimeout(5000);
-				connection.setReadTimeout(5000);
-				OutputStreamWriter out = new OutputStreamWriter(connection.getOutputStream());
-				out.write(jsonObject.toString());
-				out.close();
- 
-				BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
- 
-				while (in.readLine() != null) {
-				}
-				System.out.println("\nREST Service Invoked Successfully..");
-				in.close();
-			} catch (Exception e) {
-				System.out.println("\nError while calling REST Service");
-				System.out.println(e);
-			}
- 
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
 	}
 
 
