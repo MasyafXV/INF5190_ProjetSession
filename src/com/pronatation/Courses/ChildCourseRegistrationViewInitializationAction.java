@@ -1,12 +1,19 @@
 package com.pronatation.Courses;
 
+import java.io.IOException;
+import java.net.URI;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
 import java.util.ArrayList;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 import com.opensymphony.xwork2.ActionSupport;
 import com.pronatation.Child.ChildBean;
 
 
-import service.UserService;
 
 public class ChildCourseRegistrationViewInitializationAction extends ActionSupport {
 
@@ -21,25 +28,52 @@ public class ChildCourseRegistrationViewInitializationAction extends ActionSuppo
 	public String execute() {
 
 		System.out.println("\nListing the childs of " + userName);
-		UserService uservice = new UserService(userName);
-    	ArrayList<Object> childs =uservice.getAllChilds();
+
+		String url = "http://localhost:8080/services/webapi/";
+		String url_param = "user/getAllChilds/"+userName;
+		
+		System.out.println("\nConnection to  " + url+url_param);
+
+        HttpClient client = HttpClient.newHttpClient();
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(URI.create(url+url_param))
+                .build();
+
+        HttpResponse<String> response = null;
+		try {
+			response = client.send(request,
+			        HttpResponse.BodyHandlers.ofString());
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+        System.out.println("Response body : "+response.body());
+        JSONArray childs = new JSONArray(response.body());
+
 
 		childsList = new ArrayList<>();
 
 		if(childs!=null) {
 			
-			for (int i = 0; i < childs.size(); i++) {
+			for (int i = 0; i < childs.length(); i++) {
 				
 				String childObject = childs.get(i).toString();
-				
+
 				childObject = childObject.replace("[", "");
 				childObject= childObject.replace("]", "");
 				childObject= childObject.replace(",", "");
+				childObject= childObject.replace("\"\"", " ");
+				childObject= childObject.replace("\"", "");
 
 
 				String arr[] = childObject.split(" ", 2);
 
-				String firstName= arr[0];   
+				String firstName= arr[0]; 
+
 				String theRest = arr[1];    
 
 				childsList.add(new ChildBean(firstName,""));
@@ -50,17 +84,40 @@ public class ChildCourseRegistrationViewInitializationAction extends ActionSuppo
 
 
 		System.out.println("\nListing courses");
+		url = "http://localhost:8080/services/webapi/";
+		url_param = "course/getAllCourses/";
+		
+		System.out.println("\nConnection to  " + url+url_param);
+		
+        client = HttpClient.newHttpClient();
+        request = HttpRequest.newBuilder()
+                .uri(URI.create(url+url_param))
+                .build();
 
-		CourseBusiness courseBusiness = new CourseBusiness();
-
-		ArrayList<CourseDTO> listCoursesDTO = courseBusiness.getAllCourses();
-
+        response = null;
+		try {
+			response = client.send(request,
+			        HttpResponse.BodyHandlers.ofString());
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		this.coursesList = new ArrayList<>();
 
-		for (int i = 0; i < listCoursesDTO.size(); i++) {
-			this.coursesList.add(new CourseBean(listCoursesDTO.get(i).getSessionCode(),
-					listCoursesDTO.get(i).getCourseLevel(), listCoursesDTO.get(i).getDescription()));
-		}
+        JSONArray coursesJSON = new JSONArray(response.body());
+        for (int i = 0; i < coursesJSON.length(); i++) {
+        	JSONObject courseJSON= coursesJSON.getJSONObject(i);
+            System.out.println("json body : "+courseJSON);
+            
+			this.coursesList.add(new CourseBean(courseJSON.getString("sessionCode"),
+					courseJSON.getString("courseLevel"), courseJSON.getString("description")));
+
+        }
+        
 
 		return SUCCESS;
 	}
