@@ -43,14 +43,13 @@ https://zellwk.com/blog/install-mongodb/
 https://zellwk.com/blog/local-mongodb/#:~:text=To%20connect%20to%20your%20local,databases%20in%20your%20local%20MongoDB.
 
 
-
-
-
-
-
 ## À savoir
 
 Nous nous sommes concentrés sur l'essentielle, c'est-à-dire le fonctionnement des fonctionnalités demandées dans l'énoncé du TP. Nous sommes conscients qu'il y a des use cases marginaux qu'on ne couvre pas dans nos fonctionnalités, mais nous espérons avoir le temps de couvrir cela dans la deuxième partie afin de rendre notre application encore plus robuste pour le lancement en production. Nous avons aussi rencontré quelques difficultés au sein de notre équipe de développement, nous avons dû nous séparer notre équipe initiale pour des raisons d'équité en termes de collaboration pour ce projet. Un nouveau membre nous a rejoints par la suite en mi-chemin de développement.
+
+## À ne pas oublier
+Ne pas oublier d'inclure toute les librairies dans le build path de ecplipse. Touts les fichiers jars necessaire sont dont le folder `lib` de WEB-INF.
+
 
 ## Repartition du travail
 
