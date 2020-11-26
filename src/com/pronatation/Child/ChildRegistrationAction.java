@@ -1,9 +1,20 @@
 package com.pronatation.Child;
 
+import java.io.BufferedReader;
+import java.io.DataOutputStream;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.net.URLConnection;
+import java.nio.charset.Charset;
+
+import org.json.JSONObject;
+
+
 import com.opensymphony.xwork2.ActionSupport;
 
 public class ChildRegistrationAction extends ActionSupport {
@@ -32,32 +43,58 @@ public class ChildRegistrationAction extends ActionSupport {
 		System.out.println("registration of your child " + child_firstname);
 		
 		String url = "http://localhost:8080/services/webapi/";
-		String url_param = "user/addNewChild/"+userName+"/"+child_firstname+"/"+child_lastname+"/"+child_bdate;
+		String url_param = "user/addNewChild";
 		
 		System.out.println("\nConnection to  " + url+url_param);
-		
+
+
 		URL post_url;
+		String string = "\n"
+				+ "{\n"
+				+ "    \"child\": {\n"
+				+ "        \"parent_userName\": "+userName+",\n"
+				+ "        \"child_firstname\": "+child_firstname+",\n"
+				+ "        \"child_lastname\": "+child_lastname+",\n"
+				+ "        \"child_bdate\":  "+child_bdate+"\n"
+				+ "    }\n"
+				+ "}";
+		
 		try {
-			post_url = new URL ( url+url_param);
-			HttpURLConnection con = (HttpURLConnection)post_url.openConnection();
-			con.setRequestMethod("POST");
-			con.setRequestProperty("Content-Type", "application/json; utf-8");
-			con.setRequestProperty("Accept", "application/json");
-			con.setDoOutput(true);
-			con.disconnect();
-			System.out.println(child_firstname+" Have been successfully registered ");
 
-
-
-		} catch (MalformedURLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
+			JSONObject jsonObject = new JSONObject(string);
+ 
+			// Step2: Now pass JSON File Data to REST Service
+			try {
+				post_url = new URL(url+url_param);
+				URLConnection connection = post_url.openConnection();
+				connection.setDoOutput(true);
+				connection.setRequestProperty("Content-Type", "application/json");
+				connection.setConnectTimeout(5000);
+				connection.setReadTimeout(5000);
+				OutputStreamWriter out = new OutputStreamWriter(connection.getOutputStream());
+				out.write(jsonObject.toString());
+				out.close();
+ 
+				BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+ 
+//				while (in.readLine() != null) {
+//				}
+				System.out.println("\nREST Service Invoked Successfully..");
+				in.close();
+			} catch (Exception e) {
+				System.out.println("\nError while calling REST Service");
+				System.out.println(e);
+			}
+ 
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+
+
+
     	
-    }
+    
 
 
 
