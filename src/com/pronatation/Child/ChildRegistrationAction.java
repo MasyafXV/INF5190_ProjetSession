@@ -1,16 +1,10 @@
 package com.pronatation.Child;
 
 import java.io.BufferedReader;
-import java.io.DataOutputStream;
-import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.OutputStream;
 import java.io.OutputStreamWriter;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
-import java.nio.charset.Charset;
 
 import org.json.JSONObject;
 
@@ -77,8 +71,8 @@ public class ChildRegistrationAction extends ActionSupport {
  
 				BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
  
-//				while (in.readLine() != null) {
-//				}
+				while (in.readLine() != null) {
+				}
 				System.out.println("\nREST Service Invoked Successfully..");
 				in.close();
 			} catch (Exception e) {
