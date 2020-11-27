@@ -144,8 +144,10 @@ if (sess.getAttribute("userName") == null) {
 
 							<h1>Devenez un pro</h1>
 							<p>Venez nager!</p>
+							<p>59.99$</p>
+							
 						</div>
-						<h3>Seulement 79.99$</h3>
+						<h3>20% de reduction pour les enfants !</h3>
 						</section> <section id="right">
 						<h1>Purchase</h1>
 						<form action="#">
