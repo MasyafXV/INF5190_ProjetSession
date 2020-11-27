@@ -48,6 +48,8 @@ public class ListCoursesAction extends ActionSupport {
 		
 		this.coursesList = new ArrayList<>();
 
+		System.out.println("\nbody " +response.body().toString());
+
         JSONArray coursesJSON = new JSONArray(response.body());
         for (int i = 0; i < coursesJSON.length(); i++) {
         	JSONObject courseJSON= coursesJSON.getJSONObject(i);
