@@ -89,11 +89,8 @@ if (sess.getAttribute("userName") == null) {
 				<h2>Cours disponibles :</h2>
 
 				<div class="select">
-					<select name="course.courseCode" id="format"
-						onchange="setValueCourseCode(this)">
-						<option selected disabled>Choisissez un cours</option>
-
-
+				<select name="course.courseCode" id="format" onchange="setValueCourseCode(this)">
+				<option value="" selected disabled>Choisissez un cours</option>
 
 						<c:forEach items="${coursesList}" var="course">
 							<option value="${course.courseLevel}">

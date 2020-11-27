@@ -107,8 +107,8 @@ if (sess.getAttribute("userName") == null) {
 
 				<div class="select">
 					<select name="child.childFname" id="format">
-						<option selected disabled>Choisissez un enfants</option>
-
+<!-- 						<option selected disabled>Choisissez un enfants</option>
+ -->
 						<c:forEach items="${childsList}" var="child">
 							<option value="${child.childFname}"><c:out
 									value="${child.childFname}" /></option>

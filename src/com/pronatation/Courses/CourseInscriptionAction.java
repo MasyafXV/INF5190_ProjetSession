@@ -29,6 +29,8 @@ public class CourseInscriptionAction extends ActionSupport {
 		System.out.println("courseInscription");
 
 		String courseCode = course.getCourseCode();
+		System.out.println(courseCode);
+
 		String[] partsCourseCode = courseCode.split("-");
 		course.setSessionCode(partsCourseCode[0]);
 		course.setCourseLevel(partsCourseCode[1]);
