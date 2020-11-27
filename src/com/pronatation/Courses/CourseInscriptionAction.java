@@ -41,9 +41,11 @@ public class CourseInscriptionAction extends ActionSupport {
 		if (UserInscription) {
 
 			UserDAO userDAO = new UserDAO();
+			CourseDao courseDao = new CourseDao();
 			// register the user to the selected course
 			user.setUserBdate(userDAO.getUserBdate(userName));
 			user.registerCourse(courseDTO);
+			courseDao.setNewStudent(user.getUserName(),course.getCourseLevel());
 
 		} else if (childInscription) {
 
