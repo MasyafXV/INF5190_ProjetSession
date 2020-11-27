@@ -76,6 +76,35 @@ public class CourseDao {
 
 		return listCourses;
 	}
+	
+	public JSONArray getAllCoursesJSON() {
+
+		String url = "http://localhost:8080/services/webapi/";
+		String url_param = "course/getAllCourses/";
+
+		System.out.println("\nConnection to  " + url + url_param);
+
+		HttpClient client = HttpClient.newHttpClient();
+		HttpRequest request = HttpRequest.newBuilder().uri(URI.create(url + url_param)).build();
+
+		HttpResponse<String> response = null;
+
+		response = null;
+		try {
+			response = client.send(request, HttpResponse.BodyHandlers.ofString());
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return new JSONArray(response.body());
+
+	}
+	
+	
 
 	public String[] getCoursesForSession(String sessionCode) { // To verify if the course already exist
 		String[] coursesSession = null;

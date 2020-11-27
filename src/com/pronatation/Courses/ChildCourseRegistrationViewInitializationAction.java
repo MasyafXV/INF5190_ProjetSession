@@ -12,6 +12,7 @@ import org.json.JSONObject;
 
 import com.opensymphony.xwork2.ActionSupport;
 import com.pronatation.Child.ChildBean;
+import com.pronatation.users.UserDAO;
 
 
 
@@ -29,35 +30,9 @@ public class ChildCourseRegistrationViewInitializationAction extends ActionSuppo
 
 		System.out.println("\nListing the childs of " + userName);
 
-		String url = "http://localhost:8080/services/webapi/";
-		String url_param = "user/getAllChilds/"+userName;
-		
-		System.out.println("\nConnection to  " + url+url_param);
 
-        HttpClient client = HttpClient.newHttpClient();
-        HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create(url+url_param))
-                .build();
-
-        HttpResponse<String> response = null;
-		try {
-			response = client.send(request,
-			        HttpResponse.BodyHandlers.ofString());
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-        System.out.println("Response body : "+response.body().toString());
-        
-        JSONArray childs=null;
-        if(!response.body().toString().equals("null")) {
-         childs = new JSONArray(response.body());
-        }
-
+        UserDAO userDAO = new UserDAO();
+        JSONArray childs=userDAO.listChilds(userName);
 		childsList = new ArrayList<>();
 
 		if(childs!=null) {
@@ -87,35 +62,15 @@ public class ChildCourseRegistrationViewInitializationAction extends ActionSuppo
 
 
 		System.out.println("\nListing courses");
-		url = "http://localhost:8080/services/webapi/";
-		url_param = "course/getAllCourses/";
-		
-		System.out.println("\nConnection to  " + url+url_param);
-		
-        client = HttpClient.newHttpClient();
-        request = HttpRequest.newBuilder()
-                .uri(URI.create(url+url_param))
-                .build();
+		CourseDao courseDao = new CourseDao();
 
-        response = null;
-		try {
-			response = client.send(request,
-			        HttpResponse.BodyHandlers.ofString());
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		this.coursesList = new ArrayList<>();
-
-        JSONArray coursesJSON = new JSONArray(response.body());
+        JSONArray coursesJSON = courseDao.getAllCoursesJSON();
+        coursesList = new ArrayList<CourseBean> ();
         for (int i = 0; i < coursesJSON.length(); i++) {
         	JSONObject courseJSON= coursesJSON.getJSONObject(i);
             System.out.println("json body : "+courseJSON);
-            
+            System.out.println("hereee: "+courseJSON);
+
 			this.coursesList.add(new CourseBean(courseJSON.getString("sessionCode"),
 					courseJSON.getString("courseLevel"), courseJSON.getString("description")));
 
