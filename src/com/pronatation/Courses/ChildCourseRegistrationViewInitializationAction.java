@@ -51,9 +51,12 @@ public class ChildCourseRegistrationViewInitializationAction extends ActionSuppo
 			e.printStackTrace();
 		}
 
-        System.out.println("Response body : "+response.body());
-        JSONArray childs = new JSONArray(response.body());
-
+        System.out.println("Response body : "+response.body().toString());
+        
+        JSONArray childs=null;
+        if(!response.body().toString().equals("null")) {
+         childs = new JSONArray(response.body());
+        }
 
 		childsList = new ArrayList<>();
 
