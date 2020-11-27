@@ -4,6 +4,7 @@ import com.opensymphony.xwork2.ActionSupport;
 import com.pronatation.Child.ChildBean;
 import com.pronatation.Child.ChildDao;
 import com.pronatation.users.UserBean;
+import com.pronatation.users.UserDAO;
 
 
 public class CourseInscriptionAction extends ActionSupport {
@@ -37,7 +38,9 @@ public class CourseInscriptionAction extends ActionSupport {
 
 		if (UserInscription) {
 
+			UserDAO userDAO = new UserDAO();
 			// register the user to the selected course
+			user.setUserBdate(userDAO.getUserBdate(userName));
 			user.registerCourse(courseDTO);
 
 		} else if (childInscription) {
@@ -45,11 +48,6 @@ public class CourseInscriptionAction extends ActionSupport {
 			System.out.println("Child Inscription...");
 			ChildDao childDao = new ChildDao();
 
-			System.out.println("username : " + user.getUserName());
-			System.out.println("child : " + child.getChildFname());
-			System.out.println("child age : " + childDao.getChildBdate(child.getChildFname()));//i need to get it from the database
-			System.out.println("course : " + course.getCourseCode());
-			
 			child.setChild_bdate(childDao.getChildBdate(child.getChildFname()));
 
 			// register the child to the selected course

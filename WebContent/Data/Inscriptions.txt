@@ -1,2 +1,0 @@
-User1 CourseId1 CourseId2
-User2 CourseId3 CourseId4

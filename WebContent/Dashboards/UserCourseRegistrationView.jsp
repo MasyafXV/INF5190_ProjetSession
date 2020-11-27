@@ -118,11 +118,7 @@ if (sess.getAttribute("userName") == null) {
 
 		</div>
 
-		<h1>
-			<a id="UserHistoryCoursePage"
-				href="<s:url action="UserCourseHistory.action" ><s:param name="userName" value="sessionUsername"/></s:url>"><span>Historique
-					de mes cours</span></a>
-		</h1>
+
 		<!-- The Modal -->
 		<div id="myModal" class="modal">
 

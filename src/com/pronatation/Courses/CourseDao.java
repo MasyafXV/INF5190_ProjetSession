@@ -242,7 +242,6 @@ public class CourseDao {
 
 		System.out.println("Verification of the Prerequisite for " + courseLevel);
 		boolean Prerequisite_Satisfied = false;
-		String UserBdate = "1998-09-15";
 
 		ArrayList<CourseDTO> courses = getAllCourses();
 		CourseDTO course = null;
@@ -289,7 +288,7 @@ public class CourseDao {
 			}
 			Courses = response.body();
 
-			StudentAge = converter.getAgeFromBdate(UserBdate);
+			StudentAge = converter.getAgeFromBdate(bdate);
 
 		} else if (processAs == processAs.Child) {
 			String url = "http://localhost:8080/services/webapi/";

@@ -1,6 +1,0 @@
-admintest1
-pass1
-admintest2
-pass2
-admintest3
-pass3

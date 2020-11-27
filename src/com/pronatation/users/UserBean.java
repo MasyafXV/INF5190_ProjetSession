@@ -18,6 +18,8 @@ import com.pronatation.processingBehavior.PersonProcessing;
 public class UserBean {
 
 	private String userName;
+	private String userBdate;
+
 	private PersonProcessing processAs = PersonProcessing.Parent;
 
 	public UserBean() {
@@ -34,6 +36,13 @@ public class UserBean {
 	public void setUserName(String userName) {
 		this.userName = userName;
 	}
+	public String getUserBdate() {
+		return userBdate;
+	}
+
+	public void setUserBdate(String userBdate) {
+		this.userBdate = userBdate;
+	}
 
 	public boolean registerCourse(CourseDTO courseDTO) {
 
@@ -41,7 +50,7 @@ public class UserBean {
 		CourseDao course = new CourseDao();
 
 		
-		if (course.VerifyPrerequisite(userName, "", courseDTO.getCourseLevel(), processAs)) {
+		if (course.VerifyPrerequisite(userName, userBdate, courseDTO.getCourseLevel(), processAs)) {
 
 			course.UserInscription(userName, courseDTO);
 			System.out.println(userName + " a ete inscrit pour "+courseDTO.getCourseLevel());
