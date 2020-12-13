@@ -1,4 +1,4 @@
-# INF5190_ProjetSession
+# INF5190_ProjetSession - Partie 2
 
 Yassine Hasnaoui - HASY04089702 / Tran Thien My Elsa - TRAT24569808 / ARCOLE Alexandre-Thibault - ARCA83030008
 
@@ -24,9 +24,9 @@ Acceder au Shell mango a laide de la commande `Mango` afin de creer une nouvelle
 
 Entrez 
 
->`use MyDatabase`
+>`use MyDatabase`, Vous pouvez également creer `MyDatabase` via l'interface graphique MongoDB Compass.
 
-Une fois completez, Telechargez et installer MongoDB Compass afin de se connecter en local vers la base de donnes qu'on viens de creer. Pour vous connecter à votre MongoDB local, vous définissez Hostname sur localhost et Port sur 27017. Ces valeurs sont par défaut pour toutes les connexions MongoDB locales (sauf si vous les avez modifiées). Appuyez sur Connect, et vous devriez voir les bases de données dans votre MongoDB local. 
+Une fois completez, Telechargez et installer MongoDB Compass afin de se connecter en local vers la base de donnes qu'on viens de creer. Pour vous connecter à votre MongoDB local, vous définissez `Hostname` sur localhost et `Port` sur 27017. Ces valeurs sont par défaut pour toutes les connexions MongoDB locales (sauf si vous les avez modifiées). Appuyez sur Connect, et vous devriez voir les bases de données dans votre MongoDB local. 
 
 ![DbConnection](/DbConnection.png)
 
@@ -34,7 +34,7 @@ Ici, vous devriez pouvoir voir `MyDatabase`.
 
 ![ConSuccess](/ConSuccess.png)
 
-Une fois la base de donnee MyDatabase creer, **il ne reste plus qu'a se log in dans l'application et les collections/documents necessaires de la db se gerereront automatiquement pour vous.** Toutes les dependances Jars necessaire au fonctionnement de MangoDB sont deja incluses dans le projet.
+Une fois la base de donnee MyDatabase creer, **il ne reste plus qu'a se "log in" dans l'application et les collections/documents necessaires de la db se gerereront automatiquement pour vous.** Toutes les dependances Jars necessaire au fonctionnement de MangoDB sont deja incluses dans le projet, répertoire `lib`.
 
 ### Pour plus d'information
 
@@ -48,7 +48,7 @@ https://zellwk.com/blog/local-mongodb/#:~:text=To%20connect%20to%20your%20local,
 Nous nous sommes concentrés sur l'essentielle, c'est-à-dire le fonctionnement des fonctionnalités demandées dans l'énoncé du TP. Nous sommes conscients qu'il y a des use cases marginaux qu'on ne couvre pas dans nos fonctionnalités, mais nous espérons avoir le temps de couvrir cela dans la deuxième partie afin de rendre notre application encore plus robuste pour le lancement en production. Nous avons aussi rencontré quelques difficultés au sein de notre équipe de développement, nous avons dû nous séparer notre équipe initiale pour des raisons d'équité en termes de collaboration pour ce projet. Un nouveau membre nous a rejoints par la suite en mi-chemin de développement.
 
 ## À ne pas oublier
-Ne pas oublier d'inclure toute les librairies dans le build path de ecplipse. Touts les fichiers jars necessaire sont dont le folder `lib` de WEB-INF.
+Ne pas oublier d'inclure toute les librairies dans le build path de ecplipse. Touts les fichiers jars necessaire sont dont le répertoire `lib` de WEB-INF.
 
 
 ## Repartition du travail
