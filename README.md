@@ -1,6 +1,6 @@
 # INF5190_ProjetSession - Partie 2
 
-Yassine Hasnaoui - HASY04089702 / Tran Thien My Elsa - TRAT24569808 / ARCOLE Alexandre-Thibault - ARCA83030008
+Yassine Hasnaoui - HASY04089702 / Tran Thien My Elsa - TRAT24569808 
 
 ## Introduction
 
