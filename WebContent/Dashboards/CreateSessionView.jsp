@@ -110,8 +110,8 @@
     			let sessionFrom = document.forms['ajouterSession']['newSession.sessionFrom'].value.trim();
     			let sessionTo = document.forms['ajouterSession']['newSession.sessionTo'].value.trim();
     			
-    			let yearFormat = /(19|20)\d\d/i;
-    			let dateFormat = /(0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])[- /.](19|20)\d\d/i;
+    			let yearFormat = /^[0-9]{4}$/g;
+    			let dateFormat = /^(0[1-9]|[12][0-9]|3[01])[- /.](0[1-9]|1[012])[- /.](19|20)\d\d$/g;
     			
     			let invalide = season == "" || year == "" || sessionFrom == "" || sessionTo == "";
     			
