@@ -76,7 +76,7 @@ public class CourseDao {
 
 		return listCourses;
 	}
-	
+
 	public JSONArray getAllCoursesJSON() {
 
 		String url = "http://localhost:8080/services/webapi/";
@@ -103,8 +103,6 @@ public class CourseDao {
 		return new JSONArray(response.body());
 
 	}
-	
-	
 
 	public String[] getCoursesForSession(String sessionCode) { // To verify if the course already exist
 		String[] coursesSession = null;
@@ -141,11 +139,49 @@ public class CourseDao {
 	}
 
 	public void addCourse(CourseDTO newCourse) {
-//		CourseService cservice = new CourseService();
-//		cservice.createCourse(newCourse);
+		String url = "http://localhost:8080/services/webapi/";
+		String url_param = "course/createNewCourse";
+
+		System.out.println("\nConnection to  " + url + url_param);
+
+		URL post_url;
+		String string = "{\"sessionCode\":\"" + newCourse.getSessionCode() + "\",\"courseLevel\":\""
+				+ newCourse.getCourseLevel() + "\",\"description\":\"" + newCourse.getDescription()
+				+ "\",\"NbPlace\":\"" + newCourse.getNbPlace() + "\",\"price\":\"" + newCourse.getPrice() + "\"}";
+
+		try {
+
+			JSONObject jsonObject = new JSONObject(string);
+
+			// Step2: Now pass JSON File Data to REST Service
+			try {
+				post_url = new URL(url + url_param);
+				URLConnection connection = post_url.openConnection();
+				connection.setDoOutput(true);
+				connection.setRequestProperty("Content-Type", "application/json");
+				connection.setConnectTimeout(5000);
+				connection.setReadTimeout(5000);
+				OutputStreamWriter out = new OutputStreamWriter(connection.getOutputStream());
+				out.write(jsonObject.toString());
+				out.close();
+
+				BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+
+				while (in.readLine() != null) {
+				}
+				System.out.println("\nREST Service Invoked Successfully..");
+				in.close();
+			} catch (Exception e) {
+				System.out.println("\nError while calling REST Service");
+				System.out.println(e);
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 
 	}
-	
+
 	public boolean ChildInscription(String childFname, String courseCode) {
 		String url = "http://localhost:8080/services/webapi/";
 		String url_param = "child/ChildcourseInscription";
@@ -153,12 +189,8 @@ public class CourseDao {
 		System.out.println("\nConnection to  " + url + url_param);
 
 		URL post_url;
-		String string = 
-				"\n" 
-				+ "{\n"+ "\"inscription\": {\n" 
-				+ "\"childFname\": " + childFname + ",\n"
-				+ "\"course_code\": " + courseCode + "\n" + 
-				"}\n" + "}";
+		String string = "\n" + "{\n" + "\"inscription\": {\n" + "\"childFname\": " + childFname + ",\n"
+				+ "\"course_code\": " + courseCode + "\n" + "}\n" + "}";
 
 		try {
 
@@ -202,12 +234,8 @@ public class CourseDao {
 		System.out.println("\nConnection to  " + url + url_param);
 
 		URL post_url;
-		String string = 
-				"\n" 
-				+ "{\n"+ "\"inscription\": {\n" 
-				+ "\"userName\": " + userName + ",\n"
-				+ "\"course_code\": " + courseDTO.getCourseCode() + "\n" + 
-				"}\n" + "}";
+		String string = "\n" + "{\n" + "\"inscription\": {\n" + "\"userName\": " + userName + ",\n"
+				+ "\"course_code\": " + courseDTO.getCourseCode() + "\n" + "}\n" + "}";
 
 		try {
 
@@ -481,19 +509,15 @@ public class CourseDao {
 	}
 
 	public boolean setNewStudent(String userName, String courseLevel) {
-		
+
 		String url = "http://localhost:8080/services/webapi/";
 		String url_param = "course/setNewStudent";
 
 		System.out.println("\nConnection to  " + url + url_param);
 
 		URL post_url;
-		String string = 
-				"\n" 
-				+ "{\n"+ "\"Student\": {\n" 
-				+ "\"userName\": " + userName + ",\n"
-				+ "\"courseLevel\": " + courseLevel + "\n"
-				+ "}\n" + "}";
+		String string = "\n" + "{\n" + "\"Student\": {\n" + "\"userName\": " + userName + ",\n" + "\"courseLevel\": "
+				+ courseLevel + "\n" + "}\n" + "}";
 
 		try {
 
@@ -526,7 +550,7 @@ public class CourseDao {
 			e.printStackTrace();
 		}
 
-		return true;		
+		return true;
 	}
 
 }

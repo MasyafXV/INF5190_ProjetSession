@@ -87,11 +87,11 @@ public class CourseDTO {
 		NbPlace = nbPlace;
 	}
 
-	public String getprice() {
+	public String getPrice() {
 		return this.price;
 	}
 
-	public void setprice(String price) {
+	public void setPrice(String price) {
 		this.price = price;
 	}
 
