@@ -1,6 +1,6 @@
-# INF5190_ProjetSession
+# INF5190_ProjetSession - Partie 2
 
-Yassine Hasnaoui - HASY04089702 / Tran Thien My Elsa - TRAT24569808 / ARCOLE Alexandre-Thibault - ARCA83030008
+Yassine Hasnaoui - HASY04089702 / Tran Thien My Elsa - TRAT24569808 
 
 ## Introduction
 
@@ -24,9 +24,9 @@ Acceder au Shell mango a laide de la commande `Mango` afin de creer une nouvelle
 
 Entrez 
 
->`use MyDatabase`
+>`use MyDatabase`, Vous pouvez également creer `MyDatabase` via l'interface graphique MongoDB Compass.
 
-Une fois completez, Telechargez et installer MongoDB Compass afin de se connecter en local vers la base de donnes qu'on viens de creer. Pour vous connecter à votre MongoDB local, vous définissez Hostname sur localhost et Port sur 27017. Ces valeurs sont par défaut pour toutes les connexions MongoDB locales (sauf si vous les avez modifiées). Appuyez sur Connect, et vous devriez voir les bases de données dans votre MongoDB local. 
+Une fois completez, Telechargez et installer MongoDB Compass afin de se connecter en local vers la base de donnes qu'on viens de creer. Pour vous connecter à votre MongoDB local, vous définissez `Hostname` sur localhost et `Port` sur 27017. Ces valeurs sont par défaut pour toutes les connexions MongoDB locales (sauf si vous les avez modifiées). Appuyez sur Connect, et vous devriez voir les bases de données dans votre MongoDB local. 
 
 ![DbConnection](/DbConnection.png)
 
@@ -34,7 +34,7 @@ Ici, vous devriez pouvoir voir `MyDatabase`.
 
 ![ConSuccess](/ConSuccess.png)
 
-Une fois la base de donnee MyDatabase creer, **il ne reste plus qu'a se log in dans l'application et les collections/documents necessaires de la db se gerereront automatiquement pour vous.** Toutes les dependances Jars necessaire au fonctionnement de MangoDB sont deja incluses dans le projet.
+Une fois la base de donnee MyDatabase creer, **il ne reste plus qu'a se "log in" dans l'application et les collections/documents necessaires de la db se gerereront automatiquement pour vous.** Toutes les dependances Jars necessaire au fonctionnement de MangoDB sont deja incluses dans le projet, répertoire `lib`.
 
 ### Pour plus d'information
 
@@ -43,17 +43,19 @@ https://zellwk.com/blog/install-mongodb/
 https://zellwk.com/blog/local-mongodb/#:~:text=To%20connect%20to%20your%20local,databases%20in%20your%20local%20MongoDB.
 
 
-## À savoir
-
-Nous nous sommes concentrés sur l'essentielle, c'est-à-dire le fonctionnement des fonctionnalités demandées dans l'énoncé du TP. Nous sommes conscients qu'il y a des use cases marginaux qu'on ne couvre pas dans nos fonctionnalités, mais nous espérons avoir le temps de couvrir cela dans la deuxième partie afin de rendre notre application encore plus robuste pour le lancement en production. Nous avons aussi rencontré quelques difficultés au sein de notre équipe de développement, nous avons dû nous séparer notre équipe initiale pour des raisons d'équité en termes de collaboration pour ce projet. Un nouveau membre nous a rejoints par la suite en mi-chemin de développement.
+## Important À savoir
+Nous avons rencontré beaucoup difficultés au sein de notre équipe de développement **durant la premiere ET la deuxieme partie** , nous avons dû nous séparer notre équipe initiale(4 personnes) en deux pour des raisons d'équité en termes de collaboration pour ce projet, et cela au milieux de la partie 1. De plus, un nouveau membre nous a rejoints peu de temps avant la remise #1 en nous assurant qu'il allais collaborer avec nous pour la suite des choses et **nous n'avons recus aucune nouvelle de lui depuis.** J'ai (yassine) tenté de le contacter a plusieurs reprise sans aucune reponses et aucun commit de sa part n'a ete fait tout le long de la deuxieme partie du projet [Voir commits ici](https://github.com/trafalgarxlaw/INF5190_ProjetSession/commits/main). Nous ne souhaitons donc pas etre penaliser pour ce genre d'evenement qui peut etre extremement frustrant, nous avons travailler serieusement sur ce projet et malheureusement il n'est pas encore terminé. Si besoin, vous pouvez me contacter (yassine) pour plus de clarifications par e-mail et je vous repondrais le plus tot possible.
 
 ## À ne pas oublier
-Ne pas oublier d'inclure toute les librairies dans le build path de ecplipse. Touts les fichiers jars necessaire sont dont le folder `lib` de WEB-INF.
+Ne pas oublier d'inclure toute les librairies dans le build path de ecplipse. Touts les fichiers jars necessaire sont dont le répertoire `lib` de WEB-INF.
 
 
 ## Repartition du travail
 
-L'ensemble des taches du projet ont été reparties initialement en 3 taches par personne. Le rôle de chacun se trouve dans le backlog du projet.
-https://github.com/trafalgarxlaw/INF5190_ProjetSession/projects/1
+L'ensemble des taches du projet ont été reparties initialement en 3 taches par personne. Le rôle de chacun se trouve dans le 
+
+- [backlog du projet](https://github.com/trafalgarxlaw/INF5190_ProjetSession/projects/1). 
+- [Voir les commits ici](https://github.com/trafalgarxlaw/INF5190_ProjetSession/commits/main)
+
 
 
