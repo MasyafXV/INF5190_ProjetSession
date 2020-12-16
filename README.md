@@ -53,9 +53,10 @@ Ne pas oublier d'inclure toute les librairies dans le build path de ecplipse. To
 
 ## Repartition du travail
 
-L'ensemble des taches du projet ont été reparties initialement en 3 taches par personne. Le rôle de chacun se trouve dans le [backlog du projet](https://github.com/trafalgarxlaw/INF5190_ProjetSession/projects/1). 
+L'ensemble des taches du projet ont été reparties initialement en 3 taches par personne. Le rôle de chacun se trouve dans le 
 
-[Voir les commits ici](https://github.com/trafalgarxlaw/INF5190_ProjetSession/commits/main)
+- [backlog du projet](https://github.com/trafalgarxlaw/INF5190_ProjetSession/projects/1). 
+- [Voir les commits ici](https://github.com/trafalgarxlaw/INF5190_ProjetSession/commits/main)
 
 
 
