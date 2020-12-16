@@ -43,9 +43,8 @@ https://zellwk.com/blog/install-mongodb/
 https://zellwk.com/blog/local-mongodb/#:~:text=To%20connect%20to%20your%20local,databases%20in%20your%20local%20MongoDB.
 
 
-## À savoir
-
-Nous nous sommes concentrés sur l'essentielle, c'est-à-dire le fonctionnement des fonctionnalités demandées dans l'énoncé du TP. Nous sommes conscients qu'il y a des use cases marginaux qu'on ne couvre pas dans nos fonctionnalités, mais nous espérons avoir le temps de couvrir cela dans la deuxième partie afin de rendre notre application encore plus robuste pour le lancement en production. Nous avons aussi rencontré quelques difficultés au sein de notre équipe de développement, nous avons dû nous séparer notre équipe initiale pour des raisons d'équité en termes de collaboration pour ce projet. Un nouveau membre nous a rejoints par la suite en mi-chemin de développement.
+## Important À savoir
+Nous avons rencontré beaucoup difficultés au sein de notre équipe de développement **durant la premiere ET la deuxieme partie** , nous avons dû nous séparer notre équipe initiale(4 personnes) en deux pour des raisons d'équité en termes de collaboration pour ce projet, et cela au milieux de la partie 1. De plus, un nouveau membre nous a rejoints peu de temps avant la remise #1 en nous assurant qu'il allais collaborer avec nous pour la suite des choses et **nous n'avons recus aucune nouvelle de lui depuis.** J'ai (yassine) tenté de le contacter a plusieurs reprise sans aucune reponses et aucun commit de sa part n'a ete fait tout le long de la deuxieme partie du projet ([Voir commits ici] (https://github.com/trafalgarxlaw/INF5190_ProjetSession/commits/main)). Nous ne souhaitons donc pas etre penaliser pour ce genre d'evenement qui peut etre extremement frustrant, nous avons travailler serieusement sur ce projet et malheureusement il n'est pas encore terminé. Si besoin, vous pouvez me contacter (yassine) pour plus de clarifications par e-mail et je vous repondrais le plus tot possible.
 
 ## À ne pas oublier
 Ne pas oublier d'inclure toute les librairies dans le build path de ecplipse. Touts les fichiers jars necessaire sont dont le répertoire `lib` de WEB-INF.
