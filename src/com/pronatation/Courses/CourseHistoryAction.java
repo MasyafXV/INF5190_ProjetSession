@@ -15,18 +15,18 @@ public class CourseHistoryAction extends ActionSupport{
 	
 	public String execute() {
 	
-	System.out.println("\nListing courses");
-
-	CourseBusiness courseBusiness = new CourseBusiness();
-
-	ArrayList<CourseDTO> listCoursesDTO = courseBusiness.getUserCourses();
-
-	this.coursesList = new ArrayList<>();
-
-	for (int i = 0; i < listCoursesDTO.size(); i++) {
-		this.coursesList.add(new CourseBean(listCoursesDTO.get(i).getSessionCode(),
-				listCoursesDTO.get(i).getCourseLevel(), listCoursesDTO.get(i).getDescription()));
-	}
+//	System.out.println("\nListing courses");
+//
+//	CourseBusiness courseBusiness = new CourseBusiness();
+//
+//	ArrayList<CourseDTO> listCoursesDTO = courseBusiness.getUserCourses();
+//
+//	this.coursesList = new ArrayList<>();
+//
+//	for (int i = 0; i < listCoursesDTO.size(); i++) {
+//		this.coursesList.add(new CourseBean(listCoursesDTO.get(i).getSessionCode(),
+//				listCoursesDTO.get(i).getCourseLevel(), listCoursesDTO.get(i).getDescription()));
+//	}
 
 	return SUCCESS;
 }
