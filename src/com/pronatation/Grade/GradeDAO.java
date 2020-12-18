@@ -1,18 +1,19 @@
 package com.pronatation.Grade;
 
 import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.net.URI;
+import java.net.URL;
+import java.net.URLConnection;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
 import java.util.ArrayList;
-import java.util.Scanner;
 
-import com.pronatation.pathManager.PathManager;
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 public class GradeDAO {
 
@@ -22,126 +23,135 @@ public class GradeDAO {
 	public ArrayList<GradeDTO> getAllGrades(String courseCode) {
 		System.out.println("\nGetting all grades");
 
-		PathManager pathManager = new PathManager();
-		ProjectPath = pathManager.getProjectPath();
+		String url = "http://localhost:8080/services/webapi/";
+		String url_param = "course/getGradesForCourse/" + courseCode;
 
-		String coursesDetailsPath = ProjectPath + "CoursesDetails/" + courseCode + ".txt";
+		System.out.println("\nConnection to  " + url + url_param);
 
+		// String[] splitCourseCode = courseCode.split("-", 2);
+
+		HttpClient client = HttpClient.newHttpClient();
+		HttpRequest request = HttpRequest.newBuilder().uri(URI.create(url + url_param)).build();
+
+		HttpResponse<String> response = null;
 		try {
-			// File myObj = new File("personnes.txt");
-			Scanner myReader = new Scanner(new File(coursesDetailsPath));
-			myReader.useDelimiter("\n");
-
-			String line = "";
-			String descriptionLine = "";
-			String nbPlaceLine;
-			String priceLine;
-			String[] grade = { " ", " ", " " };
-			listGrades = new ArrayList<>();
-
-			descriptionLine = myReader.next();
-			System.out.print("\ndescriptionLine : " + descriptionLine);
-
-			nbPlaceLine = myReader.next();
-			System.out.print("\nnb Place : " + nbPlaceLine);
-
-			priceLine = myReader.next();
-			System.out.print("\nprice : " + priceLine);
-
-			while (myReader.hasNext()) {
-
-				line = myReader.next();
-				grade = line.split("#");
-
-				if (grade.length == 1) {
-					System.out.print("\n");
-					System.out.print(grade[0]);
-					System.out.print("\n");
-					listGrades.add(new GradeDTO(grade[0], "", ""));
-				} else if (grade.length == 2) {
-					System.out.print("\n");
-					System.out.print(grade[0]);
-					System.out.print(" ");
-					System.out.print(grade[1]);
-					System.out.print("\n");
-					listGrades.add(new GradeDTO(grade[0], grade[1], ""));
-				} else {
-					System.out.print("\n");
-					System.out.print(grade[0]);
-					System.out.print(" ");
-					System.out.print(grade[1]);
-					System.out.print(" ");
-					System.out.print(grade[2]);
-					System.out.print("\n");
-					listGrades.add(new GradeDTO(grade[0], grade[1], grade[2]));
-				}
-
-			}
-			myReader.close();
-
-		} catch (FileNotFoundException e) {
-			System.out.println("Le fichier est inexistant.");
+			response = client.send(request, HttpResponse.BodyHandlers.ofString());
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
+		ArrayList<GradeDTO> grades = new ArrayList<>();
+
+		JSONArray gradesJSON = new JSONArray(response.body());
+		for (int i = 0; i < gradesJSON.length(); i++) {
+			JSONArray studentsJSON = gradesJSON.getJSONArray(i);
+
+			System.out.println("studentGradeJSON body : " + studentsJSON);
+
+			String studentName = studentsJSON.getString(0);
+			String studentComment = studentsJSON.getString(1);
+			String studentGrade = studentsJSON.getString(2);
+
+			grades.add(new GradeDTO(studentName, studentComment, studentGrade));
+
+		}
+
+		listGrades = grades;
+
 		return listGrades;
+
 	}
 
 	public boolean setGrade(String courseCode, GradeDTO personGrade) {
-		System.out.println("\nSetting grade of " + personGrade.getPersonName() + " in course " + courseCode);
 
-		PathManager pathManager = new PathManager();
-		ProjectPath = pathManager.getProjectPath();
+		String url = "http://localhost:8080/services/webapi/";
+		String url_param = "course/gradeStudent/";
 
-		String coursesDetailsPath = ProjectPath + "CoursesDetails/" + courseCode + ".txt";
+		System.out.println("\nConnection to  " + url + url_param);
 
-		int lineNumber;
-		int targetLine = -1;
+		URL post_url;
+		String string = "\n" + "{\"courseCode\":\"" + courseCode + "\",\"Student\":{\"name\":\""
+				+ personGrade.getPersonName() + "\",\"comments\":\"" + personGrade.getComments() + "\",\"grade\":\""
+				+ personGrade.getGrade() + "\"}}";
+
 		try {
-			FileReader readfile = new FileReader(coursesDetailsPath);
-			BufferedReader readbuffer = new BufferedReader(readfile);
-			for (lineNumber = 1; lineNumber < 53; lineNumber++) {
 
-				if (readFirstWord(readbuffer.readLine()).equals(personGrade.getPersonName())) {
-					targetLine = lineNumber;
+			JSONObject jsonObject = new JSONObject(string);
 
+			// Step2: Now pass JSON File Data to REST Service
+			try {
+				post_url = new URL(url + url_param);
+				URLConnection connection = post_url.openConnection();
+				connection.setDoOutput(true);
+				connection.setRequestProperty("Content-Type", "application/json");
+				connection.setConnectTimeout(5000);
+				connection.setReadTimeout(5000);
+				OutputStreamWriter out = new OutputStreamWriter(connection.getOutputStream());
+				out.write(jsonObject.toString());
+				out.close();
+
+				BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+
+				while (in.readLine() != null) {
 				}
-
+				System.out.println("\nREST Service Invoked Successfully..");
+				in.close();
+			} catch (Exception e) {
+				System.out.println("\nError while calling REST Service");
+				System.out.println(e);
 			}
-		} catch (IOException e) {
+
+		} catch (Exception e) {
 			e.printStackTrace();
-		}
-		System.out.println(" The specific Line to add the course is: " + targetLine);
-
-		if (targetLine != -1) { // if swimmer is registered to course
-
-			Path path = Paths.get(coursesDetailsPath);
-			java.util.List<String> lines = null;
-			try {
-				lines = Files.readAllLines(path, StandardCharsets.UTF_8);
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-
-			int position = targetLine - 1;
-			String extraLine = personGrade.getPersonName() + "#"
-					+ personGrade.getComments().replaceAll("\r", ". ").replaceAll("\n", ". ") + "#"
-					+ personGrade.getGrade();
-
-			lines.add(position, extraLine);
-			lines.remove(targetLine);
-
-			try {
-				Files.write(path, lines, StandardCharsets.UTF_8);
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-
 		}
 
 		return true;
+		/*
+		 * System.out.println("\nSetting grade of " + personGrade.getPersonName() +
+		 * " in course " + courseCode);
+		 * 
+		 * PathManager pathManager = new PathManager(); ProjectPath =
+		 * pathManager.getProjectPath();
+		 * 
+		 * String coursesDetailsPath = ProjectPath + "CoursesDetails/" + courseCode +
+		 * ".txt";
+		 * 
+		 * int lineNumber; int targetLine = -1; try { FileReader readfile = new
+		 * FileReader(coursesDetailsPath); BufferedReader readbuffer = new
+		 * BufferedReader(readfile); for (lineNumber = 1; lineNumber < 53; lineNumber++)
+		 * {
+		 * 
+		 * if (readFirstWord(readbuffer.readLine()).equals(personGrade.getPersonName()))
+		 * { targetLine = lineNumber;
+		 * 
+		 * }
+		 * 
+		 * } } catch (IOException e) { e.printStackTrace(); }
+		 * System.out.println(" The specific Line to add the course is: " + targetLine);
+		 * 
+		 * if (targetLine != -1) { // if swimmer is registered to course
+		 * 
+		 * Path path = Paths.get(coursesDetailsPath); java.util.List<String> lines =
+		 * null; try { lines = Files.readAllLines(path, StandardCharsets.UTF_8); } catch
+		 * (IOException e) { // TODO Auto-generated catch block e.printStackTrace(); }
+		 * 
+		 * int position = targetLine - 1; String extraLine = personGrade.getPersonName()
+		 * + "#" + personGrade.getComments().replaceAll("\r", ". ").replaceAll("\n",
+		 * ". ") + "#" + personGrade.getGrade();
+		 * 
+		 * lines.add(position, extraLine); lines.remove(targetLine);
+		 * 
+		 * try { Files.write(path, lines, StandardCharsets.UTF_8); } catch (IOException
+		 * e) { // TODO Auto-generated catch block e.printStackTrace(); }
+		 * 
+		 * }
+		 * 
+		 * return true;
+		 */
 	}
 
 	private static String readFirstWord(String line) {
