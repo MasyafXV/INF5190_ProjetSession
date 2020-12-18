@@ -26,7 +26,7 @@ Entrez
 
 >`use MyDatabase`, Vous pouvez également creer `MyDatabase` via l'interface graphique MongoDB Compass.
 
-Une fois completez, Telechargez et installer MongoDB Compass afin de se connecter en local vers la base de donnes qu'on viens de creer. Pour vous connecter à votre MongoDB local, vous définissez `Hostname` sur localhost et `Port` sur 27017. Ces valeurs sont par défaut pour toutes les connexions MongoDB locales (sauf si vous les avez modifiées). Appuyez sur Connect, et vous devriez voir les bases de données dans votre MongoDB local. 
+Une fois complétez, Telechargez et installer MongoDB Compass afin de se connecter en local vers la base de donnes qu'on vient de créer. Pour vous connecter à votre MongoDB local, vous définissez `Hostname` sur localhost et `Port` sur 27017. Ces valeurs sont par défaut pour toutes les connexions MongoDB locales (sauf si vous les avez modifiées). Appuyez sur Connect, et vous devriez voir les bases de données dans votre MongoDB local. 
 
 ![DbConnection](/DbConnection.png)
 
@@ -44,10 +44,10 @@ https://zellwk.com/blog/local-mongodb/#:~:text=To%20connect%20to%20your%20local,
 
 
 ## Important À savoir
-Nous avons rencontré beaucoup difficultés au sein de notre équipe de développement **durant la premiere ET la deuxieme partie** , nous avons dû nous séparer notre équipe initiale(4 personnes) en deux pour des raisons d'équité en termes de collaboration pour ce projet, et cela au milieux de la partie 1. De plus, un nouveau membre nous a rejoints peu de temps avant la remise #1 en nous assurant qu'il allais collaborer avec nous pour la suite des choses et **nous n'avons recus aucune nouvelle de lui depuis.** J'ai (yassine) tenté de le contacter a plusieurs reprise sans aucune reponses et aucun commit de sa part n'a ete fait tout le long de la deuxieme partie du projet [Voir commits ici](https://github.com/trafalgarxlaw/INF5190_ProjetSession/commits/main). Nous ne souhaitons donc pas etre penaliser pour ce genre d'evenement qui peut etre extremement frustrant, nous avons travailler serieusement sur ce projet et malheureusement il n'est pas encore terminé. Si besoin, vous pouvez me contacter (yassine) pour plus de clarifications par e-mail et je vous repondrais le plus tot possible.
+Nous avons rencontré beaucoup difficultés au sein de notre équipe de développement **durant la première ET la deuxième partie** , nous avons dû nous séparer notre équipe initiale(4 personnes) en deux pour des raisons d'équité en termes de collaboration pour ce projet, et cela au milieu de la partie 1. De plus, un nouveau membre nous a rejoints peu de temps avant la remise #1 en nous assurant qu'il allait collaborer avec nous pour la suite des choses et **nous n'avons reçu aucune nouvelle de lui depuis.** J'ai (yassine) tenté de le contacter a plusieurs reprises sans aucune réponse et aucun commit de sa part n'a été faite tout le long de la deuxième partie du projet [Voir commits ici](https://github.com/trafalgarxlaw/INF5190_ProjetSession/commits/main). Nous ne souhaitons donc pas être pénalisés pour ce genre d'événement qui peut être extrêmement frustrant, nous avons travaillé sérieusement sur ce projet et malheureusement il n'est pas encore terminé. Si besoin, vous pouvez me contacter (yassine) pour plus de clarifications par e-mail et je vous répondrais le plus tôt possible.
 
 ## À ne pas oublier
-Ne pas oublier d'inclure toute les librairies dans le build path de ecplipse. Touts les fichiers jars necessaire sont dont le répertoire `lib` de WEB-INF.
+Ne pas oublier d'inclure toutes les librairies dans le build path d’éclipse. Tous les fichiers jars nécessaires sont dans le répertoire `lib` de WEB-INF.
 
 
 ## Repartition du travail
